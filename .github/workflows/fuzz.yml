@@ -38,8 +38,6 @@ jobs:
           repository: roc-lang/roc
 
       - name: build roc fuzzers
-        env:
-          CC: clang-18
         run: |
           cd roc
           # TODO: figure out why fuzzers won't build.
