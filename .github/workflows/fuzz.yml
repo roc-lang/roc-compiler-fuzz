@@ -51,10 +51,12 @@ jobs:
           key: fuzz-tokenize-corpus
           path: fuzz-tokenize-corpus
       
-      - name: init initial corpus
-        if: steps.restore-cache-corpus.outputs.cache-hit != 'true'
+      # No matter what we reload examples from the repo.
+      # They might get pruned, but we want to make sure we don't miss any new examples.
+      - name: copy over initial corpus
         run: |
-          cp -R roc/src/fuzz-corpus/tokenize/ fuzz-tokenize-corpus/
+          mkdir -p fuzz-tokenize-corpus/
+          cp roc/src/fuzz-corpus/tokenize/* fuzz-tokenize-corpus/
 
       # launch fuzzer on corpus for x amount of time
       
