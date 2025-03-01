@@ -55,8 +55,6 @@ jobs:
       # They might get pruned, but we want to make sure we don't miss any new examples.
       - name: copy over initial corpus
         run: |
-          echo $(pwd)
-          ls
           mkdir -p fuzz-tokenize-corpus/
           cp roc/src/fuzz-corpus/tokenize/* fuzz-tokenize-corpus/
 
