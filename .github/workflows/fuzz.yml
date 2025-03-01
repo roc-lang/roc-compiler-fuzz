@@ -1,0 +1,49 @@
+on:
+  workflow_dispatch:
+
+# Only allow one copy of this job to run at a time.
+# This ensures no merge or cache conflicts.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  fuzz:
+    runs-on: [ubuntu-22.04]
+    steps:
+      - name: checkout fuzzer
+        uses: actions/checkout@v4
+        with:
+          path: roc-compiler-fuzz
+
+      - name: checkout roc
+        uses: actions/checkout@v4
+        with:
+          path: roc
+          repository: roc-lang/roc
+
+      - name: install llvm
+        run: |
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 18
+
+      - name: tmp print num cores
+        run: |
+          nproc --all
+
+      # load cached corpus
+      
+      # launch fuzzer on corpus for x amount of time
+      
+      # minimize the corpus
+
+      # minimize all examples in the corpus
+
+      # save the corpus to cache
+
+      # minimize all crashes
+
+      # calculate list of crashes/hangs to report
+      
+      # update this repo with new failures and stats on passes
