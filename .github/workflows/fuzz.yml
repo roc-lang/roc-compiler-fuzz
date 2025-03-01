@@ -15,12 +15,16 @@ jobs:
     steps:
       - name: install llvm
         run: |
-          sudo apt install -y zlib
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
           sudo ./llvm.sh 18
           sudo ln -s $(which llvm-config-18) /usr/bin/llvm-config
           llvm-config --version
+
+      - name: install zlib
+        run: |
+          sudo apt update
+          sudo apt install -y zlib1g zlib1g-dev
 
       - name: install zig
         uses: mlugg/setup-zig@v1
