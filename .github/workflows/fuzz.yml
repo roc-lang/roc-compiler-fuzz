@@ -37,11 +37,25 @@ jobs:
           path: roc
           repository: roc-lang/roc
 
-      - name: build roc fuzzers
+      - name: build roc fuzzer (base)
         run: |
           cd roc
           # TODO: figure out why fuzzers won't build.
           zig build -Dfuzz -Dtarget=native-native
+
+          mv zig-out/bin/fuzz-tokenize ../fuzz-tokenize.afl
+
+      # cmplog enables extracting comparision info to get better fuzz results.
+      - name: build roc fuzzer (cmplog)
+        env:
+          AFL_LLVM_CMPLOG: 1
+        run: |
+          cd roc
+          rm -rf .zig-cache zig-out
+
+          zig build -Dfuzz -Dtarget=native-native
+
+          mv zig-out/bin/fuzz-tokenize ../fuzz-tokenize.cmplog
 
       # load cached corpus
       - name: load cached corpus
@@ -58,19 +72,52 @@ jobs:
           mkdir -p fuzz-tokenize-corpus/
           cp roc/src/fuzz-corpus/tokenize/* fuzz-tokenize-corpus/
 
+      - name: configure system for fuzzing
+        run: |
+          sudo ./roc/zig-out/AFLplusplus/bin/afl-system-config
+      
       # launch fuzzer on corpus for x amount of time
       - name: fuzz tokenizer
         env:
+          AFL_TESTCACHE_SIZE: 500
+          AFL_IGNORE_SEED_PROBLEMS: 1
+          AFL_IMPORT_FIRST: 1
           AFL_FINAL_SYNC: 1
         run: |
-          # TODO: use all 4 cores and follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
+          # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           # TODO: decide runtime (currently 10 minutes)
           ./roc/zig-out/AFLplusplus/bin/afl-fuzz \
               -i fuzz-tokenize-corpus/ \
               -o fuzz-out/ \
               -V 600 \
-              -m main \
-              -- ./roc/zig-out/bin/fuzz-tokenize
+              -M main \
+              -c ./fuzz-tokenize.cmplog \
+              -l 2AT \
+              -p explore \
+              -- ./fuzz-tokenize.afl &
+          ./roc/zig-out/AFLplusplus/bin/afl-fuzz \
+              -i fuzz-tokenize-corpus/ \
+              -o fuzz-out/ \
+              -V 600 \
+              -S s1 \
+              -p fast \
+              -c ./fuzz-tokenize.cmplog \
+              -- ./fuzz-tokenize.afl &
+          AFL_DISABLE_TRIM=1 ./roc/zig-out/AFLplusplus/bin/afl-fuzz \
+              -i fuzz-tokenize-corpus/ \
+              -o fuzz-out/ \
+              -V 600 \
+              -S s2 \
+              -p explore \
+              -- ./fuzz-tokenize.afl &
+          ./roc/zig-out/AFLplusplus/bin/afl-fuzz \
+              -i fuzz-tokenize-corpus/ \
+              -o fuzz-out/ \
+              -V 600 \
+              -S s3 \
+              -p exploit \
+              -- ./fuzz-tokenize.afl &
+          wait
       
       - name: fuzz stats
         run: |
