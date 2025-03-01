@@ -21,11 +21,6 @@ jobs:
           sudo ln -s $(which llvm-config-18) /usr/bin/llvm-config
           llvm-config --version
 
-      - name: install zlib
-        run: |
-          sudo apt update
-          sudo apt install -y zlib1g zlib1g-dev
-
       - name: install zig
         uses: mlugg/setup-zig@v1
         with:
@@ -45,7 +40,7 @@ jobs:
       - name: build roc fuzzers
         run: |
           cd roc
-          zig build -Dfuzz
+          zig build -Dfuzz -Dtarget=native-native
 
       - name: tmp print num cores
         run: |
