@@ -40,14 +40,22 @@ jobs:
       - name: build roc fuzzers
         run: |
           cd roc
-          zig build -Dfuzz -Dtarget=native-native
-
-      - name: tmp print num cores
-        run: |
-          nproc --all
+          # TODO: figure out why fuzzers won't build.
+          # zig build -Dfuzz -Dtarget=native-native
 
       # load cached corpus
+      - name: load cached corpus
+        id: restore-cache-corpus
+        uses: actions/cache/restore@v4
+        with:
+          key: fuzz-tokenize-corpus
+          path: fuzz-tokenize-corpus
       
+      - name: init initial corpus
+        if: steps.restore-cache-corpus.outputs.cache-hit != 'true'
+        run: |
+          cp -R roc/src/fuzz-corpus/tokenize/ fuzz-tokenize-corpus/
+
       # launch fuzzer on corpus for x amount of time
       
       # minimize the corpus
@@ -55,6 +63,12 @@ jobs:
       # minimize all examples in the corpus
 
       # save the corpus to cache
+      - name: save corpus
+        id: save-cache-corpus
+        uses: actions/cache/save@v4
+        with:
+          key: fuzz-tokenize-corpus
+          path: fuzz-tokenize-corpus
 
       # minimize all crashes
 
