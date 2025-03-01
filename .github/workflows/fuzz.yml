@@ -1,5 +1,7 @@
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
 
 # Only allow one copy of this job to run at a time.
 # This ensures no merge or cache conflicts.
