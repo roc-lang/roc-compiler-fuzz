@@ -11,7 +11,18 @@ jobs:
   fuzz:
     runs-on: [ubuntu-22.04]
     steps:
-      - name: checkout fuzzer
+      - name: install llvm
+        run: |
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 18
+
+      - name: install zig
+        uses: mlugg/setup-zig@v1
+        with:
+          version: 0.13.0
+
+      - name: checkout roc-compiler-fuzz
         uses: actions/checkout@v4
         with:
           path: roc-compiler-fuzz
@@ -22,11 +33,10 @@ jobs:
           path: roc
           repository: roc-lang/roc
 
-      - name: install llvm
+      - name: build roc fuzzers
         run: |
-          wget https://apt.llvm.org/llvm.sh
-          chmod +x llvm.sh
-          sudo ./llvm.sh 18
+          cd roc
+          zig build -Dfuzz
 
       - name: tmp print num cores
         run: |
