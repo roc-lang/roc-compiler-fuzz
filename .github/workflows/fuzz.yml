@@ -41,7 +41,7 @@ jobs:
         run: |
           cd roc
           # TODO: figure out why fuzzers won't build.
-          # zig build -Dfuzz -Dtarget=native-native
+          zig build -Dfuzz -Dtarget=native-native
 
       # load cached corpus
       - name: load cached corpus
@@ -59,10 +59,43 @@ jobs:
           cp roc/src/fuzz-corpus/tokenize/* fuzz-tokenize-corpus/
 
       # launch fuzzer on corpus for x amount of time
+      - name: fuzz tokenizer
+        env:
+          AFL_FINAL_SYNC: 1
+        run: |
+          # TODO: use all 4 cores and follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
+          # TODO: decide runtime (currently 10 minutes)
+          ./roc/zig-out/AFLplusplus/bin/afl-fuzz \
+              -i fuzz-tokenize-corpus/ \
+              -o fuzz-out/ \
+              -V 600 \
+              -m main \
+              -- ./roc/zig-out/bin/fuzz-tokenize
       
-      # minimize the corpus
+      - name: fuzz stats
+        run: |
+          ./roc/zig-out/AFLplusplus/bin/afl-whatsup -d -s fuzz-tokenize-corpus/
 
-      # minimize all examples in the corpus
+      # minimize the corpus and all examples
+      - name: minimize corpus
+        run: |
+          ./roc/zig-out/AFLplusplus/bin/afl-cmin \
+              -i fuzz-out/main/queue/ \
+              -o fuzz-cmin/ \
+              -- ./roc/zig-out/bin/fuzz-tokenize
+
+          mkdir fuzz-tmin
+          cd fuzz-cmin
+          parallel \
+            ../roc/zig-out/AFLplusplus/bin/afl-tmin \
+                -i {} \
+                -o ../fuzz-tmin/{} \
+                -- ../roc/zig-out/bin/fuzz-tokenize \
+            ::: *
+          cd ..
+
+          rm -rf fuzz-tokenize-corpus
+          mv fuzz-tmin fuzz-tokenize-corpus
 
       # save the corpus to cache
       - name: save corpus
@@ -73,7 +106,21 @@ jobs:
           path: fuzz-tokenize-corpus
 
       # minimize all crashes
+      - name: minimize crashes
+        run: |
+          mv fuzz-out/main/crashes/ fuzz-crashes
+          mv fuzz-out/main/hangs/ fuzz-hangs
+
+          mkdir fuzz-crashes-tmin
+          cd fuzz-crashes
+          parallel \
+            ../roc/zig-out/AFLplusplus/bin/afl-tmin \
+                -i {} \
+                -o ../fuzz-crashes-tmin/{} \
+                -- ../roc/zig-out/bin/fuzz-tokenize \
+            ::: *
 
       # calculate list of crashes/hangs to report
       
       # update this repo with new failures and stats on passes
+      # store inputs in base64 to make easy to copy commands
