@@ -17,10 +17,10 @@ jobs:
         run: |
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
-          sudo ./llvm.sh 19
-          sudo ln -s $(which llvm-config-19) /usr/bin/llvm-config
+          sudo ./llvm.sh 20
+          sudo ln -s $(which llvm-config-20) /usr/bin/llvm-config
           sudo rm /usr/bin/clang
-          sudo ln -s $(which clang-19) /usr/bin/clang
+          sudo ln -s $(which clang-20) /usr/bin/clang
           llvm-config --version
 
       - name: install zig
