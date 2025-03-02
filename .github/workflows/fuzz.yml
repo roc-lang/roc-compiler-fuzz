@@ -13,13 +13,18 @@ jobs:
   fuzz:
     runs-on: [ubuntu-24.04]
     steps:
-      - name: install llvm
+      - name: install afl++
         run: |
-          wget https://apt.llvm.org/llvm.sh
-          chmod +x llvm.sh
-          sudo ./llvm.sh 18
-          sudo ln -s $(which llvm-config-18) /usr/bin/llvm-config
-          llvm-config --version
+          sudo apt update
+          sudo apt install -y afl++
+
+      # - name: install llvm
+      #   run: |
+      #     wget https://apt.llvm.org/llvm.sh
+      #     chmod +x llvm.sh
+      #     sudo ./llvm.sh 18
+      #     sudo ln -s $(which llvm-config-18) /usr/bin/llvm-config
+      #     llvm-config --version
 
       - name: install zig
         uses: mlugg/setup-zig@v1
@@ -36,12 +41,13 @@ jobs:
         with:
           path: roc
           repository: roc-lang/roc
+          branch: allow-system-afl
 
       - name: build roc fuzzer (base)
         run: |
           cd roc
           # TODO: figure out why fuzzers won't build.
-          zig build -Dfuzz -Dtarget=native-native
+          zig build -Dfuzz -Dtarget=native-native -Dsystem-afl
 
           mv zig-out/bin/fuzz-tokenize ../fuzz-tokenize.afl
 
@@ -53,7 +59,7 @@ jobs:
           cd roc
           rm -rf .zig-cache zig-out
 
-          zig build -Dfuzz -Dtarget=native-native
+          zig build -Dfuzz -Dtarget=native-native -Dsystem-afl
 
           mv zig-out/bin/fuzz-tokenize ../fuzz-tokenize.cmplog
 
@@ -74,7 +80,7 @@ jobs:
 
       - name: configure system for fuzzing
         run: |
-          sudo ./roc/zig-out/AFLplusplus/bin/afl-system-config
+          sudo afl-system-config
       
       # launch fuzzer on corpus for x amount of time
       - name: fuzz tokenizer
@@ -86,7 +92,7 @@ jobs:
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           # TODO: decide runtime (currently 10 minutes)
-          ./roc/zig-out/AFLplusplus/bin/afl-fuzz \
+          afl-fuzz \
               -i fuzz-tokenize-corpus/ \
               -o fuzz-out/ \
               -V 600 \
@@ -95,7 +101,7 @@ jobs:
               -l 2AT \
               -p explore \
               -- ./fuzz-tokenize.afl &
-          ./roc/zig-out/AFLplusplus/bin/afl-fuzz \
+          afl-fuzz \
               -i fuzz-tokenize-corpus/ \
               -o fuzz-out/ \
               -V 600 \
@@ -103,14 +109,14 @@ jobs:
               -p fast \
               -c ./fuzz-tokenize.cmplog \
               -- ./fuzz-tokenize.afl &
-          AFL_DISABLE_TRIM=1 ./roc/zig-out/AFLplusplus/bin/afl-fuzz \
+          AFL_DISABLE_TRIM=1 afl-fuzz \
               -i fuzz-tokenize-corpus/ \
               -o fuzz-out/ \
               -V 600 \
               -S s2 \
               -p explore \
               -- ./fuzz-tokenize.afl &
-          ./roc/zig-out/AFLplusplus/bin/afl-fuzz \
+          afl-fuzz \
               -i fuzz-tokenize-corpus/ \
               -o fuzz-out/ \
               -V 600 \
@@ -121,12 +127,12 @@ jobs:
       
       - name: fuzz stats
         run: |
-          ./roc/zig-out/AFLplusplus/bin/afl-whatsup -d -s fuzz-tokenize-corpus/
+          afl-whatsup -d -s fuzz-tokenize-corpus/
 
       # minimize the corpus and all examples
       - name: minimize corpus
         run: |
-          ./roc/zig-out/AFLplusplus/bin/afl-cmin \
+          afl-cmin \
               -i fuzz-out/main/queue/ \
               -o fuzz-cmin/ \
               -- ./roc/zig-out/bin/fuzz-tokenize
@@ -134,7 +140,7 @@ jobs:
           mkdir fuzz-tmin
           cd fuzz-cmin
           parallel \
-            ../roc/zig-out/AFLplusplus/bin/afl-tmin \
+            afl-tmin \
                 -i {} \
                 -o ../fuzz-tmin/{} \
                 -- ../roc/zig-out/bin/fuzz-tokenize \
@@ -161,7 +167,7 @@ jobs:
           mkdir fuzz-crashes-tmin
           cd fuzz-crashes
           parallel \
-            ../roc/zig-out/AFLplusplus/bin/afl-tmin \
+            afl-tmin \
                 -i {} \
                 -o ../fuzz-crashes-tmin/{} \
                 -- ../roc/zig-out/bin/fuzz-tokenize \
