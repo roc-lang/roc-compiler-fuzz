@@ -17,8 +17,8 @@ jobs:
         run: |
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
-          sudo ./llvm.sh 18
-          sudo ln -s $(which llvm-config-18) /usr/bin/llvm-config
+          sudo ./llvm.sh 16
+          sudo ln -s $(which llvm-config-16) /usr/bin/llvm-config
           llvm-config --version
 
       - name: install zig
