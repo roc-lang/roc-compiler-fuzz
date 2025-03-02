@@ -15,10 +15,12 @@ jobs:
     steps:
       - name: install llvm
         run: |
-          wget https://apt.llvm.org/llvm.sh
-          chmod +x llvm.sh
-          sudo ./llvm.sh 18
-          sudo ln -s $(which llvm-config-18) /usr/bin/llvm-config
+          # wget https://apt.llvm.org/llvm.sh
+          # chmod +x llvm.sh
+          # sudo ./llvm.sh 18
+          # sudo ln -s $(which llvm-config-18) /usr/bin/llvm-config
+          sudo apt update
+          sudo apt install -y llvm llvm-dev clang lld
           llvm-config --version
 
       - name: install zig
