@@ -27,6 +27,7 @@ jobs:
         with:
           path: roc
           repository: roc-lang/roc
+          ref: testing-reintroduce-hang
 
       - name: install zig
         uses: mlugg/setup-zig@v1
