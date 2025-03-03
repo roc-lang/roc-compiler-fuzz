@@ -140,12 +140,11 @@ jobs:
 
           mkdir fuzz-tmin
           cd fuzz-cmin
-          parallel \
+          ls | parallel \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-tmin/{} \
-                -- ../fuzz-tokenize.afl\
-            ::: *
+                -- ../fuzz-tokenize.afl
           cd ..
 
           rm -rf fuzz-tokenize-corpus
@@ -167,12 +166,11 @@ jobs:
 
           mkdir fuzz-crashes-tmin
           cd fuzz-crashes
-          parallel \
+          ls | parallel \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-crashes-tmin/{} \
-                -- ../fuzz-tokenize.afl \
-            ::: *
+                -- ../fuzz-tokenize.afl
 
       # calculate list of crashes/hangs to report
       
