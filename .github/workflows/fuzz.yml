@@ -27,6 +27,7 @@ jobs:
         with:
           path: roc
           repository: roc-lang/roc
+          ref: update-zig-afl-kit-3
 
       - name: install zig
         uses: mlugg/setup-zig@v1
@@ -193,6 +194,7 @@ jobs:
                 -i {} \
                 -o ../fuzz-crashes-tmin/{} \
                 -- ../fuzz-tokenize.afl
+          cd ..
 
           ls fuzz-crashes-tmin
           ls fuzz-hangs
