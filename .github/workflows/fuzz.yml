@@ -48,7 +48,7 @@ jobs:
 
       - name: build roc fuzzer (base)
         env:
-          MODE: LTO
+          AFL_CC_COMPILER: LTO
         run: |
           cd roc
           # TODO: figure out why fuzzers won't build.
@@ -59,7 +59,7 @@ jobs:
       # cmplog enables extracting comparision info to get better fuzz results.
       - name: build roc fuzzer (cmplog)
         env:
-          MODE: LTO
+          AFL_CC_COMPILER: LTO
           AFL_LLVM_CMPLOG: 1
         run: |
           cd roc
