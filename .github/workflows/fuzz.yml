@@ -17,25 +17,6 @@ jobs:
   fuzz:
     runs-on: [ubuntu-24.04]
     steps:
-      - name: install afl++
-        run: |
-          sudo apt update
-          sudo apt install -y afl++
-          afl-fuzz --version
-
-      # - name: install llvm
-      #   run: |
-      #     wget https://apt.llvm.org/llvm.sh
-      #     chmod +x llvm.sh
-      #     sudo ./llvm.sh 18
-      #     sudo ln -s $(which llvm-config-18) /usr/bin/llvm-config
-      #     llvm-config --version
-
-      - name: install zig
-        uses: mlugg/setup-zig@v1
-        with:
-          version: 0.13.0
-
       - name: checkout roc-compiler-fuzz
         uses: actions/checkout@v4
         with:
@@ -46,6 +27,17 @@ jobs:
         with:
           path: roc
           repository: roc-lang/roc
+
+      - name: install zig
+        uses: mlugg/setup-zig@v1
+        with:
+          version: 0.13.0
+
+      - name: install afl++
+        run: |
+          sudo apt update
+          sudo apt install -y afl++
+          afl-fuzz --version
 
       - name: build roc fuzzer (base)
         run: |
