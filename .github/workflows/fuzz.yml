@@ -62,7 +62,7 @@ jobs:
           AFL_LLVM_CMPLOG: 1
         run: |
           cd roc
-          rm -rf .zig-cache zig-out
+          rm -rf .zig-cache zig-out $ZIG_LOCAL_CACHE_DIR
 
           zig build -Dfuzz -Dtarget=native-native -Dsystem-afl
 
