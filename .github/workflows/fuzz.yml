@@ -131,7 +131,7 @@ jobs:
       
       - name: fuzz stats
         run: |
-          afl-whatsup -d -s fuzz-out/
+          afl-whatsup -d fuzz-out/
 
       # minimize the corpus and all examples
       - name: minimize corpus
@@ -165,6 +165,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd roc-compiler-fuzz
           gh extension install actions/gh-actions-cache
           gh actions-cache delete "fuzz-tokenize-corpus" --confirm
 
