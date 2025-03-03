@@ -91,8 +91,8 @@ jobs:
           AFL_IGNORE_SEED_PROBLEMS: 1
           AFL_IMPORT_FIRST: 1
           AFL_FINAL_SYNC: 1
-          # TODO: decide runtime (currently 1 minutes)
-          FUZZ_TIME: 60
+          # TODO: decide runtime and schedule for repetition.
+          FUZZ_TIME: 300
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           afl-fuzz \
