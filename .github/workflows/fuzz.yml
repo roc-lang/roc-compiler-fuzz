@@ -77,6 +77,10 @@ jobs:
           mkdir -p fuzz-tokenize-corpus/
           cp roc/src/fuzz-corpus/tokenize/* fuzz-tokenize-corpus/
 
+      - name: print corpus
+        run: |
+          ls fuzz-tokenize-corpus
+
       - name: configure system for fuzzing
         run: |
           sudo afl-system-config
@@ -149,6 +153,20 @@ jobs:
 
           rm -rf fuzz-tokenize-corpus
           mv fuzz-tmin fuzz-tokenize-corpus
+
+      - name: print corpus
+        run: |
+          ls fuzz-tokenize-corpus
+
+      # delete previous cache to enable overwritting it.
+      - name: delete previous cache
+        if: ${{ steps.restore-cache-corpus.outputs.cache-hit }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh extension install actions/gh-actions-cache
+          gh actions-cache delete "fuzz-tokenize-corpus" --confirm
 
       # save the corpus to cache
       - name: save corpus
