@@ -28,7 +28,7 @@ jobs:
       - name: checkout AFLplusplus
         uses: actions/checkout@v4
         with:
-          repo: AFLplusplus/AFLplusplus
+          repository: AFLplusplus/AFLplusplus
           ref: stable
           path: AFLplusplus
 
