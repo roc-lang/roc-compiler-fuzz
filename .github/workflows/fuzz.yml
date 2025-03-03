@@ -182,6 +182,7 @@ jobs:
 
       - name: minimize crashes
         run: |
+          mv fuzz-out/main/hangs/ fuzz-hangs
           mv fuzz-out/main/crashes/ fuzz-crashes
 
           mkdir fuzz-crashes-tmin
@@ -193,23 +194,13 @@ jobs:
                 -- ../fuzz-tokenize.afl
           cd ..
 
-          ls fuzz-crashes-tmin
+          rm -rf fuzz-crashes
+          mv fuzz-crashes-tmin fuzz-crashes
 
-      - name: minimize hangs (remove if too slow)
+      - name: list failures
         run: |
-          mv fuzz-out/main/hangs/ fuzz-hangs
-
-          mkdir fuzz-hangs-tmin
-          cd fuzz-hangs
-          ls | parallel \
-            afl-tmin \
-                -i {} \
-                -o ../fuzz-hangs-tmin/{} \
-                -H \
-                -- ../fuzz-tokenize.afl
-          cd ..
-
-          ls fuzz-hangs-tmin
+          ls fuzz-crashes
+          ls fuzz-hangs
 
       # calculate list of crashes/hangs to report
       
