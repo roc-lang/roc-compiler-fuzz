@@ -142,6 +142,11 @@ jobs:
 
       # minimize the corpus and all examples
       - name: minimize corpus
+        env:
+          # TODO: why is this needed?
+          # Can we remove it?
+          # afl-cmin seems to work correctly with this.
+          AFL_SKIP_BIN_CHECK: 1
         run: |
           afl-cmin \
               -i fuzz-out/main/queue/ \
