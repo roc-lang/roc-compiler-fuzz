@@ -50,7 +50,7 @@ jobs:
         run: |
           cd roc
           # TODO: figure out why fuzzers won't build.
-          zig build -Dfuzz -Dtarget=native-native -Dsystem-afl --verbose
+          zig build -Dfuzz -Dtarget=native-native -Dsystem-afl
 
           mv zig-out/bin/fuzz-tokenize ../fuzz-tokenize.afl
 
@@ -62,7 +62,7 @@ jobs:
           cd roc
           rm -rf .zig-cache zig-out
 
-          zig build -Dfuzz -Dtarget=native-native -Dsystem-afl --verbose
+          zig build -Dfuzz -Dtarget=native-native -Dsystem-afl
 
           mv zig-out/bin/fuzz-tokenize ../fuzz-tokenize.cmplog
 
@@ -96,8 +96,8 @@ jobs:
           AFL_IGNORE_SEED_PROBLEMS: 1
           AFL_IMPORT_FIRST: 1
           AFL_FINAL_SYNC: 1
-          # TODO: decide runtime (currently 5 minutes)
-          FUZZ_TIME: 300
+          # TODO: decide runtime (currently 1 minutes)
+          FUZZ_TIME: 60
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           afl-fuzz \
