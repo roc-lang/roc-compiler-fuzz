@@ -46,7 +46,6 @@ jobs:
         with:
           path: roc
           repository: roc-lang/roc
-          ref: update-zig-afl-kit-2
 
       - name: build roc fuzzer (base)
         run: |
