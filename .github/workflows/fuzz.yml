@@ -41,7 +41,6 @@ jobs:
         with:
           path: roc
           repository: roc-lang/roc
-          ref: allow-system-afl
 
       - name: build roc fuzzer (base)
         run: |
