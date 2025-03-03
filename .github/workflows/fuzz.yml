@@ -27,6 +27,7 @@ jobs:
         with:
           path: roc
           repository: roc-lang/roc
+          ref: update-zig-afl-kit-4
 
       - name: install zig
         uses: mlugg/setup-zig@v1
@@ -40,6 +41,8 @@ jobs:
           afl-fuzz --version
 
       - name: build roc fuzzer (base)
+        env:
+          AFL_CC_COMPILER: LTO
         run: |
           cd roc
           rm -rf .zig-cache zig-out $ZIG_LOCAL_CACHE_DIR
@@ -52,6 +55,7 @@ jobs:
       - name: build roc fuzzer (cmplog)
         env:
           AFL_LLVM_CMPLOG: 1
+          AFL_CC_COMPILER: LTO
         run: |
           cd roc
           rm -rf .zig-cache zig-out $ZIG_LOCAL_CACHE_DIR
