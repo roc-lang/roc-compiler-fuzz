@@ -63,7 +63,6 @@ jobs:
 
           mv zig-out/bin/fuzz-tokenize ../fuzz-tokenize.cmplog
 
-      # load cached corpus
       - name: load cached corpus
         id: restore-cache-corpus
         uses: actions/cache/restore@v4
@@ -86,7 +85,6 @@ jobs:
         run: |
           sudo afl-system-config
       
-      # launch fuzzer on corpus for x amount of time
       - name: fuzz tokenizer
         env:
           AFL_TESTCACHE_SIZE: 500
@@ -134,7 +132,6 @@ jobs:
         run: |
           afl-whatsup -d fuzz-out/
 
-      # minimize the corpus and all examples
       - name: minimize corpus
         env:
           # TODO: why is this needed?
@@ -175,7 +172,6 @@ jobs:
           gh extension install actions/gh-actions-cache
           gh actions-cache delete "fuzz-tokenize-corpus" --confirm
 
-      # save the corpus to cache
       - name: save corpus
         id: save-cache-corpus
         uses: actions/cache/save@v4
@@ -183,11 +179,9 @@ jobs:
           key: fuzz-tokenize-corpus
           path: fuzz-tokenize-corpus
 
-      # minimize all crashes
       - name: minimize crashes
         run: |
           mv fuzz-out/main/crashes/ fuzz-crashes
-          mv fuzz-out/main/hangs/ fuzz-hangs
 
           mkdir fuzz-crashes-tmin
           cd fuzz-crashes
@@ -199,7 +193,22 @@ jobs:
           cd ..
 
           ls fuzz-crashes-tmin
-          ls fuzz-hangs
+
+      - name: minimize hangs (remove if too slow)
+        run: |
+          mv fuzz-out/main/hangs/ fuzz-hangs
+
+          mkdir fuzz-hangs-tmin
+          cd fuzz-hangs
+          ls | parallel \
+            afl-tmin \
+                -i {} \
+                -o ../fuzz-hangs-tmin/{} \
+                -H \
+                -- ../fuzz-tokenize.afl
+          cd ..
+
+          ls fuzz-hangs-tmin
 
       # calculate list of crashes/hangs to report
       
