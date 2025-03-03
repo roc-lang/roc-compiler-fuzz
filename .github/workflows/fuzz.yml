@@ -164,6 +164,7 @@ jobs:
 
       # delete previous cache to enable overwritting it.
       - name: delete previous cache
+        if: ${{ steps.restore-cache-corpus.outputs.cache-hit }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
