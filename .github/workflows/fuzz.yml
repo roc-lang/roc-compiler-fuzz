@@ -194,6 +194,9 @@ jobs:
                 -o ../fuzz-crashes-tmin/{} \
                 -- ../fuzz-tokenize.afl
 
+          ls fuzz-crashes-tmin
+          ls fuzz-hangs
+
       # calculate list of crashes/hangs to report
       
       # update this repo with new failures and stats on passes
