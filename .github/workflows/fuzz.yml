@@ -89,13 +89,14 @@ jobs:
           AFL_IGNORE_SEED_PROBLEMS: 1
           AFL_IMPORT_FIRST: 1
           AFL_FINAL_SYNC: 1
+          # TODO: decide runtime (currently 1 minute)
+          FUZZ_TIME: 60
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
-          # TODO: decide runtime (currently 10 minutes)
           afl-fuzz \
               -i fuzz-tokenize-corpus/ \
               -o fuzz-out/ \
-              -V 600 \
+              -V $FUZZ_TIME \
               -M main \
               -c ./fuzz-tokenize.cmplog \
               -l 2AT \
@@ -104,7 +105,7 @@ jobs:
           afl-fuzz \
               -i fuzz-tokenize-corpus/ \
               -o fuzz-out/ \
-              -V 600 \
+              -V $FUZZ_TIME \
               -S s1 \
               -p fast \
               -c ./fuzz-tokenize.cmplog \
@@ -112,14 +113,14 @@ jobs:
           AFL_DISABLE_TRIM=1 afl-fuzz \
               -i fuzz-tokenize-corpus/ \
               -o fuzz-out/ \
-              -V 600 \
+              -V $FUZZ_TIME \
               -S s2 \
               -p explore \
               -- ./fuzz-tokenize.afl &
           afl-fuzz \
               -i fuzz-tokenize-corpus/ \
               -o fuzz-out/ \
-              -V 600 \
+              -V $FUZZ_TIME \
               -S s3 \
               -p exploit \
               -- ./fuzz-tokenize.afl &
