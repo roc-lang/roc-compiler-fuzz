@@ -127,7 +127,7 @@ jobs:
       
       - name: fuzz stats
         run: |
-          afl-whatsup -d -s fuzz-tokenize-corpus/
+          afl-whatsup -d -s fuzz-out/
 
       # minimize the corpus and all examples
       - name: minimize corpus
@@ -135,7 +135,8 @@ jobs:
           afl-cmin \
               -i fuzz-out/main/queue/ \
               -o fuzz-cmin/ \
-              -- ./roc/zig-out/bin/fuzz-tokenize
+              -T all \
+              -- ./fuzz-tokenize.afl
 
           mkdir fuzz-tmin
           cd fuzz-cmin
@@ -143,7 +144,7 @@ jobs:
             afl-tmin \
                 -i {} \
                 -o ../fuzz-tmin/{} \
-                -- ../roc/zig-out/bin/fuzz-tokenize \
+                -- ../fuzz-tokenize.afl\
             ::: *
           cd ..
 
@@ -170,7 +171,7 @@ jobs:
             afl-tmin \
                 -i {} \
                 -o ../fuzz-crashes-tmin/{} \
-                -- ../roc/zig-out/bin/fuzz-tokenize \
+                -- ../fuzz-tokenize.afl \
             ::: *
 
       # calculate list of crashes/hangs to report
