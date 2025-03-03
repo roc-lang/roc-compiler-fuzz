@@ -27,7 +27,6 @@ jobs:
         with:
           path: roc
           repository: roc-lang/roc
-          ref: update-zig-afl-kit-3
 
       - name: install zig
         uses: mlugg/setup-zig@v1
