@@ -218,6 +218,7 @@ jobs:
           ls fuzz-out/main/hangs/
 
       # calculate list of crashes/hangs to report
+      # TODO: maybe move database to its own branch to reduce churn.
       - name: record results
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
