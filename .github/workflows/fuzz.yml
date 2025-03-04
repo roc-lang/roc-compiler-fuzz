@@ -200,27 +200,28 @@ jobs:
 
       - name: minimize crashes
         run: |
-          mv fuzz-out/main/hangs/ fuzz-hangs
           mv fuzz-out/main/crashes/ fuzz-crashes
+          mkdir fuzz-out/main/crashes/
 
-          mkdir fuzz-crashes-tmin
           cd fuzz-crashes
           ls | parallel \
             afl-tmin \
                 -i {} \
-                -o ../fuzz-crashes-tmin/{} \
+                -o ../fuzz-out/main/crashes/{} \
                 -- ../${{ env.fuzzer-exe }}.afl
-          cd ..
-
-          rm -rf fuzz-crashes
-          mv fuzz-crashes-tmin fuzz-crashes
 
       - name: list failures
         run: |
-          ls fuzz-crashes
-          ls fuzz-hangs
+          echo "Crashes:"
+          ls fuzz-out/main/crashes/
+          echo "\nHangs:"
+          ls fuzz-out/main/hangs/
 
       # calculate list of crashes/hangs to report
+      - name: record results
+        run: |
+          cd roc-compiler-fuzz
+          zig build run -- ../roc ${{ matrix.fuzzer }} ../fuzz-out
       
       # update this repo with new failures and stats on passes
       # store inputs in base64 to make easy to copy commands
