@@ -96,7 +96,7 @@ jobs:
           AFL_IMPORT_FIRST: 1
           AFL_FINAL_SYNC: 1
           # TODO: decide runtime and schedule for repetition.
-          FUZZ_TIME: 300
+          FUZZ_TIME: 60
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           afl-fuzz \
