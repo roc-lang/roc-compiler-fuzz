@@ -9,8 +9,6 @@ on:
         description: Roc branch to fuzz
         type: string
         default: main
-  push:
-    branches: [main]
 
 env:
   roc-branch: ${{ inputs.roc-branch || 'main' }}
@@ -219,9 +217,23 @@ jobs:
 
       # calculate list of crashes/hangs to report
       - name: record results
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd roc-compiler-fuzz
-          zig build run -- ../roc ${{ matrix.fuzzer }} ../fuzz-out
-      
-      # update this repo with new failures and stats on passes
-      # store inputs in base64 to make easy to copy commands
+
+          # allow for 10 tries to update the database.
+          for 0..10; do
+            git fetch origin main
+            git reset --hard origin/main
+            zig build run -- ../roc ${{ matrix.fuzzer }} ../fuzz-out
+            git add data.json
+            git commit -m "update fuzzing database (${{ matrix.fuzzer }})"
+            if git push; then
+              break
+            fi
+            sleep 10
+          done
+
+    # TODO: add a follow up step to generate the website.
+    # Make sure it runs even if a step above fails.
