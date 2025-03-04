@@ -20,8 +20,7 @@ jobs:
         fuzzer: [cli, tokenize]
       fail-fast: false
     env:
-      corpus-name: ${{ matrix.fuzzer }}-corpus
-      cache-key: ${{ matrix.fuzzer }}-v1
+      cache-key: ${{ matrix.fuzzer }}-corpus-v1
       fuzzer-exe: fuzz-${{ matrix.fuzzer }}
     runs-on: [ubuntu-24.04]
     steps:
@@ -76,18 +75,18 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           key: ${{ env.cache-key }}
-          path: ${{ env.corpus-name }}
+          path: corpus
       
       # No matter what we reload examples from the repo.
       # They might get pruned, but we want to make sure we don't miss any new examples.
       - name: copy over initial corpus
         run: |
-          mkdir -p ${{ env.corpus-name }}/
-          cp roc/src/fuzz-corpus/${{ matrix.fuzzer }}/* ${{ env.corpus-name }}/
+          mkdir -p corpus/
+          cp roc/src/fuzz-corpus/${{ matrix.fuzzer }}/* corpus/
 
       - name: print corpus
         run: |
-          ls ${{ env.corpus-name }}
+          ls corpus
 
       - name: configure system for fuzzing
         run: |
@@ -104,7 +103,7 @@ jobs:
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           afl-fuzz \
-              -i ${{ env.corpus-name }}/ \
+              -i corpus/ \
               -o fuzz-out/ \
               -V $FUZZ_TIME \
               -M main \
@@ -113,7 +112,7 @@ jobs:
               -p explore \
               -- ./${{ env.fuzzer-exe }}.afl &
           afl-fuzz \
-              -i ${{ env.corpus-name }}/ \
+              -i corpus/ \
               -o fuzz-out/ \
               -V $FUZZ_TIME \
               -S s1 \
@@ -121,14 +120,14 @@ jobs:
               -c ./${{ env.fuzzer-exe }}.cmplog \
               -- ./${{ env.fuzzer-exe }}.afl &
           AFL_DISABLE_TRIM=1 afl-fuzz \
-              -i ${{ env.corpus-name }}/ \
+              -i corpus/ \
               -o fuzz-out/ \
               -V $FUZZ_TIME \
               -S s2 \
               -p explore \
               -- ./${{ env.fuzzer-exe }}.afl &
           afl-fuzz \
-              -i ${{ env.corpus-name }}/ \
+              -i corpus/ \
               -o fuzz-out/ \
               -V $FUZZ_TIME \
               -S s3 \
@@ -162,12 +161,12 @@ jobs:
                 -- ../${{ env.fuzzer-exe }}.afl
           cd ..
 
-          rm -rf ${{ env.corpus-name }}
-          mv fuzz-tmin ${{ env.corpus-name }}
+          rm -rf corpus
+          mv fuzz-tmin corpus
 
       - name: print corpus
         run: |
-          ls ${{ env.corpus-name }}
+          ls corpus
 
       # delete previous cache to enable overwritting it.
       - name: delete previous cache
@@ -185,7 +184,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           key: ${{ env.cache-key }}
-          path: ${{ env.corpus-name }}
+          path: corpus
 
       - name: minimize crashes
         run: |
