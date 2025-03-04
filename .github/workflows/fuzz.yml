@@ -223,7 +223,7 @@ jobs:
           cd roc-compiler-fuzz
 
           # allow for 10 tries to update the database.
-          for 0..10; do
+          for i in {1..10}; do
             git fetch origin main
             git reset --hard origin/main
             zig build update-database -- ../roc ${{ matrix.fuzzer }} ../fuzz-out
