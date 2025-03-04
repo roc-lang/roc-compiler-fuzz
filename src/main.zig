@@ -52,6 +52,8 @@ pub fn main() !void {
                 combined_stats.session_edges_found = @max(combined_stats.session_edges_found, stats.session_edges_found);
                 combined_stats.session_total_edges = @max(combined_stats.session_total_edges, stats.session_total_edges);
                 combined_stats.total_execs += stats.total_execs;
+                combined_stats.saved_crashes += stats.saved_crashes;
+                combined_stats.saved_hangs += stats.saved_hangs;
             }
         }
     }
@@ -78,8 +80,10 @@ pub fn main() !void {
 
     // TODO: actual json database part.
 
-    var results = std.ArrayList(FuzzResult).init(gpa);
-    defer results.deinit();
+    var hang_results = std.ArrayList(FuzzResult).init(gpa);
+    defer hang_results.deinit();
+    var crash_results = std.ArrayList(FuzzResult).init(gpa);
+    defer crash_results.deinit();
     for (&[_][]const u8{ "crashes", "hangs" }) |dir_name| {
         const dir_path = try std.fs.path.join(arena, &.{ fuzzer_dir_name.?, dir_name });
         var dir = try fuzz_output_dir.openDir(dir_path, .{ .iterate = true });
@@ -104,6 +108,7 @@ pub fn main() !void {
             const buffer = try arena.alloc(u8, base64_size);
             const base64_content = std.base64.standard.Encoder.encode(buffer, content);
 
+            var results = if (std.mem.eql(u8, dir_name, "hangs")) &hang_results else &crash_results;
             try results.append(.{
                 .branch = branch,
                 .commit_sha = commit_sha,
@@ -112,17 +117,31 @@ pub fn main() !void {
                 .fuzzer = fuzzer_name,
                 .session_edges_found = combined_stats.session_edges_found,
                 .session_total_edges = combined_stats.session_total_edges,
-                .total_execs = 1,
+                .session_total_execs = combined_stats.total_execs,
+                .session_saved_crashes = combined_stats.saved_crashes,
+                .session_saved_hangs = combined_stats.saved_hangs,
                 .ok = false,
-                .encoded_data = base64_content,
+                .encoded_failure = base64_content,
             });
         }
     }
 
-    if (results.items.len == 0) {
+    std.mem.sort(FuzzResult, hang_results.items, {}, FuzzResult.lessThan);
+    std.mem.sort(FuzzResult, crash_results.items, {}, FuzzResult.lessThan);
+
+    // TODO: re-evaluate if we want to record more, but that might flood the results.
+    // We record at most 2 results per run (1 hang and 1 crash).
+    var results = std.BoundedArray(FuzzResult, 2){};
+    if (hang_results.items.len > 0) {
+        results.appendAssumeCapacity(hang_results.items[0]);
+    }
+    if (crash_results.items.len > 0) {
+        results.appendAssumeCapacity(crash_results.items[0]);
+    }
+    if (crash_results.items.len == 0 and hang_results.items.len == 0) {
         // No failures!
         // Record a success result instead.
-        try results.append(.{
+        results.appendAssumeCapacity(.{
             .branch = branch,
             .commit_sha = commit_sha,
             .commit_timestamp = commit_timestamp,
@@ -130,19 +149,15 @@ pub fn main() !void {
             .fuzzer = fuzzer_name,
             .session_edges_found = combined_stats.session_edges_found,
             .session_total_edges = combined_stats.session_total_edges,
-            .total_execs = combined_stats.total_execs,
+            .session_total_execs = combined_stats.total_execs,
+            .session_saved_crashes = combined_stats.saved_crashes,
+            .session_saved_hangs = combined_stats.saved_hangs,
             .ok = true,
-            .encoded_data = "",
+            .encoded_failure = "",
         });
     }
 
-    // Note: we may eventually want to make a special exception for hangs or a separate queue for them.
-    // They are too expensive to minimize, so they will be longer than other failures.
-    std.mem.sort(FuzzResult, results.items, {}, FuzzResult.lessThan);
-
-    // Keep 20 results:
-    const out = if (results.items.len > 20) results.items[0..20] else results.items;
-    std.debug.print("{s}\n", .{std.json.fmt(out, .{ .whitespace = .indent_tab })});
+    std.debug.print("{s}\n", .{std.json.fmt(results.slice(), .{ .whitespace = .indent_tab })});
 
     // TODO: generate static site from data.
     // That might be done best in a separate script.
@@ -182,6 +197,10 @@ fn load_fuzzer_stats(arena: std.mem.Allocator, fuzz_output_dir: std.fs.Dir, fuzz
             stats.session_edges_found = try read_field(line);
         } else if (std.mem.startsWith(u8, line, "total_edges")) {
             stats.session_total_edges = try read_field(line);
+        } else if (std.mem.startsWith(u8, line, "saved_crashes")) {
+            stats.saved_crashes = try read_field(line);
+        } else if (std.mem.startsWith(u8, line, "saved_hangs")) {
+            stats.saved_hangs = try read_field(line);
         }
     }
     if (stats.start_timestamp == 0 or stats.total_execs == 0) {
@@ -205,6 +224,8 @@ const FuzzerStats = struct {
     session_edges_found: u64 = 0,
     session_total_edges: u64 = 0,
     total_execs: u64 = 0,
+    saved_crashes: u64 = 0,
+    saved_hangs: u64 = 0,
 };
 
 const FuzzResult = struct {
@@ -218,11 +239,12 @@ const FuzzResult = struct {
     // These are all summary statistics
     session_edges_found: u64,
     session_total_edges: u64,
-    // This is set to 1 for failures.
-    total_execs: u64,
+    session_saved_crashes: u64,
+    session_saved_hangs: u64,
+    session_total_execs: u64,
     ok: bool,
     // Only set on actual failure.
-    encoded_data: []const u8,
+    encoded_failure: []const u8,
 
     fn lessThan(_: void, lhs: Self, rhs: Self) bool {
         // 1. Prefer new commits to old commits.
@@ -239,9 +261,9 @@ const FuzzResult = struct {
         }
 
         // 3. Prefer shorter failures.
-        if (lhs.encoded_data.len < rhs.encoded_data.len) {
+        if (lhs.encoded_failure.len < rhs.encoded_failure.len) {
             return true;
-        } else if (lhs.encoded_data.len > rhs.encoded_data.len) {
+        } else if (lhs.encoded_failure.len > rhs.encoded_failure.len) {
             return false;
         }
 

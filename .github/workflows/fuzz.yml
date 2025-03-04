@@ -214,7 +214,7 @@ jobs:
         run: |
           echo "Crashes:"
           ls fuzz-out/main/crashes/
-          echo "\nHangs:"
+          echo -e "\nHangs:"
           ls fuzz-out/main/hangs/
 
       # calculate list of crashes/hangs to report
