@@ -1,10 +1,12 @@
 on:
+  schedule:
+    - cron: 22 0/6 * * *
   workflow_dispatch:
     inputs:
       fuzz-time:
         description: Number of seconds to run the fuzzer for
         type: number
-        default: 60
+        default: 600
       roc-branch:
         description: Roc branch to fuzz
         type: string
@@ -12,7 +14,7 @@ on:
 
 env:
   roc-branch: ${{ inputs.roc-branch || 'main' }}
-  fuzz-time: ${{ inputs.fuzz-time || 60 }}
+  fuzz-time: ${{ inputs.fuzz-time || 1800 }}
 
 # Only allow one copy of this job to run at a time.
 # This ensures no merge or cache conflicts.
