@@ -167,17 +167,19 @@ jobs:
               -T all \
               -- ./${{ env.fuzzer-exe }}.afl
 
-          mkdir fuzz-tmin
-          cd fuzz-cmin
-          ls | parallel \
-            afl-tmin \
-                -i {} \
-                -o ../fuzz-tmin/{} \
-                -- ../${{ env.fuzzer-exe }}.afl
-          cd ..
+          # TODO: tmin is too slow, do we need to minimize at all?
+          # mkdir fuzz-tmin
+          # cd fuzz-cmin
+          # ls | parallel \
+          #   afl-tmin \
+          #       -i {} \
+          #       -o ../fuzz-tmin/{} \
+          #       -- ../${{ env.fuzzer-exe }}.afl
+          # cd ..
 
           rm -rf corpus
-          mv fuzz-tmin corpus
+          # mv fuzz-tmin corpus
+          mv fuzz-cmin corpus
 
       - name: print corpus
         run: |
@@ -207,6 +209,9 @@ jobs:
           mkdir fuzz-out/main/crashes/
 
           cd fuzz-crashes
+          # TODO: most of these are probably duplicate failures and a waste to minimize
+          # Maybe limit to a random subset or the already shortest files.
+          # That will help if this stage gets too slow.
           ls | parallel \
             afl-tmin \
                 -i {} \
