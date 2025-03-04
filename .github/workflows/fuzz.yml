@@ -19,6 +19,10 @@ jobs:
       matrix:
         fuzzer: [cli, tokenize]
       fail-fast: false
+    env:
+      corpus-name: ${{ matrix.fuzzer }}-corpus
+      cache-key: ${{ env.corpus-name }}-v1
+      fuzzer-exe: fuzz-${{ matrix.fuzzer }}
     runs-on: [ubuntu-24.04]
     steps:
       - name: checkout roc-compiler-fuzz
@@ -52,7 +56,7 @@ jobs:
 
           zig build -Dfuzz -Dtarget=native-native -Dsystem-afl
 
-          mv zig-out/bin/fuzz-${{ matrix.fuzzer }} ../fuzz-${{ matrix.fuzzer }}.afl
+          mv zig-out/bin/${{ env.fuzzer-exe }} ../${{ env.fuzzer-exe }}.afl
 
       # cmplog enables extracting comparision info to get better fuzz results.
       - name: build roc fuzzer (cmplog)
@@ -65,25 +69,25 @@ jobs:
 
           zig build -Dfuzz -Dtarget=native-native -Dsystem-afl
 
-          mv zig-out/bin/fuzz-${{ matrix.fuzzer }} ../fuzz-${{ matrix.fuzzer }}.cmplog
+          mv zig-out/bin/${{ env.fuzzer-exe }} ../${{ env.fuzzer-exe }}.cmplog
 
       - name: load cached corpus
         id: restore-cache-corpus
         uses: actions/cache/restore@v4
         with:
-          key: fuzz-${{ matrix.fuzzer }}-corpus
-          path: fuzz-${{ matrix.fuzzer }}-corpus
+          key: ${{ env.cache-key }}
+          path: ${{ env.corpus-name }}
       
       # No matter what we reload examples from the repo.
       # They might get pruned, but we want to make sure we don't miss any new examples.
       - name: copy over initial corpus
         run: |
-          mkdir -p fuzz-${{ matrix.fuzzer }}-corpus/
-          cp roc/src/fuzz-corpus/${{ matrix.fuzzer }}/* fuzz-${{ matrix.fuzzer }}-corpus/
+          mkdir -p ${{ env.corpus-name }}/
+          cp roc/src/fuzz-corpus/${{ matrix.fuzzer }}/* ${{ env.corpus-name }}/
 
       - name: print corpus
         run: |
-          ls fuzz-${{ matrix.fuzzer }}-corpus
+          ls ${{ env.corpus-name }}
 
       - name: configure system for fuzzing
         run: |
@@ -100,36 +104,36 @@ jobs:
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           afl-fuzz \
-              -i fuzz-${{ matrix.fuzzer }}-corpus/ \
+              -i ${{ env.corpus-name }}/ \
               -o fuzz-out/ \
               -V $FUZZ_TIME \
               -M main \
-              -c ./fuzz-${{ matrix.fuzzer }}.cmplog \
+              -c ./${{ env.fuzzer-exe }}.cmplog \
               -l 2AT \
               -p explore \
-              -- ./fuzz-${{ matrix.fuzzer }}.afl &
+              -- ./${{ env.fuzzer-exe }}.afl &
           afl-fuzz \
-              -i fuzz-${{ matrix.fuzzer }}-corpus/ \
+              -i ${{ env.corpus-name }}/ \
               -o fuzz-out/ \
               -V $FUZZ_TIME \
               -S s1 \
               -p fast \
-              -c ./fuzz-${{ matrix.fuzzer }}.cmplog \
-              -- ./fuzz-${{ matrix.fuzzer }}.afl &
+              -c ./${{ env.fuzzer-exe }}.cmplog \
+              -- ./${{ env.fuzzer-exe }}.afl &
           AFL_DISABLE_TRIM=1 afl-fuzz \
-              -i fuzz-${{ matrix.fuzzer }}-corpus/ \
+              -i ${{ env.corpus-name }}/ \
               -o fuzz-out/ \
               -V $FUZZ_TIME \
               -S s2 \
               -p explore \
-              -- ./fuzz-${{ matrix.fuzzer }}.afl &
+              -- ./${{ env.fuzzer-exe }}.afl &
           afl-fuzz \
-              -i fuzz-${{ matrix.fuzzer }}-corpus/ \
+              -i ${{ env.corpus-name }}/ \
               -o fuzz-out/ \
               -V $FUZZ_TIME \
               -S s3 \
               -p exploit \
-              -- ./fuzz-${{ matrix.fuzzer }}.afl &
+              -- ./${{ env.fuzzer-exe }}.afl &
           wait
       
       - name: fuzz stats
@@ -147,7 +151,7 @@ jobs:
               -i fuzz-out/main/queue/ \
               -o fuzz-cmin/ \
               -T all \
-              -- ./fuzz-${{ matrix.fuzzer }}.afl
+              -- ./${{ env.fuzzer-exe }}.afl
 
           mkdir fuzz-tmin
           cd fuzz-cmin
@@ -155,15 +159,15 @@ jobs:
             afl-tmin \
                 -i {} \
                 -o ../fuzz-tmin/{} \
-                -- ../fuzz-${{ matrix.fuzzer }}.afl
+                -- ../${{ env.fuzzer-exe }}.afl
           cd ..
 
-          rm -rf fuzz-${{ matrix.fuzzer }}-corpus
-          mv fuzz-tmin fuzz-${{ matrix.fuzzer }}-corpus
+          rm -rf ${{ env.corpus-name }}
+          mv fuzz-tmin ${{ env.corpus-name }}
 
       - name: print corpus
         run: |
-          ls fuzz-${{ matrix.fuzzer }}-corpus
+          ls ${{ env.corpus-name }}
 
       # delete previous cache to enable overwritting it.
       - name: delete previous cache
@@ -174,14 +178,14 @@ jobs:
         run: |
           cd roc-compiler-fuzz
           gh extension install actions/gh-actions-cache
-          gh actions-cache delete "fuzz-${{ matrix.fuzzer }}-corpus" --confirm
+          gh actions-cache delete "${{ env.cache-key }}" --confirm
 
       - name: save corpus
         id: save-cache-corpus
         uses: actions/cache/save@v4
         with:
-          key: fuzz-${{ matrix.fuzzer }}-corpus
-          path: fuzz-${{ matrix.fuzzer }}-corpus
+          key: ${{ env.cache-key }}
+          path: ${{ env.corpus-name }}
 
       - name: minimize crashes
         run: |
@@ -194,7 +198,7 @@ jobs:
             afl-tmin \
                 -i {} \
                 -o ../fuzz-crashes-tmin/{} \
-                -- ../fuzz-${{ matrix.fuzzer }}.afl
+                -- ../${{ env.fuzzer-exe }}.afl
           cd ..
 
           rm -rf fuzz-crashes
