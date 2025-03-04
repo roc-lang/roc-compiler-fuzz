@@ -226,7 +226,7 @@ jobs:
           for 0..10; do
             git fetch origin main
             git reset --hard origin/main
-            zig build run -- ../roc ${{ matrix.fuzzer }} ../fuzz-out
+            zig build update-database -- ../roc ${{ matrix.fuzzer }} ../fuzz-out
             git add data.json
             git commit -m "update fuzzing database (${{ matrix.fuzzer }})"
             if git push; then
