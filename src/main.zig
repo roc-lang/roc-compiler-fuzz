@@ -1,7 +1,6 @@
 const std = @import("std");
 
-const crash_folder = "../fuzz-crashes-tmin";
-const hang_folder = "../fuzz-hangs";
+const result_limit = 20;
 
 pub fn main() !void {
     var gpa_impl = std.heap.GeneralPurposeAllocator(.{}){};
@@ -49,11 +48,11 @@ pub fn main() !void {
                     combined_stats.start_timestamp = stats.start_timestamp;
                 }
                 combined_stats.start_timestamp = @min(combined_stats.start_timestamp, stats.start_timestamp);
-                combined_stats.session_edges_found = @max(combined_stats.session_edges_found, stats.session_edges_found);
-                combined_stats.session_total_edges = @max(combined_stats.session_total_edges, stats.session_total_edges);
+                combined_stats.edges_found = @max(combined_stats.edges_found, stats.edges_found);
+                combined_stats.total_edges = @max(combined_stats.total_edges, stats.total_edges);
+                combined_stats.unique_crashes = @max(combined_stats.unique_crashes, stats.unique_crashes);
+                combined_stats.unique_hangs = @max(combined_stats.unique_hangs, stats.unique_hangs);
                 combined_stats.total_execs += stats.total_execs;
-                combined_stats.saved_crashes += stats.saved_crashes;
-                combined_stats.saved_hangs += stats.saved_hangs;
             }
         }
     }
@@ -77,8 +76,6 @@ pub fn main() !void {
     }
 
     std.debug.print("Found primary fuzzer: {s}\n", .{fuzzer_dir_name.?});
-
-    // TODO: actual json database part.
 
     var hang_results = std.ArrayList(FuzzResult).init(gpa);
     defer hang_results.deinit();
@@ -116,11 +113,11 @@ pub fn main() !void {
                 .commit_timestamp = commit_timestamp,
                 .start_timestamp = combined_stats.start_timestamp,
                 .fuzzer = fuzzer_name,
-                .session_edges_found = combined_stats.session_edges_found,
-                .session_total_edges = combined_stats.session_total_edges,
-                .session_total_execs = combined_stats.total_execs,
-                .session_saved_crashes = combined_stats.saved_crashes,
-                .session_saved_hangs = combined_stats.saved_hangs,
+                .edges_found = combined_stats.edges_found,
+                .total_edges = combined_stats.total_edges,
+                .total_execs = combined_stats.total_execs,
+                .unique_crashes = combined_stats.unique_crashes,
+                .unique_hangs = combined_stats.unique_hangs,
                 .kind = kind,
                 .encoded_failure = base64_content,
             });
@@ -132,36 +129,59 @@ pub fn main() !void {
 
     // TODO: re-evaluate if we want to record more, but that might flood the results.
     // We record at most 2 results per run (1 hang and 1 crash).
-    var results = std.BoundedArray(FuzzResult, 2){};
+    var results = std.ArrayList(FuzzResult).init(gpa);
+    defer results.deinit();
     if (hang_results.items.len > 0) {
-        results.appendAssumeCapacity(hang_results.items[0]);
+        try results.append(hang_results.items[0]);
     }
     if (crash_results.items.len > 0) {
-        results.appendAssumeCapacity(crash_results.items[0]);
+        try results.append(crash_results.items[0]);
     }
     if (crash_results.items.len == 0 and hang_results.items.len == 0) {
         // No failures!
         // Record a success result instead.
-        results.appendAssumeCapacity(.{
+        try results.append(.{
             .branch = branch,
             .commit_sha = commit_sha,
             .commit_timestamp = commit_timestamp,
             .start_timestamp = combined_stats.start_timestamp,
             .fuzzer = fuzzer_name,
-            .session_edges_found = combined_stats.session_edges_found,
-            .session_total_edges = combined_stats.session_total_edges,
-            .session_total_execs = combined_stats.total_execs,
-            .session_saved_crashes = combined_stats.saved_crashes,
-            .session_saved_hangs = combined_stats.saved_hangs,
+            .edges_found = combined_stats.edges_found,
+            .total_edges = combined_stats.total_edges,
+            .total_execs = combined_stats.total_execs,
+            .unique_crashes = combined_stats.unique_crashes,
+            .unique_hangs = combined_stats.unique_hangs,
             .kind = .success,
             .encoded_failure = "",
         });
     }
 
-    std.debug.print("{s}\n", .{std.json.fmt(results.slice(), .{ .whitespace = .indent_tab })});
+    const new_entries_json = std.json.fmt(results.items, .{ .whitespace = .indent_tab });
+    std.debug.print("New database entries:\n{s}\n", .{new_entries_json});
 
-    // TODO: generate static site from data.
-    // That might be done best in a separate script.
+    const file_result = std.fs.cwd().openFile("data.json", .{ .mode = .read_write });
+    if (file_result == error.FileNotFound) {
+        // Database does not exist yet, make a new one.
+        const file = try std.fs.cwd().createFile("data.json", .{});
+        defer file.close();
+        try file.writer().print("{s}", .{new_entries_json});
+    } else {
+        // Load and merge the database.
+        var file = try file_result;
+        defer file.close();
+        const content = try file.readToEndAlloc(arena, 10 * 1024);
+        const old_data = try std.json.parseFromSliceLeaky([]FuzzResult, arena, content, .{});
+
+        try results.appendSlice(old_data);
+        std.mem.sort(FuzzResult, results.items, {}, FuzzResult.lessThan);
+
+        const out = if (results.items.len > result_limit) results.items[0..result_limit] else results.items;
+        const out_json = std.json.fmt(out, .{ .whitespace = .indent_tab });
+        // Truncate the file and write new output.
+        try file.seekTo(0);
+        try file.setEndPos(0);
+        try file.writer().print("{s}", .{out_json});
+    }
 }
 
 fn run_cmd(arena: std.mem.Allocator, roc_repo_dir: std.fs.Dir, argv: []const []const u8) ![]const u8 {
@@ -195,13 +215,13 @@ fn load_fuzzer_stats(arena: std.mem.Allocator, fuzz_output_dir: std.fs.Dir, fuzz
         } else if (std.mem.startsWith(u8, line, "execs_done")) {
             stats.total_execs = try read_field(line);
         } else if (std.mem.startsWith(u8, line, "edges_found")) {
-            stats.session_edges_found = try read_field(line);
+            stats.edges_found = try read_field(line);
         } else if (std.mem.startsWith(u8, line, "total_edges")) {
-            stats.session_total_edges = try read_field(line);
+            stats.total_edges = try read_field(line);
         } else if (std.mem.startsWith(u8, line, "saved_crashes")) {
-            stats.saved_crashes = try read_field(line);
+            stats.unique_crashes = try read_field(line);
         } else if (std.mem.startsWith(u8, line, "saved_hangs")) {
-            stats.saved_hangs = try read_field(line);
+            stats.unique_hangs = try read_field(line);
         }
     }
     if (stats.start_timestamp == 0 or stats.total_execs == 0) {
@@ -222,11 +242,11 @@ fn read_field(field: []const u8) !u64 {
 
 const FuzzerStats = struct {
     start_timestamp: u64 = 0,
-    session_edges_found: u64 = 0,
-    session_total_edges: u64 = 0,
+    edges_found: u64 = 0,
+    total_edges: u64 = 0,
     total_execs: u64 = 0,
-    saved_crashes: u64 = 0,
-    saved_hangs: u64 = 0,
+    unique_crashes: u64 = 0,
+    unique_hangs: u64 = 0,
 };
 
 const FuzzResult = struct {
@@ -244,11 +264,11 @@ const FuzzResult = struct {
     start_timestamp: u64,
     fuzzer: []const u8,
     // These are all summary statistics
-    session_edges_found: u64,
-    session_total_edges: u64,
-    session_saved_crashes: u64,
-    session_saved_hangs: u64,
-    session_total_execs: u64,
+    edges_found: u64,
+    total_edges: u64,
+    unique_crashes: u64,
+    unique_hangs: u64,
+    total_execs: u64,
     kind: Kind,
     // Only set on actual failure.
     encoded_failure: []const u8,
