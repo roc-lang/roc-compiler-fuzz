@@ -17,7 +17,7 @@ jobs:
   fuzz:
     strategy:
       matrix:
-        fuzzer: [cli, tokenizer]
+        fuzzer: [cli, tokenize]
       fail-fast: false
     runs-on: [ubuntu-24.04]
     steps:
@@ -89,7 +89,7 @@ jobs:
         run: |
           sudo afl-system-config
       
-      - name: fuzz tokenizer
+      - name: run fuzz jobs
         env:
           AFL_TESTCACHE_SIZE: 500
           AFL_IGNORE_SEED_PROBLEMS: 1
