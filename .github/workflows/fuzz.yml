@@ -12,6 +12,10 @@ on:
   push:
     branches: [main]
 
+env:
+  roc-branch: ${{ inputs.roc-branch || "main" }}
+  fuzz-time: ${{ inputs.fuzz-time || 60 }}
+
 # Only allow one copy of this job to run at a time.
 # This ensures no merge or cache conflicts.
 concurrency:
@@ -43,7 +47,7 @@ jobs:
         with:
           path: roc
           repository: roc-lang/roc
-          ref: ${{ inputs.roc-branch }}
+          ref: ${{ env.roc-branch }}
 
       - name: install zig
         uses: mlugg/setup-zig@v1
@@ -113,7 +117,7 @@ jobs:
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
-              -V ${{ inputs.fuzz-time }} \
+              -V ${{ env.fuzz-time }} \
               -M main \
               -c ./${{ env.fuzzer-exe }}.cmplog \
               -l 2AT \
@@ -122,7 +126,7 @@ jobs:
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
-              -V ${{ inputs.fuzz-time }} \
+              -V ${{ env.fuzz-time }} \
               -S s1 \
               -p fast \
               -c ./${{ env.fuzzer-exe }}.cmplog \
@@ -130,14 +134,14 @@ jobs:
           AFL_DISABLE_TRIM=1 afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
-              -V ${{ inputs.fuzz-time }} \
+              -V ${{ env.fuzz-time }} \
               -S s2 \
               -p explore \
               -- ./${{ env.fuzzer-exe }}.afl &
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
-              -V ${{ inputs.fuzz-time }} \
+              -V ${{ env.fuzz-time }} \
               -S s3 \
               -p exploit \
               -- ./${{ env.fuzzer-exe }}.afl &
