@@ -21,8 +21,9 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
   actions: write
+  contents: write
+  deployments: write
 
 jobs:
   fuzz:
