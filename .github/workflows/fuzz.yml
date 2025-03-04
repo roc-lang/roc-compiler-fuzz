@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
     env:
       corpus-name: ${{ matrix.fuzzer }}-corpus
-      cache-key: ${{ env.corpus-name }}-v1
+      cache-key: ${{ matrix.fuzzer }}-v1
       fuzzer-exe: fuzz-${{ matrix.fuzzer }}
     runs-on: [ubuntu-24.04]
     steps:
