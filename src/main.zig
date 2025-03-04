@@ -84,7 +84,8 @@ pub fn main() !void {
     defer hang_results.deinit();
     var crash_results = std.ArrayList(FuzzResult).init(gpa);
     defer crash_results.deinit();
-    for (&[_][]const u8{ "crashes", "hangs" }) |dir_name| {
+    for (&[_]FuzzResult.Kind{ .crash, .hang }) |kind| {
+        const dir_name = if (kind == .crash) "crashes" else "hangs";
         const dir_path = try std.fs.path.join(arena, &.{ fuzzer_dir_name.?, dir_name });
         var dir = try fuzz_output_dir.openDir(dir_path, .{ .iterate = true });
         defer dir.close();
@@ -108,7 +109,7 @@ pub fn main() !void {
             const buffer = try arena.alloc(u8, base64_size);
             const base64_content = std.base64.standard.Encoder.encode(buffer, content);
 
-            var results = if (std.mem.eql(u8, dir_name, "hangs")) &hang_results else &crash_results;
+            var results = if (kind == .hang) &hang_results else &crash_results;
             try results.append(.{
                 .branch = branch,
                 .commit_sha = commit_sha,
@@ -120,7 +121,7 @@ pub fn main() !void {
                 .session_total_execs = combined_stats.total_execs,
                 .session_saved_crashes = combined_stats.saved_crashes,
                 .session_saved_hangs = combined_stats.saved_hangs,
-                .ok = false,
+                .kind = kind,
                 .encoded_failure = base64_content,
             });
         }
@@ -152,7 +153,7 @@ pub fn main() !void {
             .session_total_execs = combined_stats.total_execs,
             .session_saved_crashes = combined_stats.saved_crashes,
             .session_saved_hangs = combined_stats.saved_hangs,
-            .ok = true,
+            .kind = .success,
             .encoded_failure = "",
         });
     }
@@ -231,6 +232,12 @@ const FuzzerStats = struct {
 const FuzzResult = struct {
     const Self = @This();
 
+    const Kind = enum {
+        success,
+        crash,
+        hang,
+    };
+
     branch: []const u8,
     commit_sha: []const u8,
     commit_timestamp: u64,
@@ -242,7 +249,7 @@ const FuzzResult = struct {
     session_saved_crashes: u64,
     session_saved_hangs: u64,
     session_total_execs: u64,
-    ok: bool,
+    kind: Kind,
     // Only set on actual failure.
     encoded_failure: []const u8,
 
@@ -254,9 +261,9 @@ const FuzzResult = struct {
             return false;
         }
         // 2. Prefer failure results to success results.
-        if (!lhs.ok and rhs.ok) {
+        if (lhs.kind != .success and rhs.kind == .success) {
             return true;
-        } else if (lhs.ok and !rhs.ok) {
+        } else if (lhs.kind == .success and rhs.kind != .success) {
             return false;
         }
 
