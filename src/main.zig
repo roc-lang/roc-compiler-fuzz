@@ -141,7 +141,8 @@ pub fn main() !void {
     std.mem.sort(FuzzResult, results.items, {}, FuzzResult.lessThan);
 
     // Keep 20 results:
-    std.debug.print("{s}\n", .{std.json.fmt(results.items[0..20], .{ .whitespace = .indent_tab })});
+    const out = if (results.items.len > 20) results.items[0..20] else results.items;
+    std.debug.print("{s}\n", .{std.json.fmt(out, .{ .whitespace = .indent_tab })});
 
     // TODO: generate static site from data.
     // That might be done best in a separate script.
