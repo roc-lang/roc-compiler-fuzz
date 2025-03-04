@@ -20,7 +20,7 @@ env:
 # This ensures no merge or cache conflicts.
 concurrency:
   group: ${{ github.workflow }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   actions: write
