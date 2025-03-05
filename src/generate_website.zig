@@ -37,7 +37,7 @@ pub fn main() !void {
         \\
         \\<h1>
         \\  Roc Compiler Fuzz Results
-        \\  <a href="https://github.com/bhansconnect/roc-compiler-fuzz/blob/main/data.json">Raw data</a>
+        \\  <a href="https://github.com/roc-lang/roc-compiler-fuzz/blob/main/data.json">Raw data</a>
         \\</h1>
         \\
         \\<table>
