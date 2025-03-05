@@ -209,6 +209,9 @@ jobs:
           key: ${{ env.cache-key }}
           path: corpus
 
+      # TODO: currently we upload 1 hang and 1 crash.
+      # Maybe just minimize and random hand and crash and upload?
+      # Or minimize a subset and upload shortest?
       - name: minimize crashes
         run: |
           mv fuzz-out/main/crashes/ fuzz-crashes
