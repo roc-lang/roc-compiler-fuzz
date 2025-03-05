@@ -16,7 +16,7 @@ env:
   roc-branch: ${{ inputs.roc-branch || 'main' }}
   fuzz-time: ${{ inputs.fuzz-time || 1800 }}
 
-name: Fuzz ${{ roc-branch }} for ${{ fuzz-time }} seconds
+run-name: Fuzz ${{ roc-branch }} for ${{ fuzz-time }} seconds
 
 # Only allow one copy of this job to run at a time.
 # This ensures no merge or cache conflicts.
