@@ -42,7 +42,7 @@ jobs:
       # Github cache is not meant to be deleted and overwritten.
       # As such, this flow can sometimes break the cache leading to only save failures.
       # Updating the key generates a new cache but gets around save failures.
-      cache-key: ${{ matrix.fuzzer }}-corpus-v2
+      cache-key: ${{ matrix.fuzzer }}-corpus-v3
       fuzzer-exe: fuzz-${{ matrix.fuzzer }}
     runs-on: [ubuntu-24.04]
     steps:
