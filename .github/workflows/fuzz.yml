@@ -268,9 +268,7 @@ jobs:
 
       - name: generate site
         run: |
-          # TODO: generate the actual website
-          mkdir www
-          touch www/index.html
+          zig build generate-website
 
       - name: upload website artifacts
         uses: actions/upload-pages-artifact@v3
