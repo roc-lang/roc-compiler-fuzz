@@ -256,7 +256,7 @@ jobs:
 
   deploy:
     # deploy site even if one of the fuzzers fails.
-    if: always()
+    if: success() || failure()
     needs: [fuzz]
     runs-on: ubuntu-24.04
     steps:
