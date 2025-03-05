@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: 22 0/6 * * *
+    - cron: 22 0/4 * * *
   workflow_dispatch:
     inputs:
       fuzz-time:
