@@ -166,7 +166,7 @@ jobs:
           # Some reason this is needed.
           # Afl doesn't trust the binary otherwise on these CI machines.
           AFL_SKIP_BIN_CHECK: 1
-          MAX_TMIN: 200
+          MAX_TMIN: 50
         run: |
           afl-cmin \
               -i fuzz-out/main/queue/ \
