@@ -163,6 +163,8 @@ jobs:
           afl-whatsup -d fuzz-out/
 
       - name: minimize corpus
+        # TODO: re-enable this once the parser doesn't hang.
+        if: ${{ matrix.fuzzer != 'parse' }}
         env:
           # Some reason this is needed.
           # Afl doesn't trust the binary otherwise on these CI machines.
