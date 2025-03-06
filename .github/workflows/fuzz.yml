@@ -184,6 +184,7 @@ jobs:
                 -i {} \
                 -o ../fuzz-tmin/{} \
                 -- ../${{ env.fuzzer-exe }}.afl
+          cd ..
 
           rm -rf corpus
           mv fuzz-cmin corpus
