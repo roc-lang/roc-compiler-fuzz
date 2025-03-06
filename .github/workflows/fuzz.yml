@@ -34,6 +34,7 @@ permissions:
 
 jobs:
   fuzz:
+    if: ${{ env.fuzz-time != 0 }}
     strategy:
       matrix:
         fuzzer: [cli, tokenize, parse]
