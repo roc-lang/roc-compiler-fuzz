@@ -162,9 +162,8 @@ jobs:
 
       - name: minimize corpus
         env:
-          # TODO: why is this needed?
-          # Can we remove it?
-          # afl-cmin seems to work correctly with this.
+          # Some reason this is needed.
+          # Afl doesn't trust the binary otherwise on these CI machines.
           AFL_SKIP_BIN_CHECK: 1
         run: |
           afl-cmin \
@@ -173,15 +172,8 @@ jobs:
               -T all \
               -- ./${{ env.fuzzer-exe }}.afl
 
-          # TODO: tmin is too slow, do we need to minimize at all?
-          # mkdir fuzz-tmin
-          # cd fuzz-cmin
-          # ls | parallel \
-          #   afl-tmin \
-          #       -i {} \
-          #       -o ../fuzz-tmin/{} \
-          #       -- ../${{ env.fuzzer-exe }}.afl
-          # cd ..
+          # Note: we could minimize each sample here as well.
+          # But it is costly and storage space is cheap.
 
           rm -rf corpus
           # mv fuzz-tmin corpus
@@ -209,22 +201,38 @@ jobs:
           key: ${{ env.cache-key }}
           path: corpus
 
-      # TODO: currently we upload 1 hang and 1 crash.
-      # Maybe just minimize and random hand and crash and upload?
-      # Or minimize a subset and upload shortest?
       - name: minimize crashes
+        env:
+          # Limit the number of crashes we minimize to not waste time.
+          # Still minimize a lot to hopefully find a really small sample to report.
+          # Crashes are ultimately quite cheap to minimize.
+          MAX: 200
         run: |
           mv fuzz-out/main/crashes/ fuzz-crashes
           mkdir fuzz-out/main/crashes/
 
           cd fuzz-crashes
-          # TODO: most of these are probably duplicate failures and a waste to minimize
-          # Maybe limit to a random subset or the already shortest files.
-          # That will help if this stage gets too slow.
-          ls | parallel \
+          ls | shuf | head -n $MAX | parallel \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/crashes/{} \
+                -- ../${{ env.fuzzer-exe }}.afl
+
+      - name: minimize hangs
+        env:
+          # Limit the number of hangs we minimize to not waste time.
+          # Hangs are expensive to minimize, so only minimize a few.
+          MAX: 10
+        run: |
+          mv fuzz-out/main/hangs/ fuzz-hangs
+          mkdir fuzz-out/main/hangs/
+
+          cd fuzz-hangs
+          ls | shuf | head -n $MAX | parallel \
+            afl-tmin \
+                -i {} \
+                -o ../fuzz-out/main/hangs/{} \
+                -H \
                 -- ../${{ env.fuzzer-exe }}.afl
 
       - name: list failures
@@ -235,7 +243,6 @@ jobs:
           ls fuzz-out/main/hangs/
 
       # calculate list of crashes/hangs to report
-      # TODO: maybe move database to its own branch to reduce churn.
       - name: record results
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
