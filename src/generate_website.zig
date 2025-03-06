@@ -62,12 +62,12 @@ pub fn main() !void {
             });
         }
         var cmd: ?[]const u8 = null;
-        if (result.encoded_failure.len > 0) {
+        if (result.kind != .success) {
             cmd = try std.fmt.allocPrint(arena,
                 \\zig build repro-{s} -- -b {s}
             , .{
                 result.fuzzer,
-                result.encoded_failure,
+                if (result.encoded_failure.len > 0) result.encoded_failure else "''",
             });
         }
         var count: []const u8 = undefined;
