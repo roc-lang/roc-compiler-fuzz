@@ -281,7 +281,7 @@ jobs:
 
   deploy:
     # deploy site even if one of the fuzzers fails.
-    if: success() || failure() || ${{ inputs.fuzz-time == 0 }}
+    if: ${{ success() || failure() || inputs.fuzz-time == 0 }}
     needs: [fuzz]
     runs-on: ubuntu-24.04
     steps:
