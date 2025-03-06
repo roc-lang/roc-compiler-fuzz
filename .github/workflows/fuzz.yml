@@ -35,7 +35,7 @@ jobs:
   fuzz:
     strategy:
       matrix:
-        fuzzer: [cli, tokenize]
+        fuzzer: [cli, tokenize, parse]
       fail-fast: false
     env:
       # Updating the version is a trick to help deal with some github cache issues
