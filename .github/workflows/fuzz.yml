@@ -34,7 +34,7 @@ permissions:
 
 jobs:
   fuzz:
-    if: ${{ inputs.fuzz-time != 0 }}
+    if: ${{ (inputs.fuzz-time || 1800) != 0 }}
     strategy:
       matrix:
         fuzzer: [cli, tokenize, parse]
