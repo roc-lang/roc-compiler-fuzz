@@ -121,7 +121,7 @@ jobs:
         run: |
           mkdir -p corpus/
           cd roc
-          zig build snapshot -- --fuzz-corpus ../corpus
+          zig build snapshot -- --fuzz-corpus ../corpus --verbose
 
       - name: print corpus
         run: |
