@@ -37,15 +37,21 @@ jobs:
     if: ${{ (inputs.fuzz-time || 1800) != 0 }}
     strategy:
       matrix:
-        fuzzer: [cli, tokenize, parse]
+        fuzzer:
+          - name: cli
+            use-snapshot-corpus: false
+          - name: tokenize
+            use-snapshot-corpus: true
+          - name: parse
+            use-snapshot-corpus: true
       fail-fast: false
     env:
       # Updating the version is a trick to help deal with some github cache issues
       # Github cache is not meant to be deleted and overwritten.
       # As such, this flow can sometimes break the cache leading to only save failures.
       # Updating the key generates a new cache but gets around save failures.
-      cache-key: ${{ matrix.fuzzer }}-corpus-v3
-      fuzzer-exe: fuzz-${{ matrix.fuzzer }}
+      cache-key: ${{ matrix.fuzzer.name }}-corpus-v3
+      fuzzer-exe: fuzz-${{ matrix.fuzzer.name }}
     runs-on: [ubuntu-24.04]
     steps:
       - name: checkout roc-compiler-fuzz
@@ -105,9 +111,17 @@ jobs:
       # No matter what we reload examples from the repo.
       # They might get pruned, but we want to make sure we don't miss any new examples.
       - name: copy over initial corpus
+        if: ${{ !matrix.fuzzer.use_snapshot_corpus }}
         run: |
           mkdir -p corpus/
-          cp roc/src/fuzz-corpus/${{ matrix.fuzzer }}/* corpus/
+          cp roc/src/fuzz-corpus/${{ matrix.fuzzer.name }}/* corpus/
+
+      - name: generate initial corpus
+        if: ${{ matrix.fuzzer.use_snapshot_corpus }}
+        run: |
+          mkdir -p corpus/
+          cd roc
+          zig build snapshot -- --fuzz-corpus ../corpus
 
       - name: print corpus
         run: |
@@ -164,7 +178,7 @@ jobs:
 
       - name: minimize corpus
         # TODO: re-enable this once the parser doesn't hang.
-        if: ${{ matrix.fuzzer != 'parse' }}
+        if: ${{ matrix.fuzzer.name != 'parse' }}
         env:
           # Some reason this is needed.
           # Afl doesn't trust the binary otherwise on these CI machines.
@@ -270,9 +284,9 @@ jobs:
           for i in {1..10}; do
             git fetch origin main
             git reset --hard origin/main
-            zig build update-database -- ../roc ${{ matrix.fuzzer }} ../fuzz-out
+            zig build update-database -- ../roc ${{ matrix.fuzzer.name }} ../fuzz-out
             git add data.json
-            git commit -m "update fuzzing database (${{ matrix.fuzzer }})"
+            git commit -m "update fuzzing database (${{ matrix.fuzzer.name }})"
             if git push; then
               break
             fi
