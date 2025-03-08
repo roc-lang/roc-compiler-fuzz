@@ -69,7 +69,7 @@ jobs:
       - name: install zig
         uses: mlugg/setup-zig@v1
         with:
-          version: 0.13.0
+          version: 0.14.0
 
       - name: install afl++
         run: |
@@ -305,7 +305,7 @@ jobs:
       - name: install zig
         uses: mlugg/setup-zig@v1
         with:
-          version: 0.13.0
+          version: 0.14.0
 
       - name: generate site
         run: |
