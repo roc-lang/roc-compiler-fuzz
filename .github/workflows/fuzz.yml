@@ -111,13 +111,13 @@ jobs:
       # No matter what we reload examples from the repo.
       # They might get pruned, but we want to make sure we don't miss any new examples.
       - name: copy over initial corpus
-        if: ${{ !matrix.fuzzer.use_snapshot_corpus }}
+        if: ${{ !matrix.fuzzer.use-snapshot-corpus }}
         run: |
           mkdir -p corpus/
           cp roc/src/fuzz-corpus/${{ matrix.fuzzer.name }}/* corpus/
 
       - name: generate initial corpus
-        if: ${{ matrix.fuzzer.use_snapshot_corpus }}
+        if: ${{ matrix.fuzzer.use-snapshot-corpus }}
         run: |
           mkdir -p corpus/
           cd roc
