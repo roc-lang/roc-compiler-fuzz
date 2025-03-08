@@ -14,10 +14,10 @@ on:
 
 env:
   roc-branch: ${{ inputs.roc-branch || 'main' }}
-  fuzz-time: ${{ inputs.fuzz-time || 1800 }}
+  fuzz-time: ${{ inputs.fuzz-time || 3600 }}
 
 name: Fuzz Roc
-run-name: Fuzz ${{ inputs.roc-branch || 'main' }} for ${{ inputs.fuzz-time || 1800 }} seconds
+run-name: Fuzz ${{ inputs.roc-branch || 'main' }} for ${{ inputs.fuzz-time || 3600 }} seconds
 
 # Only allow one copy of this job to run at a time.
 # This ensures no merge or cache conflicts.
@@ -34,7 +34,7 @@ permissions:
 
 jobs:
   fuzz:
-    if: ${{ (inputs.fuzz-time || 1800) != 0 }}
+    if: ${{ (inputs.fuzz-time || 3600) != 0 }}
     strategy:
       matrix:
         fuzzer:
