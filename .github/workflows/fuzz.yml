@@ -177,6 +177,8 @@ jobs:
           afl-whatsup -d fuzz-out/
 
       - name: minimize corpus
+        id: minimize-corpus
+        continue-on-error: true
         env:
           # Some reason this is needed.
           # Afl doesn't trust the binary otherwise on these CI machines.
@@ -205,6 +207,12 @@ jobs:
           mv fuzz-cmin corpus
           # Overwrite any files with their minimized version.
           mv fuzz-tmin/* corpus
+
+      - name: Use unminimized corpus
+        if: steps.minimize-corpus.outcome == 'failure'
+        run: |
+          rm -rf corpus
+          mv fuzz-out/main/queue/ corpus
 
       - name: print corpus
         run: |
