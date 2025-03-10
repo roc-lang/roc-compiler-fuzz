@@ -184,6 +184,28 @@ pub fn main() !void {
         \\  }
         \\}
         \\</style>
+        \\ <script>
+        \\     window.addEventListener("DOMContentLoaded", () => {
+        \\     // Select all <time> elements with the data-timestamp attribute
+        \\     const timeElements = document.querySelectorAll("time[data-timestamp]");
+        \\
+        \\     // Loop through each <time> element
+        \\     timeElements.forEach((timeEl) => {
+        \\         // Retrieve the timestamp from the data attribute
+        \\         const timestamp = Number(timeEl.getAttribute("data-timestamp"));
+        \\
+        \\         // Convert from seconds to milliseconds (if necessary)
+        \\         // using the built-in Date object
+        \\         const date = new Date(timestamp * 1000);
+        \\
+        \\         // Format the date in a user-friendly way
+        \\         timeEl.textContent = date.toLocaleString();
+        \\
+        \\         // Set the datetime attribute to ISO format for semantic correctness
+        \\         timeEl.setAttribute("datetime", date.toISOString());
+        \\     });
+        \\     });
+        \\ </script>
         \\</head>
         \\<body>
         \\
@@ -226,7 +248,7 @@ pub fn main() !void {
         switch (result.kind) {
             .success => {
                 count = try std.fmt.allocPrint(arena,
-                    \\{} runs
+                    \\<strong style="color: var(--green);">{} runs</strong>
                 , .{
                     result.total_execs,
                 });
@@ -261,7 +283,7 @@ pub fn main() !void {
             \\    <td><a href="https://github.com/roc-lang/roc/tree/{s}">{s}</a>{s}</td>
             \\    <td>{s}</td>
             \\    <td>{s}</td>
-            \\    <td>{}</td>
+            \\    <td><time data-timestamp="{}"><!-- Will be replaced by javascript on load --></time></td>
             \\    <td>{s}</td>
             \\    <td>{s}</td>
             \\  </tr>
@@ -271,7 +293,7 @@ pub fn main() !void {
             result.commit_sha[0..7],
             if (branch) |b| b else "",
             result.fuzzer,
-            if (cmd) |c| c else "No Failures!",
+            if (cmd) |c| c else "<i>Nil failures</i>",
             result.start_timestamp,
             coverage_display,
             count,
