@@ -196,7 +196,7 @@ jobs:
           # But it avoids wasting tons of ci time on the entire corpus.
           mkdir fuzz-tmin
           cd fuzz-cmin
-          ls | shuf | head -n $MAX_TMIN | parallel --progress \
+          ls | shuf | head -n $MAX_TMIN | parallel \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-tmin/{} \
@@ -247,7 +247,7 @@ jobs:
           mkdir fuzz-out/main/crashes/
 
           cd fuzz-crashes
-          ls | shuf | head -n $MAX_TMIN | parallel --progress \
+          ls | shuf | head -n $MAX_TMIN | parallel \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/crashes/{} \
@@ -263,7 +263,7 @@ jobs:
           mkdir fuzz-out/main/hangs/
 
           cd fuzz-hangs
-          ls | shuf | head -n $MAX_TMIN | parallel --progress \
+          ls | shuf | head -n $MAX_TMIN | parallel \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/hangs/{} \
