@@ -8,4 +8,8 @@ cd "$(dirname "$0")"
 
 zig build generate-website
 
-simple-http-server --open --ip 127.0.0.1 --port 8007 --index -- ./www/
+if [ -x "$(command -v xdg-open)" ]; then
+  xdg-open ./www/index.html
+elif [ -x "$(command -v open)" ]; then
+  open ./www/index.html
+fi
