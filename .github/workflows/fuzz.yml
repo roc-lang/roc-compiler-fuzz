@@ -197,7 +197,7 @@ jobs:
           mkdir fuzz-tmin
           cd fuzz-cmin
           ls | shuf | head -n $MAX_TMIN | parallel \
-            --timeout 1m \
+            --timeout 5m \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-tmin/{} \
@@ -250,7 +250,7 @@ jobs:
 
           cd fuzz-crashes
           ls | shuf | head -n $MAX_TMIN | parallel \
-            --timeout 1m \
+            --timeout 2m \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/crashes/{} \
@@ -268,7 +268,7 @@ jobs:
 
           cd fuzz-hangs
           ls | shuf | head -n $MAX_TMIN | parallel \
-            --timeout 10m \
+            --timeout 20m \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/hangs/{} \
