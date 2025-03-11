@@ -198,6 +198,8 @@ jobs:
           cd fuzz-cmin
           ls | shuf | head -n $MAX_TMIN | parallel \
             --timeout 5m \
+            --memfree 1G \
+            --memsuspend 4G \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-tmin/{} \
@@ -251,6 +253,8 @@ jobs:
           cd fuzz-crashes
           ls | shuf | head -n $MAX_TMIN | parallel \
             --timeout 2m \
+            --memfree 1G \
+            --memsuspend 4G \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/crashes/{} \
@@ -269,6 +273,8 @@ jobs:
           cd fuzz-hangs
           ls | shuf | head -n $MAX_TMIN | parallel \
             --timeout 20m \
+            --memfree 1G \
+            --memsuspend 4G \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/hangs/{} \
