@@ -12,7 +12,7 @@ pub fn main() !void {
 
     const file = try std.fs.cwd().openFile("data.json", .{});
     defer file.close();
-    const content = try file.readToEndAlloc(arena, 10 * 1024);
+    const content = try file.readToEndAlloc(arena, 1024 * 1024);
     const data = try std.json.parseFromSliceLeaky([]FuzzResult, arena, content, .{});
 
     std.fs.cwd().makeDir("www") catch |err| {

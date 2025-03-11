@@ -170,7 +170,7 @@ pub fn main() !void {
         // Load and merge the database.
         var file = try file_result;
         defer file.close();
-        const content = try file.readToEndAlloc(arena, 10 * 1024);
+        const content = try file.readToEndAlloc(arena, 1024 * 1024);
         const old_data = try std.json.parseFromSliceLeaky([]FuzzResult, arena, content, .{});
 
         try results.appendSlice(old_data);
@@ -205,7 +205,7 @@ fn load_fuzzer_stats(arena: std.mem.Allocator, fuzz_output_dir: std.fs.Dir, fuzz
     const path = try std.fs.path.join(arena, &[_][]const u8{ fuzzer_subdir.name, "fuzzer_stats" });
     const file = try fuzz_output_dir.openFile(path, .{});
     defer file.close();
-    const content = file.readToEndAlloc(arena, 10 * 1024) catch {
+    const content = file.readToEndAlloc(arena, 1024 * 1024) catch {
         return null;
     };
     var lines = std.mem.splitScalar(u8, content, '\n');
