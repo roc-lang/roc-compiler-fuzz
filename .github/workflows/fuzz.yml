@@ -238,6 +238,7 @@ jobs:
           path: corpus
 
       - name: minimize crashes
+        continue-on-error: true
         env:
           # Limit the number of crashes we minimize to not waste time.
           # Still minimize a lot to hopefully find a really small sample to report.
@@ -256,6 +257,7 @@ jobs:
                 -- ../${{ env.fuzzer-exe }}.afl
 
       - name: minimize hangs
+        continue-on-error: true
         env:
           # Limit the number of hangs we minimize to not waste time.
           # Hangs are expensive to minimize, so only minimize a few.
