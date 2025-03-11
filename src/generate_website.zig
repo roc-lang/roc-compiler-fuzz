@@ -185,6 +185,10 @@ pub fn main() !void {
         \\}
         \\</style>
         \\ <script>
+        \\     const SECOND = 1000;
+        \\     const MINUTE = 60 * SECOND;
+        \\     const HOUR = 60 * MINUTE;
+        \\     const DAY = 24 * HOUR;
         \\     window.addEventListener("DOMContentLoaded", () => {
         \\     // Select all <time> elements with the data-timestamp attribute
         \\     const timeElements = document.querySelectorAll("time[data-timestamp]");
@@ -198,11 +202,25 @@ pub fn main() !void {
         \\         // using the built-in Date object
         \\         const date = new Date(timestamp * 1000);
         \\
-        \\         // Format the date in a user-friendly way
-        \\         timeEl.textContent = date.toLocaleString();
+        \\         // Convert timestamps into freshness
+        \\         let elapsed = Date.now() - date;
+        \\         let freshness = "";
+        \\         if(elapsed >= DAY) {
+        \\             const days = Math.floor(elapsed/DAY);
+        \\             freshness += String(days) + "d ";
+        \\         }
+        \\         elapsed %= DAY;
+        \\         if(elapsed >= HOUR) {
+        \\             const hours = Math.floor(elapsed/HOUR);
+        \\             freshness += String(hours) + "h ";
+        \\         }
+        \\         elapsed %= HOUR;
+        \\         const minutes = Math.floor(elapsed/MINUTE);
+        \\         freshness += String(minutes) + "m ";
+        \\         freshness += "ago";
         \\
-        \\         // Set the datetime attribute to ISO format for semantic correctness
-        \\         timeEl.setAttribute("datetime", date.toISOString());
+        \\         // Write the output to the table.
+        \\         timeEl.textContent = freshness;
         \\     });
         \\     });
         \\ </script>
@@ -219,7 +237,7 @@ pub fn main() !void {
         \\    <th>Commit</th>
         \\    <th>Fuzzer</th>
         \\    <th>Command</th>
-        \\    <th>Timestamp</th>
+        \\    <th>Freshness</th>
         \\    <th>Coverage</th>
         \\    <th>Count</th>
         \\  </tr>
