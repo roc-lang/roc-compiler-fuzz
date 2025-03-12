@@ -201,26 +201,28 @@ jobs:
           rm -rf corpus
           mv fuzz-cmin corpus
 
-      - name: minimize corpus - tmin
-        continue-on-error: true
-        run: |
-          # Minimize a random subset of the corpus.
-          # Allow up to an hour of minimization before killing.
-          # Eventually, this should minimize all files in the corpus.
-          mkdir fuzz-tmin
-          cd corpus
-          ls | shuf | timeout 3600 parallel \
-            --memfree 1G \
-            --memsuspend 2G \
-            afl-tmin \
-                -i {} \
-                -o ../fuzz-tmin/{} \
-                -- ../${{ env.fuzzer-exe }}.afl \
-            || true
-          cd ..
+      # This is slow and doesn't save many bytes.
+      # Maybe reconsider if corpus's get big, but they are pretty small currently.
+      # - name: minimize corpus - tmin
+      #   continue-on-error: true
+      #   run: |
+      #     # Minimize a random subset of the corpus.
+      #     # Allow up to an hour of minimization before killing.
+      #     # Eventually, this should minimize all files in the corpus.
+      #     mkdir fuzz-tmin
+      #     cd corpus
+      #     ls | shuf | timeout 3600 parallel \
+      #       --memfree 1G \
+      #       --memsuspend 2G \
+      #       afl-tmin \
+      #           -i {} \
+      #           -o ../fuzz-tmin/{} \
+      #           -- ../${{ env.fuzzer-exe }}.afl \
+      #       || true
+      #     cd ..
 
-          # Overwrite any files with their minimized version.
-          mv fuzz-tmin/* corpus
+      #     # Overwrite any files with their minimized version.
+      #     mv fuzz-tmin/* corpus
 
       - name: print corpus
         run: |
