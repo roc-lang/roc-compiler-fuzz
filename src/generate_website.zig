@@ -247,7 +247,7 @@ pub fn main() !void {
         var branch: ?[]const u8 = null;
         if (!std.mem.eql(u8, result.branch, "main")) {
             branch = try std.fmt.allocPrint(arena,
-                \\<a href="https://github.com/roc-lang/roc/commit/{s}">{s}</a>
+                \\ <a href="https://github.com/roc-lang/roc/tree/{s}">{s}</a>
             , .{
                 result.branch,
                 result.branch,
