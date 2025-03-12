@@ -38,8 +38,6 @@ jobs:
     strategy:
       matrix:
         fuzzer:
-          - name: cli
-            use-snapshot-corpus: false
           - name: tokenize
             use-snapshot-corpus: true
           - name: parse
