@@ -174,49 +174,53 @@ jobs:
         run: |
           afl-whatsup -d fuzz-out/
 
-      - name: minimize corpus
-        id: minimize-corpus
+      - name: minimize corpus - cmin
+        id: minimize-corpus-cmin
         continue-on-error: true
         timeout-minutes: 120
         env:
           # Some reason this is needed.
           # Afl doesn't trust the binary otherwise on these CI machines.
           AFL_SKIP_BIN_CHECK: 1
-          MAX_TMIN: 50
         run: |
+          # No matter what, replace the corpus with the new queue.
+          rm -rf corpus
+          mv fuzz-out/main/queue corpus
+
+          # Minimize corpus.
           afl-cmin \
-              -i fuzz-out/main/queue/ \
+              -i corpus/ \
               -o fuzz-cmin/ \
               -T all \
               -- ./${{ env.fuzzer-exe }}.afl
 
+      - name: minimize corpus - cmin (copy over)
+        if: steps.minimize-corpus-cmin.outcome == 'success'
+        run: |
           # Overwrite corpus with minimized version.
           rm -rf corpus
           mv fuzz-cmin corpus
 
-          # minimize a random limited subset of the corpus.
-          # Overtime this will lead to minimizing the entire corpus,
-          # But it avoids wasting tons of ci time on the entire corpus.
+      - name: minimize corpus - tmin
+        continue-on-error: true
+        run: |
+          # Minimize a random subset of the corpus.
+          # Allow up to an hour of minimization before killing.
+          # Eventually, this should minimize all files in the corpus.
           mkdir fuzz-tmin
           cd corpus
-          ls | shuf | head -n $MAX_TMIN | parallel \
-            --timeout 5m \
+          ls | shuf | timeout 3600 parallel \
             --memfree 1G \
-            --memsuspend 4G \
+            --memsuspend 2G \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-tmin/{} \
-                -- ../${{ env.fuzzer-exe }}.afl
+                -- ../${{ env.fuzzer-exe }}.afl \
+            || true
           cd ..
 
           # Overwrite any files with their minimized version.
           mv fuzz-tmin/* corpus
-
-      - name: Use unminimized corpus
-        if: steps.minimize-corpus.outcome == 'failure'
-        run: |
-          rm -rf corpus
-          mv fuzz-out/main/queue/ corpus
 
       - name: print corpus
         run: |
@@ -242,7 +246,6 @@ jobs:
 
       - name: minimize crashes
         continue-on-error: true
-        timeout-minutes: 60
         env:
           # Limit the number of crashes we minimize to not waste time.
           # Still minimize a lot to hopefully find a really small sample to report.
@@ -253,18 +256,17 @@ jobs:
           mkdir fuzz-out/main/crashes/
 
           cd fuzz-crashes
-          ls | shuf | head -n $MAX_TMIN | parallel \
-            --timeout 5m \
+          ls | shuf | head -n $MAX_TMIN | timeout 3600 parallel \
             --memfree 1G \
-            --memsuspend 4G \
+            --memsuspend 2G \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/crashes/{} \
-                -- ../${{ env.fuzzer-exe }}.afl
+                -- ../${{ env.fuzzer-exe }}.afl \
+            || true
 
       - name: minimize hangs
         continue-on-error: true
-        timeout-minutes: 60
         env:
           # Limit the number of hangs we minimize to not waste time.
           # Hangs are expensive to minimize, so only minimize a few.
@@ -274,15 +276,15 @@ jobs:
           mkdir fuzz-out/main/hangs/
 
           cd fuzz-hangs
-          ls | shuf | head -n $MAX_TMIN | parallel \
-            --timeout 20m \
+          ls | shuf | head -n $MAX_TMIN | timeout 3600 parallel \
             --memfree 1G \
-            --memsuspend 4G \
+            --memsuspend 2G \
             afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/hangs/{} \
                 -H \
-                -- ../${{ env.fuzzer-exe }}.afl
+                -- ../${{ env.fuzzer-exe }}.afl \
+            || true
 
       - name: list failures
         run: |
