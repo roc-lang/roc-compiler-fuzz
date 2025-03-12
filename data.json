@@ -1,5 +1,19 @@
 [
 	{
+		"branch": "main",
+		"commit_sha": "c5ad77f3fb359a9826a5f1661ac5699326acfe1b",
+		"commit_timestamp": 1741761527,
+		"start_timestamp": 1741769043,
+		"fuzzer": "tokenize",
+		"edges_found": 976,
+		"total_edges": 13644,
+		"unique_crashes": 17,
+		"unique_hangs": 0,
+		"total_execs": 37513279,
+		"kind": "crash",
+		"encoded_failure": "MHU4LjA="
+	},
+	{
 		"branch": "bhansconnect/push-lytmpulslyrn",
 		"commit_sha": "f872e5a99a9ce23312699b8533863b2873b5c019",
 		"commit_timestamp": 1741758618,
@@ -264,19 +278,5 @@
 		"total_execs": 1846788,
 		"kind": "crash",
 		"encoded_failure": ""
-	},
-	{
-		"branch": "main",
-		"commit_sha": "bbb73de781ee4d6037634e9b7f402d3881d9b554",
-		"commit_timestamp": 1741710293,
-		"start_timestamp": 1741711607,
-		"fuzzer": "tokenize",
-		"edges_found": 986,
-		"total_edges": 13684,
-		"unique_crashes": 20,
-		"unique_hangs": 0,
-		"total_execs": 38406797,
-		"kind": "crash",
-		"encoded_failure": "MGIuMA=="
 	}
 ]
