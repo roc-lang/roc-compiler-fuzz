@@ -53,19 +53,19 @@ jobs:
     runs-on: [ubuntu-24.04]
     steps:
       - name: checkout roc-compiler-fuzz
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # ratchet:actions/checkout@v4
         with:
           path: roc-compiler-fuzz
 
       - name: checkout roc
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # ratchet:actions/checkout@v4
         with:
           path: roc
           repository: roc-lang/roc
           ref: ${{ env.roc-branch }}
 
       - name: install zig
-        uses: mlugg/setup-zig@v1
+        uses: mlugg/setup-zig@a67e68dc5c8281d9608136d3d7ca1b282213e4ac # ratchet:mlugg/setup-zig@v1
         with:
           version: 0.14.0
 
@@ -101,11 +101,11 @@ jobs:
 
       - name: load cached corpus
         id: restore-cache-corpus
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@d4323d4df104b026a6aa633fdb11d772146be0bf # ratchet:actions/cache/restore@v4
         with:
           key: ${{ env.cache-key }}
           path: corpus
-      
+
       # No matter what we reload examples from the repo.
       # They might get pruned, but we want to make sure we don't miss any new examples.
       - name: copy over initial corpus
@@ -128,7 +128,7 @@ jobs:
       - name: configure system for fuzzing
         run: |
           sudo afl-system-config
-      
+
       - name: run fuzz jobs
         env:
           AFL_TESTCACHE_SIZE: 500
@@ -169,7 +169,7 @@ jobs:
               -p exploit \
               -- ./${{ env.fuzzer-exe }}.afl &
           wait
-      
+
       - name: fuzz stats
         run: |
           afl-whatsup -d fuzz-out/
@@ -241,7 +241,7 @@ jobs:
 
       - name: save corpus
         id: save-cache-corpus
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@d4323d4df104b026a6aa633fdb11d772146be0bf # ratchet:actions/cache/save@v4
         with:
           key: ${{ env.cache-key }}
           path: corpus
@@ -324,10 +324,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: checkout roc-compiler-fuzz
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # ratchet:actions/checkout@v4
 
       - name: install zig
-        uses: mlugg/setup-zig@v1
+        uses: mlugg/setup-zig@a67e68dc5c8281d9608136d3d7ca1b282213e4ac # ratchet:mlugg/setup-zig@v1
         with:
           version: 0.14.0
 
@@ -338,8 +338,8 @@ jobs:
           zig build generate-website
 
       - name: upload website artifacts
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # ratchet:actions/upload-pages-artifact@v3
         with:
           path: 'www'
       - name: deploy site
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # ratchet:actions/deploy-pages@v4
