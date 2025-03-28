@@ -256,7 +256,7 @@ pub fn main() !void {
         var cmd: ?[]const u8 = null;
         if (result.kind != .success) {
             cmd = try std.fmt.allocPrint(arena,
-                \\<code>zig build repro-{s} -- -b {s}</code>
+                \\<code>zig build repro-{s} -- -b {s} -v</code>
             , .{
                 result.fuzzer,
                 if (result.encoded_failure.len > 0) result.encoded_failure else "''",
