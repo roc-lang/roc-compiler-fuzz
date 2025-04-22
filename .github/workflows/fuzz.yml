@@ -309,7 +309,7 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             zig build update-database -- ../roc ${{ matrix.fuzzer.name }} ../fuzz-out
-            if [[ `git status --porcelain` ]]; then
+            if [[ -n `git status --porcelain` ]]; then
               # No changes.
               break
             fi
