@@ -309,10 +309,11 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             zig build update-database -- ../roc ${{ matrix.fuzzer.name }} ../fuzz-out
-            if [[ -n `git status --porcelain` ]]; then
-              # No changes.
+            if [ $(git status --porcelain | wc -l) -eq "0" ]; then
+              echo "No changes."
               break
             fi
+            echo "Committing changes."
             git add data.json
             git commit -m "update fuzzing database (${{ matrix.fuzzer.name }})"
             if git push; then
