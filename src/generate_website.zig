@@ -115,6 +115,12 @@ pub fn main() !void {
         \\  border-bottom: 1px solid var(--code-bg);
         \\}
         \\
+        \\code {
+        \\  white-space: pre-wrap;
+        \\  word-break: break-all;
+        \\  word-wrap: break-word;
+        \\}
+        \\
         \\table tr:nth-child(even) {
         \\  background-color: var(--code-bg);
         \\}
@@ -299,7 +305,7 @@ pub fn main() !void {
         try buffered.writer().print(
             \\  <tr>
             \\    <td><a href="https://github.com/roc-lang/roc/tree/{s}">{s}</a>{s}</td>
-            \\    <td>{s}</td>
+            \\    <td><a href="https://github.com/roc-lang/roc/blob/{s}/src/fuzz-{s}.zig">{s}</a></td>
             \\    <td>{s}</td>
             \\    <td><time data-timestamp="{}"><!-- Will be replaced by javascript on load --></time></td>
             \\    <td>{s}</td>
@@ -310,6 +316,8 @@ pub fn main() !void {
             result.commit_sha,
             result.commit_sha[0..7],
             if (branch) |b| b else "",
+            result.commit_sha,
+            result.fuzzer,
             result.fuzzer,
             if (cmd) |c| c else "<i>Nil failures</i>",
             result.start_timestamp,
