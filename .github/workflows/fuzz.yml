@@ -65,7 +65,7 @@ jobs:
           ref: ${{ env.roc-branch }}
 
       - name: install zig
-        uses: mlugg/setup-zig@a67e68dc5c8281d9608136d3d7ca1b282213e4ac # ratchet:mlugg/setup-zig@v1
+        uses: mlugg/setup-zig@aa9ad5c14eb3452e235a441c4f9a8e89f20d97bd # ratchet:mlugg/setup-zig@v2
         with:
           version: 0.14.0
 
@@ -101,7 +101,7 @@ jobs:
 
       - name: load cached corpus
         id: restore-cache-corpus
-        uses: actions/cache/restore@d4323d4df104b026a6aa633fdb11d772146be0bf # ratchet:actions/cache/restore@v4
+        uses: actions/cache/restore@5a3ec84eff668545956fd18022155c47e93e2684 # ratchet:actions/cache/restore@v4
         with:
           key: ${{ env.cache-key }}
           path: corpus
@@ -241,7 +241,7 @@ jobs:
 
       - name: save corpus
         id: save-cache-corpus
-        uses: actions/cache/save@d4323d4df104b026a6aa633fdb11d772146be0bf # ratchet:actions/cache/save@v4
+        uses: actions/cache/save@5a3ec84eff668545956fd18022155c47e93e2684 # ratchet:actions/cache/save@v4
         with:
           key: ${{ env.cache-key }}
           path: corpus
@@ -332,7 +332,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # ratchet:actions/checkout@v4
 
       - name: install zig
-        uses: mlugg/setup-zig@a67e68dc5c8281d9608136d3d7ca1b282213e4ac # ratchet:mlugg/setup-zig@v1
+        uses: mlugg/setup-zig@aa9ad5c14eb3452e235a441c4f9a8e89f20d97bd # ratchet:mlugg/setup-zig@v2
         with:
           version: 0.14.0
 
