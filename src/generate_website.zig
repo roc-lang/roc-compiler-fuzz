@@ -121,6 +121,38 @@ pub fn main() !void {
         \\  word-wrap: break-word;
         \\}
         \\
+        \\.copyable {
+        \\  position: relative;
+        \\  display: inline-block;
+        \\  cursor: pointer;
+        \\  padding: 0px;
+        \\  margin: 0px;
+        \\}
+        \\
+        \\.copyable::after {
+        \\  content: 'click to copy';
+        \\  position: absolute;
+        \\  bottom: 5px;
+        \\  right: 5px;
+        \\  background: #333;
+        \\  color: #fff;
+        \\  padding: 2px 6px;
+        \\  font-size: 12px;
+        \\  border-radius: 3px;
+        \\  opacity: 0;
+        \\  transition: opacity 0.3s;
+        \\  pointer-events: none;
+        \\}
+        \\
+        \\.copyable:hover::after {
+        \\  opacity: 1;
+        \\}
+        \\
+        \\.copyable.copied::after {
+        \\  content: 'copied';
+        \\  opacity: 1 !important;
+        \\}
+        \\
         \\table tr:nth-child(even) {
         \\  background-color: var(--code-bg);
         \\}
@@ -228,6 +260,17 @@ pub fn main() !void {
         \\         // Write the output to the table.
         \\         timeEl.textContent = freshness;
         \\     });
+        \\     document.querySelectorAll('.copyable').forEach(node => {
+        \\       node.addEventListener('click', function() {
+        \\         const codeText = this.innerText;
+        \\         navigator.clipboard.writeText(codeText).then(() => {
+        \\           this.classList.add('copied');
+        \\           setTimeout(() => {
+        \\             this.classList.remove('copied');
+        \\           }, 1000);
+        \\         });
+        \\       })
+        \\     });
         \\     });
         \\ </script>
         \\</head>
@@ -262,7 +305,7 @@ pub fn main() !void {
         var cmd: ?[]const u8 = null;
         if (result.kind != .success) {
             cmd = try std.fmt.allocPrint(arena,
-                \\<code>zig build repro-{s} -- -b {s} -v</code>
+                \\<div class="copyable"><code>zig build repro-{s} -- -b {s} -v</code></div>
             , .{
                 result.fuzzer,
                 if (result.encoded_failure.len > 0) result.encoded_failure else "''",
