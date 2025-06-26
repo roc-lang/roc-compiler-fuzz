@@ -15,6 +15,20 @@
 	},
 	{
 		"branch": "main",
+		"commit_sha": "92840440797552e10b6304f7023a973b09e147a8",
+		"commit_timestamp": 1750907001,
+		"start_timestamp": 1750913469,
+		"fuzzer": "parse",
+		"edges_found": 3021,
+		"total_edges": 19244,
+		"unique_crashes": 318,
+		"unique_hangs": 0,
+		"total_execs": 13010531,
+		"kind": "crash",
+		"encoded_failure": "MHwoMHw="
+	},
+	{
+		"branch": "main",
 		"commit_sha": "c9941a44aeafc8fd17b09f7f2939b333a8f0c1a6",
 		"commit_timestamp": 1750902105,
 		"start_timestamp": 1750904832,
@@ -264,19 +278,5 @@
 		"total_execs": 19927762,
 		"kind": "crash",
 		"encoded_failure": "XzD/"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "03b9ce28d54c8baa09403ac259a9027e58c8187d",
-		"commit_timestamp": 1750764328,
-		"start_timestamp": 1750797812,
-		"fuzzer": "parse",
-		"edges_found": 3019,
-		"total_edges": 19244,
-		"unique_crashes": 338,
-		"unique_hangs": 0,
-		"total_execs": 13611682,
-		"kind": "crash",
-		"encoded_failure": "MHwoMHw="
 	}
 ]
