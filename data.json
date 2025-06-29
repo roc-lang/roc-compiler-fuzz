@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "259b290c2a39e45f683d329d16ba2963cec13c68",
 		"commit_timestamp": 1751196889,
+		"start_timestamp": 1751216018,
+		"fuzzer": "canonicalize",
+		"edges_found": 5243,
+		"total_edges": 26988,
+		"unique_crashes": 296,
+		"unique_hangs": 39,
+		"total_execs": 1879610,
+		"kind": "crash",
+		"encoded_failure": "MH1tOnt7fX0="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "259b290c2a39e45f683d329d16ba2963cec13c68",
+		"commit_timestamp": 1751196889,
 		"start_timestamp": 1751202567,
 		"fuzzer": "canonicalize",
 		"edges_found": 5237,
@@ -40,6 +54,20 @@
 		"total_execs": 15024032,
 		"kind": "crash",
 		"encoded_failure": "bW9kdWxlW10wIHM="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "259b290c2a39e45f683d329d16ba2963cec13c68",
+		"commit_timestamp": 1751196889,
+		"start_timestamp": 1751216018,
+		"fuzzer": "canonicalize",
+		"edges_found": 5243,
+		"total_edges": 26988,
+		"unique_crashes": 296,
+		"unique_hangs": 39,
+		"total_execs": 1879610,
+		"kind": "hang",
+		"encoded_failure": "MApwMDBuMDAwMGU6e246MH1wMDBuMDAwMGU9e2U6uH0="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 2943837,
 		"kind": "hang",
 		"encoded_failure": "MApwcjAwMDAwMGU6e2U6MH1wcjAwMDAwMGU9e3A6MHJ9"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "2bb0669a5b21a856fb508a1f97a4405b742ffaad",
-		"commit_timestamp": 1751133379,
-		"start_timestamp": 1751165034,
-		"fuzzer": "canonicalize",
-		"edges_found": 5201,
-		"total_edges": 26932,
-		"unique_crashes": 307,
-		"unique_hangs": 60,
-		"total_execs": 2460466,
-		"kind": "hang",
-		"encoded_failure": "MApwMDAwdDAwMGU6e2U6dCwwIDB9cDAwMHQwMDBlPXtwOrh9"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "2bb0669a5b21a856fb508a1f97a4405b742ffaad",
-		"commit_timestamp": 1751133379,
-		"start_timestamp": 1751173291,
-		"fuzzer": "canonicalize",
-		"edges_found": 5204,
-		"total_edges": 26932,
-		"unique_crashes": 320,
-		"unique_hangs": 30,
-		"total_execs": 2404188,
-		"kind": "hang",
-		"encoded_failure": "MApyPXtlPXtlPXtbKWU9e2U9e1spZT17bj17W11lPXtlPXtuPXtwPXtlPXtlPXtbKWU9e2U9e249ezAtPlt1PXtuPXtkPXtbMF1lPXtbMF0wWzBdZT17MCIKYT17MFswKVswXTA="
 	}
 ]
