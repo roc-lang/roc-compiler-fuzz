@@ -45,6 +45,20 @@
 		"branch": "main",
 		"commit_sha": "09779cba0f6660f22e86cc2a5a930bcafff176b8",
 		"commit_timestamp": 1751446072,
+		"start_timestamp": 1751476014,
+		"fuzzer": "canonicalize",
+		"edges_found": 5536,
+		"total_edges": 28332,
+		"unique_crashes": 121,
+		"unique_hangs": 23,
+		"total_execs": 1133290,
+		"kind": "crash",
+		"encoded_failure": "MAllPSc="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "09779cba0f6660f22e86cc2a5a930bcafff176b8",
+		"commit_timestamp": 1751446072,
 		"start_timestamp": 1751462631,
 		"fuzzer": "canonicalize",
 		"edges_found": 5536,
@@ -124,6 +138,20 @@
 		"total_execs": 1120378,
 		"kind": "hang",
 		"encoded_failure": "W2Y9aWYgMCAwCmVsc2V7ZD17ZD17cD17dD17YT17dj17cj17YT17aT17dD17dD17ZT17W11yPXt2PXwwfHtyPXwwfA=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "09779cba0f6660f22e86cc2a5a930bcafff176b8",
+		"commit_timestamp": 1751446072,
+		"start_timestamp": 1751476014,
+		"fuzzer": "canonicalize",
+		"edges_found": 5536,
+		"total_edges": 28332,
+		"unique_crashes": 121,
+		"unique_hangs": 23,
+		"total_execs": 1133290,
+		"kind": "hang",
+		"encoded_failure": "W2Y9aWYgMCAwCmVsc2V7ZD18fHtlPXtuPXtlPXtuPXtlPXtuPXtlPXtlPXtuPXtlPXtuPXtuPXtlPXtlPXtbKSgwKTAoMCk="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 17187964,
 		"kind": "crash",
 		"encoded_failure": "bW9kdWxlW10wCTAu"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "953d89187947e91c3f0e1c322a9a48a52b07f37d",
-		"commit_timestamp": 1751416265,
-		"start_timestamp": 1751423374,
-		"fuzzer": "parse",
-		"edges_found": 3002,
-		"total_edges": 19228,
-		"unique_crashes": 259,
-		"unique_hangs": 1,
-		"total_execs": 16456172,
-		"kind": "crash",
-		"encoded_failure": "bW9kdWxlW10wCWU="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "953d89187947e91c3f0e1c322a9a48a52b07f37d",
-		"commit_timestamp": 1751416265,
-		"start_timestamp": 1751436271,
-		"fuzzer": "canonicalize",
-		"edges_found": 5534,
-		"total_edges": 28332,
-		"unique_crashes": 128,
-		"unique_hangs": 23,
-		"total_execs": 1181237,
-		"kind": "hang",
-		"encoded_failure": "MAphPXtlPXtyPXtzPXx8e2U9e1spLT5bdT17W11lPXtlPXtuPXtbXS0+W3U9e2U9e1tdZT17ZT17bj17ZT17W11uPXtlPTAoMCk="
 	}
 ]
