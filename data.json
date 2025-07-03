@@ -31,6 +31,20 @@
 		"branch": "main",
 		"commit_sha": "2a2a9bdbb9cbf6377f25750eb5b1a0b26c975f28",
 		"commit_timestamp": 1751509015,
+		"start_timestamp": 1751523286,
+		"fuzzer": "canonicalize",
+		"edges_found": 5707,
+		"total_edges": 28644,
+		"unique_crashes": 139,
+		"unique_hangs": 19,
+		"total_execs": 825262,
+		"kind": "crash",
+		"encoded_failure": "MH1kPSc="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "2a2a9bdbb9cbf6377f25750eb5b1a0b26c975f28",
+		"commit_timestamp": 1751509015,
 		"start_timestamp": 1751510748,
 		"fuzzer": "canonicalize",
 		"edges_found": 5687,
@@ -82,6 +96,20 @@
 		"total_execs": 738145,
 		"kind": "hang",
 		"encoded_failure": "MF1lPXtuPXtlPXtuPXtlPXtbW1tdXV1lPXtuPXtbXWU9e249e249e2U9e1spZT17ZT17bj0oKSgp"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "2a2a9bdbb9cbf6377f25750eb5b1a0b26c975f28",
+		"commit_timestamp": 1751509015,
+		"start_timestamp": 1751523286,
+		"fuzzer": "canonicalize",
+		"edges_found": 5707,
+		"total_edges": 28644,
+		"unique_crashes": 139,
+		"unique_hangs": 19,
+		"total_execs": 825262,
+		"kind": "hang",
+		"encoded_failure": "MAplPXsoKWE9e2U9e249e2U9e249e2U9e1tdZT17ZT17bj17ZT17W11lPXtlPXtlPXtuPXtlPVspKDAp"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 16983119,
 		"kind": "crash",
 		"encoded_failure": "bW9kdWxlW10wDWU="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "09779cba0f6660f22e86cc2a5a930bcafff176b8",
-		"commit_timestamp": 1751446072,
-		"start_timestamp": 1751461860,
-		"fuzzer": "parse",
-		"edges_found": 3002,
-		"total_edges": 19228,
-		"unique_crashes": 256,
-		"unique_hangs": 0,
-		"total_execs": 16832109,
-		"kind": "crash",
-		"encoded_failure": "bW9kdWxlW10wDWU="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "09779cba0f6660f22e86cc2a5a930bcafff176b8",
-		"commit_timestamp": 1751446072,
-		"start_timestamp": 1751447658,
-		"fuzzer": "parse",
-		"edges_found": 3002,
-		"total_edges": 19228,
-		"unique_crashes": 262,
-		"unique_hangs": 0,
-		"total_execs": 17190897,
-		"kind": "crash",
-		"encoded_failure": "bW9kdWxlW10wXWU="
 	}
 ]
