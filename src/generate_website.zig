@@ -305,8 +305,9 @@ pub fn main() !void {
         var cmd: ?[]const u8 = null;
         if (result.kind != .success) {
             cmd = try std.fmt.allocPrint(arena,
-                \\<div class="copyable"><code>zig build repro-{s} -- -b {s} -v</code></div>
+                \\<div class="copyable"><code>zig build{s} repro-{s} -- -b {s} -v</code></div>
             , .{
+                if (result.kind == .hang) " -Doptimize=ReleaseSafe" else "",
                 result.fuzzer,
                 if (result.encoded_failure.len > 0) result.encoded_failure else "''",
             });

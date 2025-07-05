@@ -84,7 +84,7 @@ jobs:
           cd roc
           rm -rf .zig-cache zig-out $ZIG_LOCAL_CACHE_DIR
 
-          zig build -Dfuzz -Dtarget=native-native -Dsystem-afl
+          zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}
 
           mv zig-out/bin/${{ env.fuzzer-exe }} ../${{ env.fuzzer-exe }}.afl
 
@@ -97,7 +97,7 @@ jobs:
           cd roc
           rm -rf .zig-cache zig-out $ZIG_LOCAL_CACHE_DIR
 
-          zig build -Dfuzz -Dtarget=native-native -Dsystem-afl
+          zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}
 
           mv zig-out/bin/${{ env.fuzzer-exe }} ../${{ env.fuzzer-exe }}.cmplog
 
@@ -137,6 +137,9 @@ jobs:
           AFL_IGNORE_SEED_PROBLEMS: 1
           AFL_IMPORT_FIRST: 1
           AFL_FINAL_SYNC: 1
+          # 16KiB inputs seem like a reasonable file size limit.
+          # That should be enough to explore all roc syntax.
+          AFL_INPUT_LEN_MAX: 16384
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           afl-fuzz \
@@ -147,6 +150,7 @@ jobs:
               -c ./${{ env.fuzzer-exe }}.cmplog \
               -l 2AT \
               -p explore \
+              -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
           afl-fuzz \
               -i corpus/ \
@@ -154,6 +158,7 @@ jobs:
               -V ${{ env.fuzz-time }} \
               -S s1 \
               -p fast \
+              -t 1000+ \
               -c ./${{ env.fuzzer-exe }}.cmplog \
               -- ./${{ env.fuzzer-exe }}.afl &
           AFL_DISABLE_TRIM=1 afl-fuzz \
@@ -162,6 +167,7 @@ jobs:
               -V ${{ env.fuzz-time }} \
               -S s2 \
               -p explore \
+              -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
           afl-fuzz \
               -i corpus/ \
@@ -169,6 +175,7 @@ jobs:
               -V ${{ env.fuzz-time }} \
               -S s3 \
               -p exploit \
+              -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
           wait
 
