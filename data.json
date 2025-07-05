@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "dd1aee484ef17a7a4be51a50ef5ad9f6f05240a8",
 		"commit_timestamp": 1751679893,
+		"start_timestamp": 1751683860,
+		"fuzzer": "canonicalize",
+		"edges_found": 5650,
+		"total_edges": 29052,
+		"unique_crashes": 156,
+		"unique_hangs": 90,
+		"total_execs": 751570,
+		"kind": "crash",
+		"encoded_failure": "MF1jPSc="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "dd1aee484ef17a7a4be51a50ef5ad9f6f05240a8",
+		"commit_timestamp": 1751679893,
 		"start_timestamp": 1751682341,
 		"fuzzer": "parse",
 		"edges_found": 2981,
@@ -12,6 +26,20 @@
 		"total_execs": 17319671,
 		"kind": "crash",
 		"encoded_failure": "bW9kdWxlWykwIHM="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "dd1aee484ef17a7a4be51a50ef5ad9f6f05240a8",
+		"commit_timestamp": 1751679893,
+		"start_timestamp": 1751683860,
+		"fuzzer": "canonicalize",
+		"edges_found": 5650,
+		"total_edges": 29052,
+		"unique_crashes": 156,
+		"unique_hangs": 90,
+		"total_execs": 751570,
+		"kind": "hang",
+		"encoded_failure": "MAphPXxffCB7IGUoCWkiMCIKMH0KCWQgPSB7MGZvb2xkMHQoe30wIF8pCm1hPSB7IAl3ID0gImQiCjAxMDN0MD0gWwplKDByLDAJCSksbgoJfQoJcjAgPSB7IGZvCTAKb25kPSB8UnwgezB1bTB7CWRlMDBlMHt9LG1hPSB8X3wgeyBlCiAwMCIKCTBhAAFlPSB8fHthPXswCmE9fHx7ZD17KClhPXx8ezphPXx8e2UoKXtuMHR9ZD17KCh9XTA6CmQ9fHx7bWU9fDAgMHt7YT17bWUoLiwpMApbbigpfW0wPXwwfCB7ZT57eA=="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 16565163,
 		"kind": "crash",
 		"encoded_failure": "bW9kdWxlW10wIHg="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "f1719b41ccd58f75174ebfcced06a0f7fab332ae",
-		"commit_timestamp": 1751605835,
-		"start_timestamp": 1751649202,
-		"fuzzer": "canonicalize",
-		"edges_found": 5749,
-		"total_edges": 28660,
-		"unique_crashes": 122,
-		"unique_hangs": 24,
-		"total_execs": 759399,
-		"kind": "hang",
-		"encoded_failure": "MAphPXtlPXtlPXtbXWU9e2U9e1spYT17ZT17bj17ZT17WylwPXtlPXtbXWU9e2U9eygpZT17ZT17cD17ZT17W11lPXtuPXtbXWU9e1tde24oMCk="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "f1719b41ccd58f75174ebfcced06a0f7fab332ae",
-		"commit_timestamp": 1751605835,
-		"start_timestamp": 1751635858,
-		"fuzzer": "canonicalize",
-		"edges_found": 5749,
-		"total_edges": 28660,
-		"unique_crashes": 108,
-		"unique_hangs": 22,
-		"total_execs": 811656,
-		"kind": "hang",
-		"encoded_failure": "fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLGluIV18fHx8fIsoYU8sLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsYkFuZGVyZQoJYltsaW5lIQlnc1xcXCQJZ3NcXFxcXD1cXFxcXF1pbXBvcnQgU3Rkb3QKCQlleHBvc2luPSB8UnUoZXIsIAkJKSwJNDYsICN3bwo5LG18IHsKCTEKCWlmIG4KaW1wb3J0CglCYQpMYXAoTUwoICMgQ2L///9/IyBBZwoJOiAjIEFvbgoJCUxpc3RnMSk/Lm9kKCk/Lm5lZCgpPy5yZWNkPwpuZGJhciAoYSkgOiB7ICMgbGQKfQoKICMKTWF5YmUoYSkgOiBbU29tbmVdCgpNYXlpbmUoYSl8fHx8fHw6AU1sSs+itp5g3EYDAGYgbSB7CgkJZGJnIDEyMwoJCXIKCX0KfSB7ZSAgewoJeAoge3gKCX0jICwgZXMgPSwgKSAgMTIzCSggMiwgMTIzCnsgCX19CgplbWE9IHxffCB7IAl3ID0gOiBVMTYgPTU1MzUK7DogVS4wOTU1MTYxNQoJcmQgPSB7MQpkID0geyBvOjA5NTUxNjE1ZSD//yB7IGZlcl0KID0gfG76//9udW4gPiBhcmdlIgoKCWlmfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHxwMHx8fHx8fHx8fHx8fOTk5OTk5OTk5OTk5OTkZW50IGFmdGVyIHJlcXVlcyBrZXl3b2xlIFtzb21ldTV9CglyZWNvcmQgPSB7IDcWMC5fABAwID0gMiV9CnVsMDAwZSBbVWVyXQpja051bWJlciA9IHxu+v////////91bXwgewoJIG51bSAwIHsKCX0gZWxzZSBpewoJCSJsbGlpbXBvIFN0ZHsue3uHe3t7ejEue3uHI3QKQ3VzdF0KCmltPSB7IGZvODM2NAppIDogSTY0ID1tYXRjaCBhIHtsdWUgH211bHR9CihhZWN0ICMgQ29yZAoJbnQKCm1haW46IExpc3RsdCh7fSwgXykKbWE9IHxffCB7ICgKCQkKCX0gZWxzZXswYi4wCoBidTIyW10KbiEgOiBMaXN0bHQoLCAKZCA6gP8KbWE9IHxffCB7IGU9ICJkCmNoZSA9IHxtfCB7CglpZiBudW0gPCAwIHsiCgl9cCBbbV8pCm1hPSB8X3wge2JlciA9IHxudW18IHsKCWkwIHsKCgl9ICB7CgkJfSBldW4gW21haQEAAWVjZV0KCnVsZSBbc29tLCA1fWNvcmQgPSB7CjBCMy5fABAgbjgKPSAyJTBlIFtrTnVtcl1yID0gfG76/3wgewoJaWYgbnVtIHsKCQkiCgl9IGVsc2UgaQEKCQkiICR7ZnN0AOH1BV9uYW1hcwoKZWFpbm9jAABkp7MACgogewoJCSJuZWdhdGl2Zf//IC4uciJIZWpsbyAKCWZvbyB7MGIuMAqAYnVdeyBmaXL+/////yBIZW8gJHt0AOH1AHIbCv///38Ae2JlciAJfQoJcmQgPSB7MTIzNzM2NDhpIDogSTY0CmkgPQoge2UgHwoJKDMKCQkpMTIzCgkJe2E9IHxffCB7IFtIYXNoXQp1bGUoIDoge3t7e3swMDAwID4gNSBvciAgNSBhbmQgMTEgPj0gMTYgb3IgMQpNYXBsYXRmbXBvcnQgcGZuZSFdCgppbXBvcnQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMA=="
 	}
 ]
