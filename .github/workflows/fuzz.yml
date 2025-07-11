@@ -153,7 +153,6 @@ jobs:
               -c ./${{ env.fuzzer-exe }}.cmplog \
               -l 2AT \
               -p explore \
-              # -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
           afl-fuzz \
               -i corpus/ \
@@ -161,7 +160,6 @@ jobs:
               -V ${{ env.fuzz-time }} \
               -S s1 \
               -p fast \
-              # -t 1000+ \
               -c ./${{ env.fuzzer-exe }}.cmplog \
               -- ./${{ env.fuzzer-exe }}.afl &
           AFL_DISABLE_TRIM=1 afl-fuzz \
@@ -170,7 +168,6 @@ jobs:
               -V ${{ env.fuzz-time }} \
               -S s2 \
               -p explore \
-              # -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
           afl-fuzz \
               -i corpus/ \
@@ -178,7 +175,6 @@ jobs:
               -V ${{ env.fuzz-time }} \
               -S s3 \
               -p exploit \
-              # -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
           wait
 
