@@ -145,6 +145,8 @@ jobs:
           AFL_INPUT_LEN_MAX: 16384
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
+          pids=()
+          
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
@@ -153,7 +155,10 @@ jobs:
               -c ./${{ env.fuzzer-exe }}.cmplog \
               -l 2AT \
               -p explore \
+              -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
+          pids+=($!)
+          
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
@@ -161,22 +166,34 @@ jobs:
               -S s1 \
               -p fast \
               -c ./${{ env.fuzzer-exe }}.cmplog \
+              -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
+          pids+=($!)
+          
           AFL_DISABLE_TRIM=1 afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
               -V ${{ env.fuzz-time }} \
               -S s2 \
               -p explore \
+              -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
+          pids+=($!)
+          
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
               -V ${{ env.fuzz-time }} \
               -S s3 \
               -p exploit \
+              -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
-          wait
+          pids+=($!)
+          
+          # Wait for each job individually
+          for pid in "${pids[@]}"; do
+              wait "$pid"
+          done
 
       - name: fuzz stats
         run: |
