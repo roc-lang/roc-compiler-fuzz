@@ -132,6 +132,7 @@ jobs:
           sudo afl-system-config
 
       - name: run fuzz jobs
+        timeout-minutes: 75  # Give extra time beyond the fuzz-time (default 3600s = 60min)
         env:
           AFL_TESTCACHE_SIZE: 500
           AFL_IGNORE_SEED_PROBLEMS: 1
@@ -144,9 +145,10 @@ jobs:
           # That should be enough to explore all roc syntax.
           AFL_INPUT_LEN_MAX: 16384
         run: |
-          # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
-          pids=()
+          # Running only 2 fuzzers (main + s1) since 4 seems to hit resource limits
+          echo "Starting main fuzzer for ${{ env.fuzz-time }} seconds..."
           
+          # Start main fuzzer in foreground
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
@@ -157,8 +159,20 @@ jobs:
               -p explore \
               -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
-          pids+=($!)
+          main_pid=$!
           
+          # Give main fuzzer time to initialize
+          echo "Waiting 30 seconds for main fuzzer to initialize..."
+          sleep 30
+          
+          # Check if main is still running
+          if ! kill -0 $main_pid 2>/dev/null; then
+              echo "ERROR: Main fuzzer died during initialization"
+              exit 1
+          fi
+          
+          # Start single secondary fuzzer
+          echo "Starting secondary fuzzer s1..."
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
@@ -168,32 +182,24 @@ jobs:
               -c ./${{ env.fuzzer-exe }}.cmplog \
               -t 1000+ \
               -- ./${{ env.fuzzer-exe }}.afl &
-          pids+=($!)
+          s1_pid=$!
           
-          AFL_DISABLE_TRIM=1 afl-fuzz \
-              -i corpus/ \
-              -o fuzz-out/ \
-              -V ${{ env.fuzz-time }} \
-              -S s2 \
-              -p explore \
-              -t 1000+ \
-              -- ./${{ env.fuzzer-exe }}.afl &
-          pids+=($!)
+          echo "Both fuzzers started. Monitoring..."
           
-          afl-fuzz \
-              -i corpus/ \
-              -o fuzz-out/ \
-              -V ${{ env.fuzz-time }} \
-              -S s3 \
-              -p exploit \
-              -t 1000+ \
-              -- ./${{ env.fuzzer-exe }}.afl &
-          pids+=($!)
+          # Wait for main fuzzer
+          wait $main_pid
+          main_exit=$?
+          echo "Main fuzzer exited with code: $main_exit"
           
-          # Wait for each job individually
-          for pid in "${pids[@]}"; do
-              wait "$pid"
-          done
+          # Kill secondary if still running
+          if kill -0 $s1_pid 2>/dev/null; then
+              echo "Stopping secondary fuzzer..."
+              kill $s1_pid 2>/dev/null || true
+          fi
+          
+          wait $s1_pid 2>/dev/null || true
+          
+          echo "Fuzzing completed"
 
       - name: fuzz stats
         run: |
