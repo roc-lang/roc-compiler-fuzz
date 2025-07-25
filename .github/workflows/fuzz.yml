@@ -132,6 +132,9 @@ jobs:
           sudo afl-system-config
 
       - name: run fuzz jobs
+        # This timeout avoids github killing the job if logs hang for a bit.
+        # By default, github kills a job if logs hang for 10 minutes.
+        timeout-minutes: 180
         env:
           AFL_TESTCACHE_SIZE: 500
           AFL_IGNORE_SEED_PROBLEMS: 1
@@ -143,6 +146,7 @@ jobs:
           # 16KiB inputs seem like a reasonable file size limit.
           # That should be enough to explore all roc syntax.
           AFL_INPUT_LEN_MAX: 16384
+          AFL_NO_UI: 1
         run: |
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           pids=()
