@@ -34,6 +34,7 @@ permissions:
 
 jobs:
   fuzz:
+    timeout-minutes: 300
     if: ${{ (inputs.fuzz-time || 3600) != 0 }}
     strategy:
       matrix:
