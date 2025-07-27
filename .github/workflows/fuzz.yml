@@ -149,6 +149,13 @@ jobs:
           AFL_INPUT_LEN_MAX: 16384
           AFL_NO_UI: 1
         run: |
+          # Monitor process to try and diagnose failures.
+          while true; do
+            echo "[$(date)] Memory: $(free -m | awk 'NR==2{printf "%s/%sMB (%.1f%%)", $3,$2,$3*100/$2}')"
+            sleep 30
+          done &
+          MONITOR_PID=$!
+          
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           pids=()
           
@@ -161,6 +168,7 @@ jobs:
               -l 2AT \
               -p explore \
               -t 1000+ \
+              -m 3500 \
               -- ./${{ env.fuzzer-exe }}.afl &
           pids+=($!)
           
@@ -172,6 +180,7 @@ jobs:
               -p fast \
               -c ./${{ env.fuzzer-exe }}.cmplog \
               -t 1000+ \
+              -m 3500 \
               -- ./${{ env.fuzzer-exe }}.afl &
           pids+=($!)
           
@@ -182,6 +191,7 @@ jobs:
               -S s2 \
               -p explore \
               -t 1000+ \
+              -m 3500 \
               -- ./${{ env.fuzzer-exe }}.afl &
           pids+=($!)
           
@@ -192,13 +202,18 @@ jobs:
               -S s3 \
               -p exploit \
               -t 1000+ \
+              -m 3500 \
               -- ./${{ env.fuzzer-exe }}.afl &
           pids+=($!)
           
+          trap 'echo "Received termination signal from Github, cleaning up..."; kill ${pids[@]} 2>/dev/null; exit 0' SIGINT SIGTERM
+          
           # Wait for each job individually
           for pid in "${pids[@]}"; do
-              wait "$pid"
+              wait "$pid" || echo "Fuzzer process $pid exited with error: $?"
           done
+
+          kill $MONITOR_PID 2>/dev/null || true
 
       - name: fuzz stats
         run: |
