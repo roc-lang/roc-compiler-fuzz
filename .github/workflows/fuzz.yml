@@ -149,10 +149,18 @@ jobs:
           AFL_INPUT_LEN_MAX: 16384
           AFL_NO_UI: 1
         run: |
+          # Initialize max memory tracking
+          MAX_MEMORY_MB=0
+          MEMORY_LOG_FILE=$(mktemp)
+          
           # Monitor process to try and diagnose failures.
           while true; do
-            echo "[$(date)] Memory: $(free -m | awk 'NR==2{printf "%s/%sMB (%.1f%%)", $3,$2,$3*100/$2}')"
-            sleep 30
+            CURRENT_MEM=$(free -m | awk 'NR==2{print $3}')
+            TOTAL_MEM=$(free -m | awk 'NR==2{print $2}')
+            MEM_PERCENT=$(free -m | awk 'NR==2{printf "%.1f", $3*100/$2}')
+            echo "[$(date)] Memory: ${CURRENT_MEM}/${TOTAL_MEM}MB (${MEM_PERCENT}%)"
+            echo "$CURRENT_MEM" >> "$MEMORY_LOG_FILE"
+            sleep 10
           done &
           MONITOR_PID=$!
           
@@ -214,6 +222,18 @@ jobs:
           done
 
           kill $MONITOR_PID 2>/dev/null || true
+          
+          # Calculate and display max memory usage
+          if [ -f "$MEMORY_LOG_FILE" ]; then
+            MAX_MEMORY_MB=$(sort -n "$MEMORY_LOG_FILE" | tail -1)
+            TOTAL_MEM=$(free -m | awk 'NR==2{print $2}')
+            MAX_MEM_PERCENT=$(awk "BEGIN {printf \"%.1f\", $MAX_MEMORY_MB * 100 / $TOTAL_MEM}")
+            echo ""
+            echo "===== Memory Usage Summary ====="
+            echo "Maximum memory used: ${MAX_MEMORY_MB}MB / ${TOTAL_MEM}MB (${MAX_MEM_PERCENT}%)"
+            echo "================================"
+            rm -f "$MEMORY_LOG_FILE"
+          fi
 
       - name: fuzz stats
         run: |
