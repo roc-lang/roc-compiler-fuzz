@@ -256,7 +256,8 @@ jobs:
           afl-cmin \
               -i corpus/ \
               -o fuzz-cmin/ \
-              -t 1000 \
+              -t 1000+ \
+              -m 3500 \
               -T all \
               -- ./${{ env.fuzzer-exe }}.afl
 
@@ -327,11 +328,14 @@ jobs:
           ls | shuf | head -n $MAX_TMIN | timeout 3600 parallel \
             --memfree 1G \
             --memsuspend 2G \
-            afl-tmin \
+            '{ afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/crashes/{} \
+                -t 1000+ \
+                -m 3500 \
                 -- ../${{ env.fuzzer-exe }}.afl \
-            || true
+            || cp {} ../fuzz-out/main/crashes/{}; }' \
+          || true
 
       - name: minimize hangs
         continue-on-error: true
@@ -347,12 +351,15 @@ jobs:
           ls | shuf | head -n $MAX_TMIN | timeout 3600 parallel \
             --memfree 1G \
             --memsuspend 2G \
-            afl-tmin \
+            '{ afl-tmin \
                 -i {} \
                 -o ../fuzz-out/main/hangs/{} \
+                -t 1000+ \
+                -m 3500 \
                 -H \
                 -- ../${{ env.fuzzer-exe }}.afl \
-            || true
+            || cp {} ../fuzz-out/main/hangs/{}; }' \
+          || true
 
       - name: list failures
         run: |
