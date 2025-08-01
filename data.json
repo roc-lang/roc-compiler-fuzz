@@ -31,6 +31,20 @@
 		"branch": "main",
 		"commit_sha": "230f062013526ec4a56e30d9664ca5135840fffc",
 		"commit_timestamp": 1754009853,
+		"start_timestamp": 1754038922,
+		"fuzzer": "canonicalize",
+		"edges_found": 7367,
+		"total_edges": 65692,
+		"unique_crashes": 602,
+		"unique_hangs": 0,
+		"total_execs": 2020113,
+		"kind": "crash",
+		"encoded_failure": "Zd86IFU4ClWCZXIg6AJmb28gPSBCb29sLlQLIRsJQm9vbC5GYWxzZQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "230f062013526ec4a56e30d9664ca5135840fffc",
+		"commit_timestamp": 1754009853,
 		"start_timestamp": 1754017806,
 		"fuzzer": "canonicalize",
 		"edges_found": 7306,
@@ -264,19 +278,5 @@
 		"total_execs": 27395977,
 		"kind": "success",
 		"encoded_failure": ""
-	},
-	{
-		"branch": "main",
-		"commit_sha": "d76b94fb61d8c16810ef5747a6dae655a9fce893",
-		"commit_timestamp": 1753928175,
-		"start_timestamp": 1753929558,
-		"fuzzer": "parse",
-		"edges_found": 3098,
-		"total_edges": 19828,
-		"unique_crashes": 104,
-		"unique_hangs": 0,
-		"total_execs": 17431558,
-		"kind": "crash",
-		"encoded_failure": "MGIuMAr/////MgowdTIy"
 	}
 ]
