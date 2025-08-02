@@ -53,6 +53,12 @@ jobs:
       # Updating the key generates a new cache but gets around save failures.
       cache-key: ${{ matrix.fuzzer.name }}-corpus-v4
       fuzzer-exe: fuzz-${{ matrix.fuzzer.name }}
+      # 16KiB inputs seem like a reasonable file size limit.
+      # That should be enough to explore all roc syntax.
+      AFL_INPUT_LEN_MAX: 16384
+      AFL_NO_UI: 1
+      # Increase map size to avoid issues.
+      AFL_MAP_SIZE: 131072
     runs-on: [ubuntu-24.04]
     steps:
       - name: checkout roc-compiler-fuzz
@@ -132,6 +138,11 @@ jobs:
         run: |
           sudo afl-system-config
 
+      - name: debug fuzz executable
+        run: |
+          # This shows map size and a few other things.
+          AFL_DEBUG=1 ./${{ env.fuzzer-exe }}.afl || true
+
       - name: run fuzz jobs
         # This timeout avoids github killing the job if logs hang for a bit.
         # By default, github kills a job if logs hang for 10 minutes.
@@ -144,10 +155,6 @@ jobs:
           # This avoids waiting for like 30+ min to start fuzzing canonicalize.
           # Might be better to restrict the input corpus somehow to be faster.
           AFL_FAST_CAL: 1
-          # 16KiB inputs seem like a reasonable file size limit.
-          # That should be enough to explore all roc syntax.
-          AFL_INPUT_LEN_MAX: 16384
-          AFL_NO_UI: 1
         run: |
           # Initialize max memory tracking
           MAX_MEMORY_MB=0
