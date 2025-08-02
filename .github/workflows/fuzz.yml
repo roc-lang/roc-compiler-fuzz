@@ -155,6 +155,8 @@ jobs:
           # This avoids waiting for like 30+ min to start fuzzing canonicalize.
           # Might be better to restrict the input corpus somehow to be faster.
           AFL_FAST_CAL: 1
+          # Avoid generating a README that the rest of this script would view as a crash.
+          AFL_NO_CRASH_README: 1
         run: |
           # Initialize max memory tracking
           MAX_MEMORY_MB=0
