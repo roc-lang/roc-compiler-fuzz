@@ -14,10 +14,10 @@ on:
 
 env:
   roc-branch: ${{ inputs.roc-branch || 'main' }}
-  fuzz-time: ${{ inputs.fuzz-time || 3600 }}
+  fuzz-time: ${{ inputs.fuzz-time || 10800 }}
 
 name: Fuzz Roc
-run-name: Fuzz ${{ inputs.roc-branch || 'main' }} for ${{ inputs.fuzz-time || 3600 }} seconds
+run-name: Fuzz ${{ inputs.roc-branch || 'main' }} for ${{ inputs.fuzz-time || 10800 }} seconds
 
 # Only allow one copy of this job to run at a time.
 # This ensures no merge or cache conflicts.
@@ -35,7 +35,7 @@ permissions:
 jobs:
   fuzz:
     timeout-minutes: 300
-    if: ${{ (inputs.fuzz-time || 3600) != 0 }}
+    if: ${{ (inputs.fuzz-time || 10800) != 0 }}
     strategy:
       matrix:
         fuzzer:
@@ -144,9 +144,6 @@ jobs:
           AFL_DEBUG=1 ./${{ env.fuzzer-exe }}.afl || true
 
       - name: run fuzz jobs
-        # This timeout avoids github killing the job if logs hang for a bit.
-        # By default, github kills a job if logs hang for 10 minutes.
-        timeout-minutes: 180
         env:
           AFL_TESTCACHE_SIZE: 500
           AFL_IGNORE_SEED_PROBLEMS: 1
