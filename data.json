@@ -31,6 +31,20 @@
 		"branch": "main",
 		"commit_sha": "6026cf006926d008ec02bbe40e2f68ee7446409d",
 		"commit_timestamp": 1755964313,
+		"start_timestamp": 1755981788,
+		"fuzzer": "canonicalize",
+		"edges_found": 2895,
+		"total_edges": 58932,
+		"unique_crashes": 0,
+		"unique_hangs": 0,
+		"total_execs": 23661972,
+		"kind": "success",
+		"encoded_failure": ""
+	},
+	{
+		"branch": "main",
+		"commit_sha": "6026cf006926d008ec02bbe40e2f68ee7446409d",
+		"commit_timestamp": 1755964313,
 		"start_timestamp": 1755981515,
 		"fuzzer": "tokenize",
 		"edges_found": 967,
@@ -264,19 +278,5 @@
 		"total_execs": 31347734,
 		"kind": "crash",
 		"encoded_failure": "bW9kdWxlW11iPXsiIiIKIiIiCn0="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "2cbf033b73f66714a5c98a79b6fca80012921254",
-		"commit_timestamp": 1755878487,
-		"start_timestamp": 1755895544,
-		"fuzzer": "canonicalize",
-		"edges_found": 2900,
-		"total_edges": 58884,
-		"unique_crashes": 13,
-		"unique_hangs": 0,
-		"total_execs": 23606645,
-		"kind": "crash",
-		"encoded_failure": "YXBwW117ZjpwbGF0Zm9ybSI6Ojr+/f///zo6Ojo6Ojo6Ojo6OjoAZWggbnVtdW1iZXIICAgI/3///wgIUCgpPy5uIGH/+////////25kXDpsYXRmb3JtfyIscjoiPzo6Ojr/CAhQKCk/Lm4gYf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6OjpiZXIICAgI/3///wgIUCgpPy5uIGH/+////////25kXDpsYXR+b3JtfyIscjoiPzo6Ojr/CAhQKCk/Lm4gYf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6OgAgMj4uKjUAMysyPTU6Ojo6Ojo6Ojo6Ojo6OjoAIDI+Lio1ADMrMj01dGVoIG51bWJlcggICAj/f///CAhQKCk/Lm4gZf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6OgAgMj4uKiAyPi4qNQAzKzI6NXRlaCBudW11bWJlcggICAj/f///CAhQKCk/Lm4gRxAA////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6Ov8ICFAoKT8ubiBh//v///////9uZFw6bGF0Zm9ybX8iLHI6Ij86Ojo6OmJlcggICAj/f///CAhQKCk/Lm4gYf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6Ov8I9U8oKT8ubiBh//v///////9uZFw6bGF0ZmH/+////////25kXDpsYXRmb3JtfyIscjoiPzo6Ojo6YmVyCAgICP9///8ICFAoKT8ubiBh//v///////9uZFwnbGF0Zm9ybX8iLHI6Ij86Ojo6/wgIUCgpPy5ubiBh//v///////9uZFw6bGF0Zm9ybX8iLHI6Ij86Ojo6OmJlcggICAj/f///CAhQKCk/Lm4gYf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6Ov8ICFAoKT8ubiBh//v///////9uZFw6bGF0Zm9ybX8iLHI6Ij86Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6ACAyPi4qNQAzKzI9NTo6Ojo6Ojo6Ojo6Ojo6OgAgMj4uKjUAMygyPTV0ZWggbnUgd2l0aPD/////bWJlcggICAj/f///CAhQKCk/Lm4gZf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6Ojo6Ojo6Ojo6Ojo6Kzo6Ojo6Ojo6OgAgMj4uKjUAMysyPTU6Ojo6Ojo6Lzo6Ojo6OjoAIDI+Lio1ADMrMj01dGVoYf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6OjpiZXIICAgI/3///wgIUCgpPy5uIGH/+////////25kXDpsYXR+b3JtfyIscjoiPzo6Ojr/CAhQKCk/Lm4gYf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6OgAgMj4uKjUAMysyPTU6Ojo6Ojo6Ojo6Ojo6Ov8/ehDzWgAAADMrMj01dGVoIG51bWJlcggICAj/f///CAhQKCk/Lm4gZf/7AAAAAAAAamJdO3NkcWVvcm1/IixyOiI/Ojo6Ojo6Ojo6Ojo6Ojo6Ojw6OgAgMj4uKiAyPi4qNQAzKzI6NXRlaCBudf8PpdToAAAAbXVtYmVyCAgICP9///8ICFAoKT8ubiBHEAD///////9uZFw6bGF0Zm9ybX8iLHI6Ij86Ojo6/wgIUCgpPy5uIGH/+////////25kXDpsYXRmb3JtfyIscjoiPzo6Ojo6YmVyCAgICP9///8ICFAoKT8ubiBh//v///////9uZFw6bGF0Zm9ybX8iLHI6Ij86Ojoa/wj1TygpPy5uIGH/+////////25kXDpsYXRmYf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6OjpiZXIICAgI/3///wgIUCgpPy5uIGH/+////////25kPSdsYXRmb3JtfyIscjoiPzo6Ojr/CAhQKCk/Lm5uIGH/UCgpPy5uIGH/+////////25kXDr7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6OjpiZXIICAgI/3///wgIUCgpPy5uIGH/+////////xIAXDpsYXRmb3JtfyIscjoiPzo6Ojr/CAhQKCk/Lm4gYf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6Ojo6Ojo6Ojo6Ojo6Ojo6OgAgMj4uKjUAMysyPTU6Ojo6Ojo6Ojo6Ojo6OjoAIDI+Lio1ADMoMj01dGVoIG51IHdpdGjw/////21iZXIICAgI/3///wgIIG51bWJlcggICAj/f///CAhQKCk/Lm4gZf/7////////bmRcOmxhdGZvcm1/IixyOiI/Ojo6Ojo6Ojo6OlI6Ojo6Ojo6OgAgMj4uKjUAMysyPTV0ZWggbnVtYmVyCAgICP9///8ICFAoKT8ubiBh//v///////9uZFxcXFxcXFxcOiIKfQ=="
 	}
 ]
