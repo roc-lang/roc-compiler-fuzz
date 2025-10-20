@@ -78,10 +78,10 @@ pub fn main() !void {
 
     std.debug.print("Found primary fuzzer: {s}\n", .{fuzzer_dir_name.?});
 
-    var hang_results = std.ArrayList(FuzzResult).init(gpa);
-    defer hang_results.deinit();
-    var crash_results = std.ArrayList(FuzzResult).init(gpa);
-    defer crash_results.deinit();
+    var hang_results: std.ArrayList(FuzzResult) = .empty;
+    defer hang_results.deinit(gpa);
+    var crash_results: std.ArrayList(FuzzResult) = .empty;
+    defer crash_results.deinit(gpa);
     for (&[_]FuzzResult.Kind{ .crash, .hang }) |kind| {
         const dir_name = if (kind == .crash) "crashes" else "hangs";
         const dir_path = try std.fs.path.join(arena, &.{ fuzzer_dir_name.?, dir_name });
@@ -108,7 +108,7 @@ pub fn main() !void {
             const base64_content = std.base64.standard.Encoder.encode(buffer, content);
 
             var results = if (kind == .hang) &hang_results else &crash_results;
-            try results.append(.{
+            try results.append(gpa, .{
                 .branch = branch,
                 .commit_sha = commit_sha,
                 .commit_timestamp = commit_timestamp,
@@ -130,18 +130,18 @@ pub fn main() !void {
 
     // TODO: re-evaluate if we want to record more, but that might flood the results.
     // We record at most 2 results per run (1 hang and 1 crash).
-    var results = std.ArrayList(FuzzResult).init(gpa);
-    defer results.deinit();
+    var results: std.ArrayList(FuzzResult) = .empty;
+    defer results.deinit(gpa);
     if (hang_results.items.len > 0) {
-        try results.append(hang_results.items[0]);
+        try results.append(gpa, hang_results.items[0]);
     }
     if (crash_results.items.len > 0) {
-        try results.append(crash_results.items[0]);
+        try results.append(gpa, crash_results.items[0]);
     }
     if (crash_results.items.len == 0 and hang_results.items.len == 0) {
         // No failures!
         // Record a success result instead.
-        try results.append(.{
+        try results.append(gpa, .{
             .branch = branch,
             .commit_sha = commit_sha,
             .commit_timestamp = commit_timestamp,
@@ -158,14 +158,17 @@ pub fn main() !void {
     }
 
     const new_entries_json = std.json.fmt(results.items, .{ .whitespace = .indent_tab });
-    std.debug.print("New database entries:\n{s}\n", .{new_entries_json});
+    std.debug.print("New database entries:\n{f}\n", .{new_entries_json});
 
     const file_result = std.fs.cwd().openFile("data.json", .{ .mode = .read_write });
     if (file_result == error.FileNotFound) {
         // Database does not exist yet, make a new one.
         const file = try std.fs.cwd().createFile("data.json", .{});
         defer file.close();
-        try file.writer().print("{s}", .{new_entries_json});
+        var buffer: [4096]u8 = undefined;
+        var file_writer = file.writer(&buffer);
+        try file_writer.interface.print("{f}", .{new_entries_json});
+        try file_writer.interface.flush();
     } else {
         // Load and merge the database.
         var file = try file_result;
@@ -173,7 +176,7 @@ pub fn main() !void {
         const content = try file.readToEndAlloc(arena, 1024 * 1024);
         const old_data = try std.json.parseFromSliceLeaky([]FuzzResult, arena, content, .{});
 
-        try results.appendSlice(old_data);
+        try results.appendSlice(gpa, old_data);
         std.mem.sort(FuzzResult, results.items, {}, FuzzResult.lessThan);
 
         const out = if (results.items.len > result_limit) results.items[0..result_limit] else results.items;
@@ -181,7 +184,10 @@ pub fn main() !void {
         // Truncate the file and write new output.
         try file.seekTo(0);
         try file.setEndPos(0);
-        try file.writer().print("{s}", .{out_json});
+        var buffer: [4096]u8 = undefined;
+        var file_writer = file.writer(&buffer);
+        try file_writer.interface.print("{f}", .{out_json});
+        try file_writer.interface.flush();
     }
 }
 

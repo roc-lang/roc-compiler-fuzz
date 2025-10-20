@@ -25,11 +25,12 @@ pub fn main() !void {
     const index_html = try out_dir.createFile("index.html", .{});
     defer index_html.close();
 
-    var buffered = std.io.bufferedWriter(index_html.writer());
-    defer buffered.flush() catch @panic("Flush failed");
+    var buffer: [4096]u8 = undefined;
+    var html_writer = index_html.writer(&buffer);
+    defer html_writer.interface.flush() catch @panic("Flush failed");
     // TODO: look into using a templating tool and making a nicer site.
     // Maybe https://github.com/kristoff-it/superhtml/
-    try buffered.writer().writeAll(
+    try html_writer.interface.writeAll(
         \\<!DOCTYPE html>
         \\<html>
         \\<head><title>Roc Compiler Fuzz</title>
@@ -346,7 +347,7 @@ pub fn main() !void {
             coverage_percent,
         });
 
-        try buffered.writer().print(
+        try html_writer.interface.print(
             \\  <tr>
             \\    <td><a href="https://github.com/roc-lang/roc/tree/{s}">{s}</a>{s}</td>
             \\    <td><a href="https://github.com/roc-lang/roc/blob/{s}/src/fuzz-{s}.zig">{s}</a></td>
@@ -370,7 +371,7 @@ pub fn main() !void {
         });
     }
 
-    try buffered.writer().writeAll(
+    try html_writer.interface.writeAll(
         \\</table>
         \\</body>
         \\</html>

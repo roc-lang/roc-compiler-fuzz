@@ -6,9 +6,11 @@ pub fn build(b: *std.Build) void {
 
     const update_database = b.addExecutable(.{
         .name = "update-database",
-        .root_source_file = b.path("src/update_database.zig"),
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/update_database.zig"),
+            .target = target,
+            .optimize = optimize,
+        }),
     });
     b.installArtifact(update_database);
 
@@ -23,9 +25,11 @@ pub fn build(b: *std.Build) void {
 
     const generate_website = b.addExecutable(.{
         .name = "generate-website",
-        .root_source_file = b.path("src/generate_website.zig"),
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/generate_website.zig"),
+            .target = target,
+            .optimize = optimize,
+        }),
     });
     b.installArtifact(generate_website);
 
