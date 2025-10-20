@@ -62,19 +62,19 @@ jobs:
     runs-on: [ubuntu-24.04]
     steps:
       - name: checkout roc-compiler-fuzz
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # ratchet:actions/checkout@v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # ratchet:actions/checkout@v5
         with:
           path: roc-compiler-fuzz
 
       - name: checkout roc
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # ratchet:actions/checkout@v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # ratchet:actions/checkout@v5
         with:
           path: roc
           repository: roc-lang/roc
           ref: ${{ env.roc-branch }}
 
       - name: install zig
-        uses: mlugg/setup-zig@475c97be87a204e6c57fe851f970bd02005a70f0 # ratchet:mlugg/setup-zig@v2
+        uses: mlugg/setup-zig@8d6198c65fb0feaa111df26e6b467fea8345e46f # ratchet:mlugg/setup-zig@v2
         with:
           version: 0.15.2
 
@@ -110,7 +110,7 @@ jobs:
 
       - name: load cached corpus
         id: restore-cache-corpus
-        uses: actions/cache/restore@5a3ec84eff668545956fd18022155c47e93e2684 # ratchet:actions/cache/restore@v4
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # ratchet:actions/cache/restore@v4
         with:
           key: ${{ env.cache-key }}
           path: corpus
@@ -158,7 +158,7 @@ jobs:
           # Initialize max memory tracking
           MAX_MEMORY_MB=0
           MEMORY_LOG_FILE=$(mktemp)
-          
+
           # Monitor process to try and diagnose failures.
           while true; do
             CURRENT_MEM=$(free -m | awk 'NR==2{print $3}')
@@ -169,10 +169,10 @@ jobs:
             sleep 10
           done &
           MONITOR_PID=$!
-          
+
           # This is a rough attempt to follow best practices from: https://aflplus.plus/docs/fuzzing_in_depth/#c-using-multiple-cores
           pids=()
-          
+
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
@@ -185,7 +185,7 @@ jobs:
               -m 3500 \
               -- ./${{ env.fuzzer-exe }}.afl &
           pids+=($!)
-          
+
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
@@ -197,7 +197,7 @@ jobs:
               -m 3500 \
               -- ./${{ env.fuzzer-exe }}.afl &
           pids+=($!)
-          
+
           AFL_DISABLE_TRIM=1 afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
@@ -208,7 +208,7 @@ jobs:
               -m 3500 \
               -- ./${{ env.fuzzer-exe }}.afl &
           pids+=($!)
-          
+
           afl-fuzz \
               -i corpus/ \
               -o fuzz-out/ \
@@ -219,16 +219,16 @@ jobs:
               -m 3500 \
               -- ./${{ env.fuzzer-exe }}.afl &
           pids+=($!)
-          
+
           trap 'echo "Received termination signal from Github, cleaning up..."; kill ${pids[@]} 2>/dev/null; exit 0' SIGINT SIGTERM
-          
+
           # Wait for each job individually
           for pid in "${pids[@]}"; do
               wait "$pid" || echo "Fuzzer process $pid exited with error: $?"
           done
 
           kill $MONITOR_PID 2>/dev/null || true
-          
+
           # Calculate and display max memory usage
           if [ -f "$MEMORY_LOG_FILE" ]; then
             MAX_MEMORY_MB=$(sort -n "$MEMORY_LOG_FILE" | tail -1)
@@ -314,7 +314,7 @@ jobs:
 
       - name: save corpus
         id: save-cache-corpus
-        uses: actions/cache/save@5a3ec84eff668545956fd18022155c47e93e2684 # ratchet:actions/cache/save@v4
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # ratchet:actions/cache/save@v4
         with:
           key: ${{ env.cache-key }}
           path: corpus
@@ -408,10 +408,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: checkout roc-compiler-fuzz
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # ratchet:actions/checkout@v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # ratchet:actions/checkout@v5
 
       - name: install zig
-        uses: mlugg/setup-zig@475c97be87a204e6c57fe851f970bd02005a70f0 # ratchet:mlugg/setup-zig@v2
+        uses: mlugg/setup-zig@8d6198c65fb0feaa111df26e6b467fea8345e46f # ratchet:mlugg/setup-zig@v2
         with:
           version: 0.15.2
 
@@ -422,7 +422,7 @@ jobs:
           zig build generate-website
 
       - name: upload website artifacts
-        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # ratchet:actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # ratchet:actions/upload-pages-artifact@v4
         with:
           path: 'www'
       - name: deploy site
