@@ -269,14 +269,14 @@
 		"branch": "main",
 		"commit_sha": "186d4d2bbc0c3ba0885f6471744251ec26f517e9",
 		"commit_timestamp": 1761931286,
-		"start_timestamp": 1762002720,
+		"start_timestamp": 1762050916,
 		"fuzzer": "canonicalize",
-		"edges_found": 7455,
+		"edges_found": 7523,
 		"total_edges": 93380,
 		"unique_crashes": 50,
 		"unique_hangs": 0,
-		"total_execs": 10101024,
+		"total_execs": 9143422,
 		"kind": "crash",
-		"encoded_failure": "YSA6CUYzMgphID0gMy4xNAoKYSA9IDMuMTQKCmIgOiBGNjQKYiA9IDIuNzE4MjgKYiA6IEY2NApiID0gMi43MTgyOAoKYyA6IERlYwpjID0gMTIzLjQ1Ngo="
+		"encoded_failure": "Rm9vIDo9IFtXaGF0ZXZlcl0uewogICAgQmFyIDphbnNmb3JyImZuKQoKIyBUZXN0IHZhbHVlcwpjPSBbWCwgWSwgWl0KfQoKeCA9IEZvby5CYXIuWAo="
 	}
 ]
