@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "8c4feedd2fb6b91842cb4f38dd898c72c410c223",
 		"commit_timestamp": 1762628891,
+		"start_timestamp": 1762634276,
+		"fuzzer": "tokenize",
+		"edges_found": 927,
+		"total_edges": 13828,
+		"unique_crashes": 89,
+		"unique_hangs": 0,
+		"total_execs": 167293552,
+		"kind": "crash",
+		"encoded_failure": "LiRi"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "8c4feedd2fb6b91842cb4f38dd898c72c410c223",
+		"commit_timestamp": 1762628891,
 		"start_timestamp": 1762634228,
 		"fuzzer": "parse",
 		"edges_found": 3508,
@@ -264,19 +278,5 @@
 		"total_execs": 10007804,
 		"kind": "crash",
 		"encoded_failure": "eD0wCmltcG9ydCBCb29sCWV4cG9zaW5nW3Rd"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "c4148bbf9631077e80e4b16959d78a33eefb2ed7",
-		"commit_timestamp": 1762508773,
-		"start_timestamp": 1762521344,
-		"fuzzer": "canonicalize",
-		"edges_found": 7665,
-		"total_edges": 93780,
-		"unique_crashes": 23,
-		"unique_hangs": 0,
-		"total_execs": 9656069,
-		"kind": "crash",
-		"encoded_failure": "cjpmIHQ9fDAKYXMgcixbXWFzIHN8fHxyLzA="
 	}
 ]
