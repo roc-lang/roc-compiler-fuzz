@@ -31,6 +31,20 @@
 		"branch": "main",
 		"commit_sha": "2fc3b7afb622fcc66d899975ba6a208e1c1d199e",
 		"commit_timestamp": 1763583727,
+		"start_timestamp": 1763605905,
+		"fuzzer": "canonicalize",
+		"edges_found": 14536,
+		"total_edges": 103764,
+		"unique_crashes": 466,
+		"unique_hangs": 1,
+		"total_execs": 8226087,
+		"kind": "crash",
+		"encoded_failure": "bD1bVF0="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "2fc3b7afb622fcc66d899975ba6a208e1c1d199e",
+		"commit_timestamp": 1763583727,
 		"start_timestamp": 1763585545,
 		"fuzzer": "canonicalize",
 		"edges_found": 14444,
@@ -68,6 +82,20 @@
 		"total_execs": 22624555,
 		"kind": "crash",
 		"encoded_failure": "ejphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "2fc3b7afb622fcc66d899975ba6a208e1c1d199e",
+		"commit_timestamp": 1763583727,
+		"start_timestamp": 1763605905,
+		"fuzzer": "canonicalize",
+		"edges_found": 14536,
+		"total_edges": 103764,
+		"unique_crashes": 466,
+		"unique_hangs": 1,
+		"total_execs": 8226087,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0IwMDpCMDAgdDAwMDAwMDAwOkIwMCB0MDAwMDAwMDA9fHwwfWU6Rg=="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 24772699,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "a22ff1ec92c806412f6ffe9b2721967b3b077ad0",
-		"commit_timestamp": 1763524686,
-		"start_timestamp": 1763528784,
-		"fuzzer": "parse",
-		"edges_found": 3541,
-		"total_edges": 19836,
-		"unique_crashes": 27,
-		"unique_hangs": 0,
-		"total_execs": 24946684,
-		"kind": "crash",
-		"encoded_failure": "cjphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "a22ff1ec92c806412f6ffe9b2721967b3b077ad0",
-		"commit_timestamp": 1763524686,
-		"start_timestamp": 1763529451,
-		"fuzzer": "canonicalize",
-		"edges_found": 13480,
-		"total_edges": 103692,
-		"unique_crashes": 628,
-		"unique_hangs": 9,
-		"total_execs": 8634926,
-		"kind": "hang",
-		"encoded_failure": "Rjo9W10ue0IwcjpCMHIgZGUwMHVsdEIwcjpyIHRyMDAwMG9yMDpCMHIgdT10cjAwMDBvcjAoZGUwMHVsdEIwcil9bDpvCmU9MA=="
 	}
 ]
