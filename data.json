@@ -17,6 +17,20 @@
 		"branch": "main",
 		"commit_sha": "222f8927ce9c1b6cde32faed942a696e5412a191",
 		"commit_timestamp": 1763844475,
+		"start_timestamp": 1763866243,
+		"fuzzer": "canonicalize",
+		"edges_found": 14576,
+		"total_edges": 105452,
+		"unique_crashes": 430,
+		"unique_hangs": 3,
+		"total_execs": 7268729,
+		"kind": "crash",
+		"encoded_failure": "dD17LTN1MTZ9"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "222f8927ce9c1b6cde32faed942a696e5412a191",
+		"commit_timestamp": 1763844475,
 		"start_timestamp": 1763865437,
 		"fuzzer": "parse",
 		"edges_found": 3538,
@@ -26,6 +40,20 @@
 		"total_execs": 23988092,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "222f8927ce9c1b6cde32faed942a696e5412a191",
+		"commit_timestamp": 1763844475,
+		"start_timestamp": 1763866243,
+		"fuzzer": "canonicalize",
+		"edges_found": 14576,
+		"total_edges": 105452,
+		"unique_crashes": 430,
+		"unique_hangs": 3,
+		"total_execs": 7268729,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0IwcjpCMHIgZGUwMDBsdEIwcjpyIHRyMDAwMDByMDpCMHIgdD10cjAwMDAwcjAoZGUwMDBsdEIwcil9bDooKWU9MA=="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 23948010,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFdbz0oKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "bddd3f6ac6525ded2d0a63cbd45a7053cd248ea5",
-		"commit_timestamp": 1763749719,
-		"start_timestamp": 1763816401,
-		"fuzzer": "parse",
-		"edges_found": 3538,
-		"total_edges": 19876,
-		"unique_crashes": 24,
-		"unique_hangs": 0,
-		"total_execs": 24010143,
-		"kind": "crash",
-		"encoded_failure": "cDphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "bddd3f6ac6525ded2d0a63cbd45a7053cd248ea5",
-		"commit_timestamp": 1763749719,
-		"start_timestamp": 1763801123,
-		"fuzzer": "parse",
-		"edges_found": 3533,
-		"total_edges": 19876,
-		"unique_crashes": 21,
-		"unique_hangs": 0,
-		"total_execs": 25622591,
-		"kind": "crash",
-		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
 	}
 ]
