@@ -17,6 +17,20 @@
 		"branch": "main",
 		"commit_sha": "721ad1d205debebe0ba61449597497f19414ff20",
 		"commit_timestamp": 1764121394,
+		"start_timestamp": 1764124716,
+		"fuzzer": "canonicalize",
+		"edges_found": 15698,
+		"total_edges": 108772,
+		"unique_crashes": 475,
+		"unique_hangs": 3,
+		"total_execs": 7080106,
+		"kind": "crash",
+		"encoded_failure": "KCk9M0UwLmk="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "721ad1d205debebe0ba61449597497f19414ff20",
+		"commit_timestamp": 1764121394,
 		"start_timestamp": 1764123801,
 		"fuzzer": "parse",
 		"edges_found": 3628,
@@ -26,6 +40,20 @@
 		"total_execs": 24199430,
 		"kind": "crash",
 		"encoded_failure": "cGFja2FnZVtde2Q6e3swAC5jfX19"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "721ad1d205debebe0ba61449597497f19414ff20",
+		"commit_timestamp": 1764121394,
+		"start_timestamp": 1764124716,
+		"fuzzer": "canonicalize",
+		"edges_found": 15698,
+		"total_edges": 108772,
+		"unique_crashes": 475,
+		"unique_hangs": 3,
+		"total_execs": 7080106,
+		"kind": "hang",
+		"encoded_failure": "TTAwMDAoayk6TTAwMDAoUylpMDBrOk0wMDAwCmkwMGs9ZGJnfHxtYXRjaCAwe30="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 7456842,
 		"kind": "crash",
 		"encoded_failure": "dD0wLi5v"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "6a0ef402877bb6afbf4f50b051047f0b1b655a01",
-		"commit_timestamp": 1764042363,
-		"start_timestamp": 1764047305,
-		"fuzzer": "parse",
-		"edges_found": 3602,
-		"total_edges": 20012,
-		"unique_crashes": 28,
-		"unique_hangs": 0,
-		"total_execs": 25863482,
-		"kind": "crash",
-		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "6a0ef402877bb6afbf4f50b051047f0b1b655a01",
-		"commit_timestamp": 1764042363,
-		"start_timestamp": 1764048180,
-		"fuzzer": "canonicalize",
-		"edges_found": 15618,
-		"total_edges": 106876,
-		"unique_crashes": 477,
-		"unique_hangs": 2,
-		"total_execs": 7456842,
-		"kind": "hang",
-		"encoded_failure": "Rjo9W10ue0IwMDpCMDAgdDAwMDAwMDAwOkItPkIwMCB0MDAwMDAwMDA9fHx8fCgpfWw9MA=="
 	}
 ]
