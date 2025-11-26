@@ -31,6 +31,20 @@
 		"branch": "main",
 		"commit_sha": "df660109487f6c7d96709413e9f34d6fbb862c89",
 		"commit_timestamp": 1764088273,
+		"start_timestamp": 1764104479,
+		"fuzzer": "canonicalize",
+		"edges_found": 15664,
+		"total_edges": 107844,
+		"unique_crashes": 472,
+		"unique_hangs": 2,
+		"total_execs": 7713229,
+		"kind": "crash",
+		"encoded_failure": "eD0wLi5l"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "df660109487f6c7d96709413e9f34d6fbb862c89",
+		"commit_timestamp": 1764088273,
 		"start_timestamp": 1764090443,
 		"fuzzer": "canonicalize",
 		"edges_found": 15670,
@@ -68,6 +82,20 @@
 		"total_execs": 24578100,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "df660109487f6c7d96709413e9f34d6fbb862c89",
+		"commit_timestamp": 1764088273,
+		"start_timestamp": 1764104479,
+		"fuzzer": "canonicalize",
+		"edges_found": 15664,
+		"total_edges": 107844,
+		"unique_crashes": 472,
+		"unique_hangs": 2,
+		"total_execs": 7713229,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0IwMDpCMDAgdDAwMDAwMDAwOkIwMCB0MDAwMDAwMDA9fHwwCnQ9KCl9"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 159673173,
 		"kind": "crash",
 		"encoded_failure": "LiRh"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "06fcf96e842c913c05d2f87b3da02ecba6eaf0de",
-		"commit_timestamp": 1764036458,
-		"start_timestamp": 1764037372,
-		"fuzzer": "parse",
-		"edges_found": 3601,
-		"total_edges": 20012,
-		"unique_crashes": 26,
-		"unique_hangs": 0,
-		"total_execs": 23987991,
-		"kind": "crash",
-		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "06fcf96e842c913c05d2f87b3da02ecba6eaf0de",
-		"commit_timestamp": 1764036458,
-		"start_timestamp": 1764038228,
-		"fuzzer": "canonicalize",
-		"edges_found": 15581,
-		"total_edges": 106844,
-		"unique_crashes": 459,
-		"unique_hangs": 3,
-		"total_execs": 7084243,
-		"kind": "hang",
-		"encoded_failure": "TTAwMDAoayk6TTAwMDAoUylpMDBrOk0wMDAwCmkwMGs9ZGJnfHxtYXRjaCAwe30="
 	}
 ]
