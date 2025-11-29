@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "4555f2060c1501bb32588d47a7a751ecaa510711",
 		"commit_timestamp": 1764387578,
+		"start_timestamp": 1764409093,
+		"fuzzer": "canonicalize",
+		"edges_found": 17556,
+		"total_edges": 157004,
+		"unique_crashes": 240,
+		"unique_hangs": 2,
+		"total_execs": 5773058,
+		"kind": "crash",
+		"encoded_failure": "aT1p"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "4555f2060c1501bb32588d47a7a751ecaa510711",
+		"commit_timestamp": 1764387578,
 		"start_timestamp": 1764407865,
 		"fuzzer": "tokenize",
 		"edges_found": 977,
@@ -68,6 +82,20 @@
 		"total_execs": 24051008,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "4555f2060c1501bb32588d47a7a751ecaa510711",
+		"commit_timestamp": 1764387578,
+		"start_timestamp": 1764409093,
+		"fuzzer": "canonicalize",
+		"edges_found": 17556,
+		"total_edges": 157004,
+		"unique_crashes": 240,
+		"unique_hangs": 2,
+		"total_execs": 5773058,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0EwMDpBMDAgdDAwMDAwMDAwOkItPkEwMCB0MDAwMDAwMDA9fHx8fCgpfXQ9MA=="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 32106921,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "7ac22c81340d853fdab3232be89933e07eea5630",
-		"commit_timestamp": 1764329442,
-		"start_timestamp": 1764335260,
-		"fuzzer": "parse",
-		"edges_found": 3686,
-		"total_edges": 20180,
-		"unique_crashes": 27,
-		"unique_hangs": 0,
-		"total_execs": 23397316,
-		"kind": "crash",
-		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFdeT0oKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "7ac22c81340d853fdab3232be89933e07eea5630",
-		"commit_timestamp": 1764329442,
-		"start_timestamp": 1764336460,
-		"fuzzer": "canonicalize",
-		"edges_found": 17379,
-		"total_edges": 156964,
-		"unique_crashes": 339,
-		"unique_hangs": 1,
-		"total_execs": 5517151,
-		"kind": "hang",
-		"encoded_failure": "TTAwMDAoayk6TTAwMDAoUylpMDBrOk0wMDAwCmkwMGs9fHxtYXRjaCAweygpPT4wfQ=="
 	}
 ]
