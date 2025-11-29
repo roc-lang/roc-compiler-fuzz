@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "c4870f41bf05e33bba842becdaffa984f4b5fcb7",
 		"commit_timestamp": 1764440835,
+		"start_timestamp": 1764450109,
+		"fuzzer": "canonicalize",
+		"edges_found": 17633,
+		"total_edges": 157052,
+		"unique_crashes": 224,
+		"unique_hangs": 2,
+		"total_execs": 6086453,
+		"kind": "crash",
+		"encoded_failure": "eD14"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "c4870f41bf05e33bba842becdaffa984f4b5fcb7",
+		"commit_timestamp": 1764440835,
 		"start_timestamp": 1764448865,
 		"fuzzer": "tokenize",
 		"edges_found": 977,
@@ -26,6 +40,20 @@
 		"total_execs": 24464752,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "c4870f41bf05e33bba842becdaffa984f4b5fcb7",
+		"commit_timestamp": 1764440835,
+		"start_timestamp": 1764450109,
+		"fuzzer": "canonicalize",
+		"edges_found": 17633,
+		"total_edges": 157052,
+		"unique_crashes": 224,
+		"unique_hangs": 2,
+		"total_execs": 6086453,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0JhcjpyLT5hIHRyYTAwMDByMDpCYXIKdHJhMDAwMHIwPTAgdT10cmEwMDAwcjAoKX0="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 5441150,
 		"kind": "hang",
 		"encoded_failure": "Rjo9W10ue0EwMDpBMDAKdDAwMDAwMDAwOnctPkEwMAp0MDAwMDAwMDA9fHx8fCgpfWU9MA=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "2d4bb929d93c0c15944b7041dc6d5d2dbf63ae14",
-		"commit_timestamp": 1764368788,
-		"start_timestamp": 1764382766,
-		"fuzzer": "tokenize",
-		"edges_found": 977,
-		"total_edges": 13892,
-		"unique_crashes": 94,
-		"unique_hangs": 0,
-		"total_execs": 144960920,
-		"kind": "crash",
-		"encoded_failure": "LSR5"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "2d4bb929d93c0c15944b7041dc6d5d2dbf63ae14",
-		"commit_timestamp": 1764368788,
-		"start_timestamp": 1764384002,
-		"fuzzer": "canonicalize",
-		"edges_found": 17538,
-		"total_edges": 156964,
-		"unique_crashes": 209,
-		"unique_hangs": 1,
-		"total_execs": 6034444,
-		"kind": "crash",
-		"encoded_failure": "eD1KKzAu"
 	}
 ]
