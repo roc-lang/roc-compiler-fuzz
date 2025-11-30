@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "77e8bbc16ad938362435697bb8088c8370a3ee0d",
 		"commit_timestamp": 1764475233,
+		"start_timestamp": 1764483875,
+		"fuzzer": "canonicalize",
+		"edges_found": 17763,
+		"total_edges": 157612,
+		"unique_crashes": 220,
+		"unique_hangs": 2,
+		"total_execs": 5642360,
+		"kind": "crash",
+		"encoded_failure": "eD0wLigp"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "77e8bbc16ad938362435697bb8088c8370a3ee0d",
+		"commit_timestamp": 1764475233,
 		"start_timestamp": 1764482661,
 		"fuzzer": "tokenize",
 		"edges_found": 982,
@@ -26,6 +40,20 @@
 		"total_execs": 23453963,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddT0oKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "77e8bbc16ad938362435697bb8088c8370a3ee0d",
+		"commit_timestamp": 1764475233,
+		"start_timestamp": 1764483875,
+		"fuzzer": "canonicalize",
+		"edges_found": 17763,
+		"total_edges": 157612,
+		"unique_crashes": 220,
+		"unique_hangs": 2,
+		"total_execs": 5642360,
+		"kind": "hang",
+		"encoded_failure": "TTAwMDAoayk6TTAwMDAoUylpMDBrOk0wMDAwCmkwMGs9fHxtYXRjaCAweygpPT4wfQ=="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 5665031,
 		"kind": "hang",
 		"encoded_failure": "TTAwMDAoayk6TTAwMDAoUylpMDBrOk0wMDAwCmkwMGs9fHxtYXRjaCAweygpPT4wfQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "4555f2060c1501bb32588d47a7a751ecaa510711",
-		"commit_timestamp": 1764387578,
-		"start_timestamp": 1764409093,
-		"fuzzer": "canonicalize",
-		"edges_found": 17556,
-		"total_edges": 157004,
-		"unique_crashes": 240,
-		"unique_hangs": 2,
-		"total_execs": 5773058,
-		"kind": "crash",
-		"encoded_failure": "aT1p"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "4555f2060c1501bb32588d47a7a751ecaa510711",
-		"commit_timestamp": 1764387578,
-		"start_timestamp": 1764407865,
-		"fuzzer": "tokenize",
-		"edges_found": 977,
-		"total_edges": 13892,
-		"unique_crashes": 81,
-		"unique_hangs": 0,
-		"total_execs": 143330456,
-		"kind": "crash",
-		"encoded_failure": "LiRw"
 	}
 ]
