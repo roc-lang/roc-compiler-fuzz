@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "9a5eb3c9d0481ba222d25420c95f64a79fde76b0",
 		"commit_timestamp": 1764507811,
+		"start_timestamp": 1764522329,
+		"fuzzer": "canonicalize",
+		"edges_found": 17819,
+		"total_edges": 157612,
+		"unique_crashes": 241,
+		"unique_hangs": 2,
+		"total_execs": 5791069,
+		"kind": "crash",
+		"encoded_failure": "bTA9bTA="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "9a5eb3c9d0481ba222d25420c95f64a79fde76b0",
+		"commit_timestamp": 1764507811,
 		"start_timestamp": 1764521125,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 22624949,
 		"kind": "crash",
 		"encoded_failure": "ZDpvCmQ6aQl3aGVyZVsKZQouRF0="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "9a5eb3c9d0481ba222d25420c95f64a79fde76b0",
+		"commit_timestamp": 1764507811,
+		"start_timestamp": 1764522329,
+		"fuzzer": "canonicalize",
+		"edges_found": 17819,
+		"total_edges": 157612,
+		"unique_crashes": 241,
+		"unique_hangs": 2,
+		"total_execs": 5791069,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0IwMDpCMDAJdDAwMDAwMDAwOkIwMCB0MDAwMDAwMDA9fHwoKX1sPTA="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 5830741,
 		"kind": "hang",
 		"encoded_failure": "Rjo9W10ue0JhMDpCYTAgdDBhMDAwMDAwOnctPkJhMAp0MGEwMDAwMDA9fHx8fCgpfWw6YQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "c4870f41bf05e33bba842becdaffa984f4b5fcb7",
-		"commit_timestamp": 1764440835,
-		"start_timestamp": 1764450109,
-		"fuzzer": "canonicalize",
-		"edges_found": 17633,
-		"total_edges": 157052,
-		"unique_crashes": 224,
-		"unique_hangs": 2,
-		"total_execs": 6086453,
-		"kind": "crash",
-		"encoded_failure": "eD14"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "c4870f41bf05e33bba842becdaffa984f4b5fcb7",
-		"commit_timestamp": 1764440835,
-		"start_timestamp": 1764448865,
-		"fuzzer": "tokenize",
-		"edges_found": 977,
-		"total_edges": 13892,
-		"unique_crashes": 87,
-		"unique_hangs": 0,
-		"total_execs": 143644482,
-		"kind": "crash",
-		"encoded_failure": "LSRi"
 	}
 ]
