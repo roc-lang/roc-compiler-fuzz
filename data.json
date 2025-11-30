@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "77e8bbc16ad938362435697bb8088c8370a3ee0d",
 		"commit_timestamp": 1764475233,
+		"start_timestamp": 1764496061,
+		"fuzzer": "canonicalize",
+		"edges_found": 17783,
+		"total_edges": 157612,
+		"unique_crashes": 217,
+		"unique_hangs": 2,
+		"total_execs": 5641324,
+		"kind": "crash",
+		"encoded_failure": "eD14"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "77e8bbc16ad938362435697bb8088c8370a3ee0d",
+		"commit_timestamp": 1764475233,
 		"start_timestamp": 1764483875,
 		"fuzzer": "canonicalize",
 		"edges_found": 17763,
@@ -82,6 +96,20 @@
 		"total_execs": 5642360,
 		"kind": "hang",
 		"encoded_failure": "TTAwMDAoayk6TTAwMDAoUylpMDBrOk0wMDAwCmkwMGs9fHxtYXRjaCAweygpPT4wfQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "77e8bbc16ad938362435697bb8088c8370a3ee0d",
+		"commit_timestamp": 1764475233,
+		"start_timestamp": 1764496061,
+		"fuzzer": "canonicalize",
+		"edges_found": 17783,
+		"total_edges": 157612,
+		"unique_crashes": 217,
+		"unique_hangs": 2,
+		"total_execs": 5641324,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0EwMDpBMDAgdDAwMDAwMDAwOkItPkEwMCB0MDAwMDAwMDA9fHx8fCgpfXQ9MA=="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 5150255,
 		"kind": "hang",
 		"encoded_failure": "Rjo9W10ue0IwMDpCMDAKdDAwMDAwMDAwOkIwMAp0MDAwMDAwMDA9fHwwfWU9MA=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "c0dda7f9d67bb524f14ae64886019b38abe0bc34",
-		"commit_timestamp": 1764419595,
-		"start_timestamp": 1764421447,
-		"fuzzer": "tokenize",
-		"edges_found": 977,
-		"total_edges": 13892,
-		"unique_crashes": 81,
-		"unique_hangs": 0,
-		"total_execs": 143890219,
-		"kind": "crash",
-		"encoded_failure": "LiRv"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "c0dda7f9d67bb524f14ae64886019b38abe0bc34",
-		"commit_timestamp": 1764419595,
-		"start_timestamp": 1764422696,
-		"fuzzer": "canonicalize",
-		"edges_found": 17590,
-		"total_edges": 157068,
-		"unique_crashes": 236,
-		"unique_hangs": 4,
-		"total_execs": 5665031,
-		"kind": "crash",
-		"encoded_failure": "eD0wLi5l"
 	}
 ]
