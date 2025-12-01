@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "2ac12ee62127e86e54efba4942b063719add7585",
 		"commit_timestamp": 1764605315,
+		"start_timestamp": 1764609139,
+		"fuzzer": "canonicalize",
+		"edges_found": 18131,
+		"total_edges": 149932,
+		"unique_crashes": 237,
+		"unique_hangs": 2,
+		"total_execs": 6757939,
+		"kind": "crash",
+		"encoded_failure": "Yj1i"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "2ac12ee62127e86e54efba4942b063719add7585",
+		"commit_timestamp": 1764605315,
 		"start_timestamp": 1764607969,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 24938519,
 		"kind": "crash",
 		"encoded_failure": "az0wLT5mKCkuYygpLnQoKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "2ac12ee62127e86e54efba4942b063719add7585",
+		"commit_timestamp": 1764605315,
+		"start_timestamp": 1764609139,
+		"fuzzer": "canonicalize",
+		"edges_found": 18131,
+		"total_edges": 149932,
+		"unique_crashes": 237,
+		"unique_hangs": 2,
+		"total_execs": 6757939,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0EwMDpBMDAgdDAwMDAwMDAwOkItPkEwMCB0MDAwMDAwMDA9fHx8fDB9"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 142801384,
 		"kind": "crash",
 		"encoded_failure": "J1x1KDAwMDAwMCkn"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "6a1585d9132bd14360f0475eabe0d6e99a03157f",
-		"commit_timestamp": 1764529423,
-		"start_timestamp": 1764535319,
-		"fuzzer": "parse",
-		"edges_found": 3694,
-		"total_edges": 20188,
-		"unique_crashes": 33,
-		"unique_hangs": 0,
-		"total_execs": 23326256,
-		"kind": "crash",
-		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "6a1585d9132bd14360f0475eabe0d6e99a03157f",
-		"commit_timestamp": 1764529423,
-		"start_timestamp": 1764536598,
-		"fuzzer": "canonicalize",
-		"edges_found": 17835,
-		"total_edges": 157612,
-		"unique_crashes": 265,
-		"unique_hangs": 1,
-		"total_execs": 5776808,
-		"kind": "hang",
-		"encoded_failure": "TTAwMDAoayk6TTAwMDAoUylpMDBrOk0wMDAwCmkwMGs9fHxtYXRjaCAwezA9PjAgKCk9PjB9"
 	}
 ]
