@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "6a1585d9132bd14360f0475eabe0d6e99a03157f",
 		"commit_timestamp": 1764529423,
+		"start_timestamp": 1764536598,
+		"fuzzer": "canonicalize",
+		"edges_found": 17835,
+		"total_edges": 157612,
+		"unique_crashes": 265,
+		"unique_hangs": 1,
+		"total_execs": 5776808,
+		"kind": "crash",
+		"encoded_failure": "eD0wLigp"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "6a1585d9132bd14360f0475eabe0d6e99a03157f",
+		"commit_timestamp": 1764529423,
 		"start_timestamp": 1764535266,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 23326256,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFddD0oKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "6a1585d9132bd14360f0475eabe0d6e99a03157f",
+		"commit_timestamp": 1764529423,
+		"start_timestamp": 1764536598,
+		"fuzzer": "canonicalize",
+		"edges_found": 17835,
+		"total_edges": 157612,
+		"unique_crashes": 265,
+		"unique_hangs": 1,
+		"total_execs": 5776808,
+		"kind": "hang",
+		"encoded_failure": "TTAwMDAoayk6TTAwMDAoUylpMDBrOk0wMDAwCmkwMGs9fHxtYXRjaCAwezA9PjAgKCk9PjB9"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 5641324,
 		"kind": "hang",
 		"encoded_failure": "Rjo9W10ue0EwMDpBMDAgdDAwMDAwMDAwOkItPkEwMCB0MDAwMDAwMDA9fHx8fCgpfXQ9MA=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "3d016da0d20f07fc9799c249cb63bc3b883cb869",
-		"commit_timestamp": 1764455579,
-		"start_timestamp": 1764471290,
-		"fuzzer": "canonicalize",
-		"edges_found": 17723,
-		"total_edges": 157396,
-		"unique_crashes": 290,
-		"unique_hangs": 1,
-		"total_execs": 5830741,
-		"kind": "crash",
-		"encoded_failure": "eD0wLi5k"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "3d016da0d20f07fc9799c249cb63bc3b883cb869",
-		"commit_timestamp": 1764455579,
-		"start_timestamp": 1764470101,
-		"fuzzer": "tokenize",
-		"edges_found": 986,
-		"total_edges": 13932,
-		"unique_crashes": 15,
-		"unique_hangs": 0,
-		"total_execs": 142925264,
-		"kind": "crash",
-		"encoded_failure": "J1x1KDAwMDAwMCkn"
 	}
 ]
