@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "e6ff7793ad9921098ee8569c8a394f9b0ed5fb75",
 		"commit_timestamp": 1764686753,
+		"start_timestamp": 1764695714,
+		"fuzzer": "canonicalize",
+		"edges_found": 18377,
+		"total_edges": 165980,
+		"unique_crashes": 241,
+		"unique_hangs": 1,
+		"total_execs": 5828320,
+		"kind": "crash",
+		"encoded_failure": "eD14"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "e6ff7793ad9921098ee8569c8a394f9b0ed5fb75",
+		"commit_timestamp": 1764686753,
 		"start_timestamp": 1764694433,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 23876044,
 		"kind": "crash",
 		"encoded_failure": "djphIHdoZXJlWwphLnQ6CmFdbz0oKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "e6ff7793ad9921098ee8569c8a394f9b0ed5fb75",
+		"commit_timestamp": 1764686753,
+		"start_timestamp": 1764695714,
+		"fuzzer": "canonicalize",
+		"edges_found": 18377,
+		"total_edges": 165980,
+		"unique_crashes": 241,
+		"unique_hangs": 1,
+		"total_execs": 5828320,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0EwMDpBMDAgdDAwMDAwMDAwOkItPkEwMCB0MDAwMDAwMDA9fHx8fDB9"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 4004305,
 		"kind": "hang",
 		"encoded_failure": "Rjo9W10ueygpQjAwOkIwMAp0MDAwMDAwMDA6QjAwCnQwMDAwMDAwMD18fDAKdj0oKX11PTA="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "949102f53db7908d214925ae74af333aee1d95fc",
-		"commit_timestamp": 1764619629,
-		"start_timestamp": 1764623002,
-		"fuzzer": "canonicalize",
-		"edges_found": 18389,
-		"total_edges": 172652,
-		"unique_crashes": 251,
-		"unique_hangs": 1,
-		"total_execs": 5686866,
-		"kind": "crash",
-		"encoded_failure": "KCk9MC4="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "949102f53db7908d214925ae74af333aee1d95fc",
-		"commit_timestamp": 1764619629,
-		"start_timestamp": 1764621573,
-		"fuzzer": "tokenize",
-		"edges_found": 986,
-		"total_edges": 13932,
-		"unique_crashes": 11,
-		"unique_hangs": 0,
-		"total_execs": 142243312,
-		"kind": "crash",
-		"encoded_failure": "J1x1KDAwMDAwMCkn"
 	}
 ]
