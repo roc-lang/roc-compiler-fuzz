@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "19f5162a46d6816c4d846889ee394d1ee670588e",
 		"commit_timestamp": 1765665078,
+		"start_timestamp": 1765681134,
+		"fuzzer": "canonicalize",
+		"edges_found": 20342,
+		"total_edges": 172244,
+		"unique_crashes": 281,
+		"unique_hangs": 3,
+		"total_execs": 5474090,
+		"kind": "crash",
+		"encoded_failure": "dD0wLi5y"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "19f5162a46d6816c4d846889ee394d1ee670588e",
+		"commit_timestamp": 1765665078,
 		"start_timestamp": 1765679777,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 27568476,
 		"kind": "crash",
 		"encoded_failure": "dDphLT5iIHdoZXJlW2EuYgo6bCxhLT5iXXg9MA=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "19f5162a46d6816c4d846889ee394d1ee670588e",
+		"commit_timestamp": 1765665078,
+		"start_timestamp": 1765681134,
+		"fuzzer": "canonicalize",
+		"edges_found": 20342,
+		"total_edges": 172244,
+		"unique_crashes": 281,
+		"unique_hangs": 3,
+		"total_execs": 5474090,
+		"kind": "hang",
+		"encoded_failure": "UGEwMChhLGIpOihhLGIpbWEwMDBhMDA6KCksKCksKGQpLT5QYTAwKGMsZCltYTAwMGEwMD18KCksMCwwfDAKYT17bWEwMDBhMDAoMCwoKSwoKSl9"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 143137683,
 		"kind": "crash",
 		"encoded_failure": "J1x1KDAwMDAwMCkn"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "6fabcdeb0e113581fb553f1ba160628102b7398b",
-		"commit_timestamp": 1765563371,
-		"start_timestamp": 1765615766,
-		"fuzzer": "parse",
-		"edges_found": 3880,
-		"total_edges": 21100,
-		"unique_crashes": 48,
-		"unique_hangs": 0,
-		"total_execs": 27982148,
-		"kind": "crash",
-		"encoded_failure": "aW1wb3J0CXIKLlMuRglleHBvc2luZ1td"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "6fabcdeb0e113581fb553f1ba160628102b7398b",
-		"commit_timestamp": 1765563371,
-		"start_timestamp": 1765605090,
-		"fuzzer": "parse",
-		"edges_found": 3880,
-		"total_edges": 21100,
-		"unique_crashes": 40,
-		"unique_hangs": 0,
-		"total_execs": 29780773,
-		"kind": "crash",
-		"encoded_failure": "YzpbXWM6KCktPnMJd2hlcmVbZQouRF0="
 	}
 ]
