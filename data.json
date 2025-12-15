@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "e8b2c4dff129e111201a8686fc7429e85fa562f1",
 		"commit_timestamp": 1765758323,
+		"start_timestamp": 1765767393,
+		"fuzzer": "canonicalize",
+		"edges_found": 20465,
+		"total_edges": 172340,
+		"unique_crashes": 352,
+		"unique_hangs": 5,
+		"total_execs": 5620868,
+		"kind": "crash",
+		"encoded_failure": "eD0wLigp"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "e8b2c4dff129e111201a8686fc7429e85fa562f1",
+		"commit_timestamp": 1765758323,
 		"start_timestamp": 1765766034,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 27841871,
 		"kind": "crash",
 		"encoded_failure": "dDphLT5iIHdoZXJlW2EuYgo6dyxhLT5iXQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "e8b2c4dff129e111201a8686fc7429e85fa562f1",
+		"commit_timestamp": 1765758323,
+		"start_timestamp": 1765767393,
+		"fuzzer": "canonicalize",
+		"edges_found": 20465,
+		"total_edges": 172340,
+		"unique_crashes": 352,
+		"unique_hangs": 5,
+		"total_execs": 5620868,
+		"kind": "hang",
+		"encoded_failure": "UGEwMChhLGIpOihhLGIpbWEwMDBhMDA6KCksKCksKGQpLT5QYTAwKGMsZCltYTAwMGEwMD18KCksMCwwfDAKYT17bWEwMDBhMDAoMCwoKSwoKSl9"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 27095453,
 		"kind": "crash",
 		"encoded_failure": "aW1wb3J0IEQgZXhwb3NpbmdbXWM6TAl3aGVyZVtvCi5oOmVd"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "92d7b81c01611261a15db7435d893a9741808f8a",
-		"commit_timestamp": 1765688357,
-		"start_timestamp": 1765719809,
-		"fuzzer": "canonicalize",
-		"edges_found": 20390,
-		"total_edges": 172292,
-		"unique_crashes": 286,
-		"unique_hangs": 4,
-		"total_execs": 6301871,
-		"kind": "hang",
-		"encoded_failure": "RjAwOj1bXS57QjByOnI9PkIgZD0wfWUwMGVyMDAwOkYwMC5CMHIKZTAwZXIwMDA9MA=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "92d7b81c01611261a15db7435d893a9741808f8a",
-		"commit_timestamp": 1765688357,
-		"start_timestamp": 1765732196,
-		"fuzzer": "canonicalize",
-		"edges_found": 20415,
-		"total_edges": 172292,
-		"unique_crashes": 315,
-		"unique_hangs": 2,
-		"total_execs": 6597284,
-		"kind": "hang",
-		"encoded_failure": "UGEwMChhLGIpOihhLGIpbWEwMDBhMDA6KCksKCksKGQpLT5QYTAwKGMsZCltYTAwMGEwMD18KCksMCwwfDAKYT17bWEwMDBhMDAoMCwoKSwoKSl9"
 	}
 ]
