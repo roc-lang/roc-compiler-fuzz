@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "60336fd1a5c2e3ea74c4419af01f3955d3ec99f5",
 		"commit_timestamp": 1765822823,
+		"start_timestamp": 1765832897,
+		"fuzzer": "canonicalize",
+		"edges_found": 20556,
+		"total_edges": 172364,
+		"unique_crashes": 296,
+		"unique_hangs": 4,
+		"total_execs": 5417962,
+		"kind": "crash",
+		"encoded_failure": "eD0wLigp"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "60336fd1a5c2e3ea74c4419af01f3955d3ec99f5",
+		"commit_timestamp": 1765822823,
 		"start_timestamp": 1765831571,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 26845240,
 		"kind": "crash",
 		"encoded_failure": "czp7ZTpVLGc6YX0sKC0+CnIpLT50"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "60336fd1a5c2e3ea74c4419af01f3955d3ec99f5",
+		"commit_timestamp": 1765822823,
+		"start_timestamp": 1765832897,
+		"fuzzer": "canonicalize",
+		"edges_found": 20556,
+		"total_edges": 172364,
+		"unique_crashes": 296,
+		"unique_hangs": 4,
+		"total_execs": 5417962,
+		"kind": "hang",
+		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 27636250,
 		"kind": "crash",
 		"encoded_failure": "bW9kdWxlW11pbXBvcnQgcwouQy5DIGFzIEg="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "e8b2c4dff129e111201a8686fc7429e85fa562f1",
-		"commit_timestamp": 1765758323,
-		"start_timestamp": 1765766094,
-		"fuzzer": "parse",
-		"edges_found": 3880,
-		"total_edges": 21100,
-		"unique_crashes": 41,
-		"unique_hangs": 0,
-		"total_execs": 27841871,
-		"kind": "crash",
-		"encoded_failure": "dDphLT5iIHdoZXJlW2EuYgo6dyxhLT5iXQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "e8b2c4dff129e111201a8686fc7429e85fa562f1",
-		"commit_timestamp": 1765758323,
-		"start_timestamp": 1765780284,
-		"fuzzer": "canonicalize",
-		"edges_found": 20492,
-		"total_edges": 172340,
-		"unique_crashes": 297,
-		"unique_hangs": 1,
-		"total_execs": 5983094,
-		"kind": "hang",
-		"encoded_failure": "Rjo9W10ue0Iwcjo9QjByIHRyMDAwMDByMDpyLT5CMHIKdHIwMDAwMHIwPTAKdD10cjAwMDAwcjAoMCl9"
 	}
 ]
