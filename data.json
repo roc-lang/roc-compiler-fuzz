@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "d4d1c9d0c44672ba8ca3892e3702d144459e19b8",
 		"commit_timestamp": 1765997657,
+		"start_timestamp": 1766006003,
+		"fuzzer": "canonicalize",
+		"edges_found": 20710,
+		"total_edges": 172492,
+		"unique_crashes": 259,
+		"unique_hangs": 4,
+		"total_execs": 4270821,
+		"kind": "crash",
+		"encoded_failure": "eD0wLigp"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "d4d1c9d0c44672ba8ca3892e3702d144459e19b8",
+		"commit_timestamp": 1765997657,
 		"start_timestamp": 1766004364,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -12,6 +26,20 @@
 		"total_execs": 142866734,
 		"kind": "crash",
 		"encoded_failure": "J1x1KDAwMDAwMCkn"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "d4d1c9d0c44672ba8ca3892e3702d144459e19b8",
+		"commit_timestamp": 1765997657,
+		"start_timestamp": 1766006003,
+		"fuzzer": "canonicalize",
+		"edges_found": 20710,
+		"total_edges": 172492,
+		"unique_crashes": 259,
+		"unique_hangs": 4,
+		"total_execs": 4270821,
+		"kind": "hang",
+		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLQkzXSkp"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 5637565,
 		"kind": "hang",
 		"encoded_failure": "UGEwMChhLGIpOihhLGIpbWEwMDBhMDA6KCksKCksKGQpLT5QYTAwKGMsZCltYTAwMGEwMD18KCksMCwwfDAKYT17bWEwMDBhMDAoMCwwLCgpKX0="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "e0360be9690663bd5834d61de231a032dfbdbb56",
-		"commit_timestamp": 1765924835,
-		"start_timestamp": 1765939613,
-		"fuzzer": "canonicalize",
-		"edges_found": 20642,
-		"total_edges": 172404,
-		"unique_crashes": 322,
-		"unique_hangs": 4,
-		"total_execs": 5701036,
-		"kind": "crash",
-		"encoded_failure": "eD0wLj8="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "e0360be9690663bd5834d61de231a032dfbdbb56",
-		"commit_timestamp": 1765924835,
-		"start_timestamp": 1765938311,
-		"fuzzer": "parse",
-		"edges_found": 3876,
-		"total_edges": 19084,
-		"unique_crashes": 47,
-		"unique_hangs": 0,
-		"total_execs": 34747269,
-		"kind": "crash",
-		"encoded_failure": "dD0wLT5TKCkoKQ=="
 	}
 ]
