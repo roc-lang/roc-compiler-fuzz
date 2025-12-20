@@ -31,6 +31,20 @@
 		"branch": "main",
 		"commit_sha": "7ae2aa13337c3ca0005e89f80c29db030e6a886f",
 		"commit_timestamp": 1766193565,
+		"start_timestamp": 1766237281,
+		"fuzzer": "canonicalize",
+		"edges_found": 21385,
+		"total_edges": 176236,
+		"unique_crashes": 300,
+		"unique_hangs": 3,
+		"total_execs": 6368195,
+		"kind": "crash",
+		"encoded_failure": "dD17Rio0RTB9"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "7ae2aa13337c3ca0005e89f80c29db030e6a886f",
+		"commit_timestamp": 1766193565,
 		"start_timestamp": 1766221835,
 		"fuzzer": "canonicalize",
 		"edges_found": 21377,
@@ -155,6 +169,20 @@
 	},
 	{
 		"branch": "main",
+		"commit_sha": "7ae2aa13337c3ca0005e89f80c29db030e6a886f",
+		"commit_timestamp": 1766193565,
+		"start_timestamp": 1766237281,
+		"fuzzer": "canonicalize",
+		"edges_found": 21385,
+		"total_edges": 176236,
+		"unique_crashes": 300,
+		"unique_hangs": 3,
+		"total_execs": 6368195,
+		"kind": "hang",
+		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
+	},
+	{
+		"branch": "main",
 		"commit_sha": "21c4cd5dfc76242334451ec66a6aa61037f9b18d",
 		"commit_timestamp": 1766136753,
 		"start_timestamp": 1766178482,
@@ -250,33 +278,5 @@
 		"total_execs": 27890782,
 		"kind": "crash",
 		"encoded_failure": "czp7bjpyLGU6VSxnOmF9LCgtPgpyKS0+cg=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "21c4cd5dfc76242334451ec66a6aa61037f9b18d",
-		"commit_timestamp": 1766136753,
-		"start_timestamp": 1766178482,
-		"fuzzer": "canonicalize",
-		"edges_found": 21288,
-		"total_edges": 176236,
-		"unique_crashes": 277,
-		"unique_hangs": 3,
-		"total_execs": 6355416,
-		"kind": "hang",
-		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "21c4cd5dfc76242334451ec66a6aa61037f9b18d",
-		"commit_timestamp": 1766136753,
-		"start_timestamp": 1766164396,
-		"fuzzer": "canonicalize",
-		"edges_found": 21278,
-		"total_edges": 176236,
-		"unique_crashes": 315,
-		"unique_hangs": 2,
-		"total_execs": 6989139,
-		"kind": "hang",
-		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
 	}
 ]
