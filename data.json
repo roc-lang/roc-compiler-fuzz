@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "3691a92d99d0e16ab8b312d209b196c654413d37",
 		"commit_timestamp": 1766275835,
+		"start_timestamp": 1766286004,
+		"fuzzer": "canonicalize",
+		"edges_found": 21470,
+		"total_edges": 176212,
+		"unique_crashes": 347,
+		"unique_hangs": 3,
+		"total_execs": 5669246,
+		"kind": "crash",
+		"encoded_failure": "eD0wLi5y"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "3691a92d99d0e16ab8b312d209b196c654413d37",
+		"commit_timestamp": 1766275835,
 		"start_timestamp": 1766284549,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 27934208,
 		"kind": "crash",
 		"encoded_failure": "dDpiIHdoZXJlW2EuYQo6ayxhLT5iXQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "3691a92d99d0e16ab8b312d209b196c654413d37",
+		"commit_timestamp": 1766275835,
+		"start_timestamp": 1766286004,
+		"fuzzer": "canonicalize",
+		"edges_found": 21470,
+		"total_edges": 176212,
+		"unique_crashes": 347,
+		"unique_hangs": 3,
+		"total_execs": 5669246,
+		"kind": "hang",
+		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLQkzXSkp"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 27362741,
 		"kind": "crash",
 		"encoded_failure": "dDpiIHdoZXJlW2EudDprCixhLT5iXXg9MA=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "7ae2aa13337c3ca0005e89f80c29db030e6a886f",
-		"commit_timestamp": 1766193565,
-		"start_timestamp": 1766264681,
-		"fuzzer": "canonicalize",
-		"edges_found": 21475,
-		"total_edges": 176236,
-		"unique_crashes": 318,
-		"unique_hangs": 4,
-		"total_execs": 5945934,
-		"kind": "hang",
-		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "7ae2aa13337c3ca0005e89f80c29db030e6a886f",
-		"commit_timestamp": 1766193565,
-		"start_timestamp": 1766250382,
-		"fuzzer": "canonicalize",
-		"edges_found": 21088,
-		"total_edges": 151932,
-		"unique_crashes": 308,
-		"unique_hangs": 3,
-		"total_execs": 7784224,
-		"kind": "hang",
-		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
 	}
 ]
