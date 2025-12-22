@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "c6415d8dc9fc3ddd9008f7b08c1f54e549bf3ca9",
 		"commit_timestamp": 1766360078,
+		"start_timestamp": 1766372375,
+		"fuzzer": "canonicalize",
+		"edges_found": 21571,
+		"total_edges": 176284,
+		"unique_crashes": 299,
+		"unique_hangs": 5,
+		"total_execs": 6222808,
+		"kind": "crash",
+		"encoded_failure": "ZD1kKCk="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "c6415d8dc9fc3ddd9008f7b08c1f54e549bf3ca9",
+		"commit_timestamp": 1766360078,
 		"start_timestamp": 1766370919,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -12,6 +26,20 @@
 		"total_execs": 144440780,
 		"kind": "crash",
 		"encoded_failure": "J1x1KDAwMDAwMCkn"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "c6415d8dc9fc3ddd9008f7b08c1f54e549bf3ca9",
+		"commit_timestamp": 1766360078,
+		"start_timestamp": 1766372375,
+		"fuzzer": "canonicalize",
+		"edges_found": 21571,
+		"total_edges": 176284,
+		"unique_crashes": 299,
+		"unique_hangs": 5,
+		"total_execs": 6222808,
+		"kind": "hang",
+		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 5806947,
 		"kind": "hang",
 		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLQkxXSkp"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "a14665e37746fcbc649df691ea05d32fba4b36b0",
-		"commit_timestamp": 1766286122,
-		"start_timestamp": 1766323741,
-		"fuzzer": "canonicalize",
-		"edges_found": 21532,
-		"total_edges": 176220,
-		"unique_crashes": 329,
-		"unique_hangs": 4,
-		"total_execs": 5857457,
-		"kind": "hang",
-		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "a14665e37746fcbc649df691ea05d32fba4b36b0",
-		"commit_timestamp": 1766286122,
-		"start_timestamp": 1766309687,
-		"fuzzer": "canonicalize",
-		"edges_found": 21514,
-		"total_edges": 176220,
-		"unique_crashes": 313,
-		"unique_hangs": 5,
-		"total_execs": 5890840,
-		"kind": "hang",
-		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
 	}
 ]
