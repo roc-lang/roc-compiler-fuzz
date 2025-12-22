@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "62d87db2ad8e16584d279f6e873f35f9cc08f1d9",
 		"commit_timestamp": 1766430239,
+		"start_timestamp": 1766437698,
+		"fuzzer": "canonicalize",
+		"edges_found": 22069,
+		"total_edges": 176964,
+		"unique_crashes": 316,
+		"unique_hangs": 1,
+		"total_execs": 6947545,
+		"kind": "crash",
+		"encoded_failure": "bj1u"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "62d87db2ad8e16584d279f6e873f35f9cc08f1d9",
+		"commit_timestamp": 1766430239,
 		"start_timestamp": 1766436255,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 36180591,
 		"kind": "crash",
 		"encoded_failure": "YzpMCXdoZXJlW3MKLmg6ZV0="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "62d87db2ad8e16584d279f6e873f35f9cc08f1d9",
+		"commit_timestamp": 1766430239,
+		"start_timestamp": 1766437698,
+		"fuzzer": "canonicalize",
+		"edges_found": 22069,
+		"total_edges": 176964,
+		"unique_crashes": 316,
+		"unique_hangs": 1,
+		"total_execs": 6947545,
+		"kind": "hang",
+		"encoded_failure": "UGEwMChhLGIpOihhLGIpbWEwMDBhMDA6KCksKCksKGIpLT5QYTAwKGMsZCltYTAwMGEwMD18KCksMCwwfDAKbT17bWEwMDBhMDAoKCksMCwoKSl9"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 144440780,
 		"kind": "crash",
 		"encoded_failure": "J1x1KDAwMDAwMCkn"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "c6415d8dc9fc3ddd9008f7b08c1f54e549bf3ca9",
-		"commit_timestamp": 1766360078,
-		"start_timestamp": 1766372375,
-		"fuzzer": "canonicalize",
-		"edges_found": 21571,
-		"total_edges": 176284,
-		"unique_crashes": 299,
-		"unique_hangs": 5,
-		"total_execs": 6222808,
-		"kind": "hang",
-		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwwLSAzXSkp"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "c6415d8dc9fc3ddd9008f7b08c1f54e549bf3ca9",
-		"commit_timestamp": 1766360078,
-		"start_timestamp": 1766370992,
-		"fuzzer": "parse",
-		"edges_found": 3971,
-		"total_edges": 21300,
-		"unique_crashes": 47,
-		"unique_hangs": 0,
-		"total_execs": 29262950,
-		"kind": "crash",
-		"encoded_failure": "aW1wb3J0IEQgZXhwb3NpbmdbXWM6dAl3aGVyZQpbZS5jOmVd"
 	}
 ]
