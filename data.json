@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "13926dfdd3fe1d6d811d11984d6a692feaf60823",
 		"commit_timestamp": 1766460359,
+		"start_timestamp": 1766510178,
+		"fuzzer": "canonicalize",
+		"edges_found": 22113,
+		"total_edges": 176980,
+		"unique_crashes": 303,
+		"unique_hangs": 3,
+		"total_execs": 5939322,
+		"kind": "crash",
+		"encoded_failure": "eD14"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "13926dfdd3fe1d6d811d11984d6a692feaf60823",
+		"commit_timestamp": 1766460359,
 		"start_timestamp": 1766483460,
 		"fuzzer": "canonicalize",
 		"edges_found": 22098,
@@ -110,6 +124,20 @@
 		"total_execs": 141120195,
 		"kind": "crash",
 		"encoded_failure": "J1x1KDAwMDAwMCkn"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "13926dfdd3fe1d6d811d11984d6a692feaf60823",
+		"commit_timestamp": 1766460359,
+		"start_timestamp": 1766510178,
+		"fuzzer": "canonicalize",
+		"edges_found": 22113,
+		"total_edges": 176980,
+		"unique_crashes": 303,
+		"unique_hangs": 3,
+		"total_execs": 5939322,
+		"kind": "hang",
+		"encoded_failure": "eD0oKFtbMF0sMC0JM10pKS8w"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 141738056,
 		"kind": "crash",
 		"encoded_failure": "J1x1KDAwMDAwMCkn"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "62d87db2ad8e16584d279f6e873f35f9cc08f1d9",
-		"commit_timestamp": 1766430239,
-		"start_timestamp": 1766436265,
-		"fuzzer": "parse",
-		"edges_found": 3979,
-		"total_edges": 19324,
-		"unique_crashes": 45,
-		"unique_hangs": 0,
-		"total_execs": 36180591,
-		"kind": "crash",
-		"encoded_failure": "YzpMCXdoZXJlW3MKLmg6ZV0="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "62d87db2ad8e16584d279f6e873f35f9cc08f1d9",
-		"commit_timestamp": 1766430239,
-		"start_timestamp": 1766437698,
-		"fuzzer": "canonicalize",
-		"edges_found": 22069,
-		"total_edges": 176964,
-		"unique_crashes": 316,
-		"unique_hangs": 1,
-		"total_execs": 6947545,
-		"kind": "hang",
-		"encoded_failure": "UGEwMChhLGIpOihhLGIpbWEwMDBhMDA6KCksKCksKGIpLT5QYTAwKGMsZCltYTAwMGEwMD18KCksMCwwfDAKbT17bWEwMDBhMDAoKCksMCwoKSl9"
 	}
 ]
