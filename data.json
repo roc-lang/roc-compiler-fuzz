@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "678b994ff546b0111f22637270726e7d1530b311",
 		"commit_timestamp": 1766691534,
+		"start_timestamp": 1766696853,
+		"fuzzer": "canonicalize",
+		"edges_found": 22034,
+		"total_edges": 177156,
+		"unique_crashes": 349,
+		"unique_hangs": 4,
+		"total_execs": 4924836,
+		"kind": "crash",
+		"encoded_failure": "eD0wLigp"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "678b994ff546b0111f22637270726e7d1530b311",
+		"commit_timestamp": 1766691534,
 		"start_timestamp": 1766695412,
 		"fuzzer": "tokenize",
 		"edges_found": 986,
@@ -26,6 +40,20 @@
 		"total_execs": 28224921,
 		"kind": "crash",
 		"encoded_failure": "aTooKS0+dAl3aGVyZVtlCi5jOnItPmFd"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "678b994ff546b0111f22637270726e7d1530b311",
+		"commit_timestamp": 1766691534,
+		"start_timestamp": 1766696853,
+		"fuzzer": "canonicalize",
+		"edges_found": 22034,
+		"total_edges": 177156,
+		"unique_crashes": 349,
+		"unique_hangs": 4,
+		"total_execs": 4924836,
+		"kind": "hang",
+		"encoded_failure": "Rjo9W10ue0Iwcjo9QjByIGQwMDAwbHRCMHI9MCB0cjAwMDAwcjA6ci0+QjByCnRyMDAwMDByMD18MHxZCnQ9dHIwMDAwMHIwKGQwMDAwbHRCMHIpfWw6cg=="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 33487142,
 		"kind": "crash",
 		"encoded_failure": "czp7bjpyLGU6VSxnOmF9LCgKLT5yKS0+cg=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "f566be68c6287a432a67a92b3d29a1b83294ab53",
-		"commit_timestamp": 1766623007,
-		"start_timestamp": 1766631256,
-		"fuzzer": "canonicalize",
-		"edges_found": 21899,
-		"total_edges": 176956,
-		"unique_crashes": 345,
-		"unique_hangs": 1,
-		"total_execs": 6691028,
-		"kind": "crash",
-		"encoded_failure": "eD0wJTAgeT0w"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "f566be68c6287a432a67a92b3d29a1b83294ab53",
-		"commit_timestamp": 1766623007,
-		"start_timestamp": 1766629833,
-		"fuzzer": "tokenize",
-		"edges_found": 986,
-		"total_edges": 13940,
-		"unique_crashes": 14,
-		"unique_hangs": 0,
-		"total_execs": 144808056,
-		"kind": "crash",
-		"encoded_failure": "J1x1KDAwMDAwMCkn"
 	}
 ]
