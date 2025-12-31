@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "0e0cb6490145afe8270256b210fb980506a3f25b",
 		"commit_timestamp": 1767152848,
+		"start_timestamp": 1767174439,
+		"fuzzer": "canonicalize",
+		"edges_found": 23908,
+		"total_edges": 181052,
+		"unique_crashes": 283,
+		"unique_hangs": 1,
+		"total_execs": 5494832,
+		"kind": "crash",
+		"encoded_failure": "eD0wLjAoKQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "0e0cb6490145afe8270256b210fb980506a3f25b",
+		"commit_timestamp": 1767152848,
 		"start_timestamp": 1767162913,
 		"fuzzer": "canonicalize",
 		"edges_found": 23888,
@@ -26,6 +40,20 @@
 		"total_execs": 4994956,
 		"kind": "hang",
 		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwyMDAwMDAwMDAwMF0pKS8w"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "0e0cb6490145afe8270256b210fb980506a3f25b",
+		"commit_timestamp": 1767152848,
+		"start_timestamp": 1767174439,
+		"fuzzer": "canonicalize",
+		"edges_found": 23908,
+		"total_edges": 181052,
+		"unique_crashes": 283,
+		"unique_hangs": 1,
+		"total_execs": 5494832,
+		"kind": "hang",
+		"encoded_failure": "UjAwMHQ6e3g6SX1hMDBhMDAwOlIwMDB0LT50CmEwMGEwMDA9fHIwMDB0fHtyMDAwdC0gMH14PWEwMGEwMDAoe30p"
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 5011736,
 		"kind": "crash",
 		"encoded_failure": "cz1KPw=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "4a5d7e4e996851a0478e3335c0417398e6013c24",
-		"commit_timestamp": 1767050835,
-		"start_timestamp": 1767087308,
-		"fuzzer": "canonicalize",
-		"edges_found": 23452,
-		"total_edges": 181180,
-		"unique_crashes": 332,
-		"unique_hangs": 2,
-		"total_execs": 4571906,
-		"kind": "crash",
-		"encoded_failure": "dD17NkUwKCl9"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "4a5d7e4e996851a0478e3335c0417398e6013c24",
-		"commit_timestamp": 1767050835,
-		"start_timestamp": 1767075875,
-		"fuzzer": "canonicalize",
-		"edges_found": 23426,
-		"total_edges": 181180,
-		"unique_crashes": 334,
-		"unique_hangs": 0,
-		"total_execs": 5201921,
-		"kind": "crash",
-		"encoded_failure": "dD17WzBdKCl9"
 	}
 ]
