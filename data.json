@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "21f3731260338e492701535c889477d4a3db64b3",
 		"commit_timestamp": 1767239609,
+		"start_timestamp": 1767250976,
+		"fuzzer": "canonicalize",
+		"edges_found": 23442,
+		"total_edges": 156548,
+		"unique_crashes": 453,
+		"unique_hangs": 3,
+		"total_execs": 5361711,
+		"kind": "crash",
+		"encoded_failure": "ej0hMw=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "21f3731260338e492701535c889477d4a3db64b3",
+		"commit_timestamp": 1767239609,
 		"start_timestamp": 1767249239,
 		"fuzzer": "parse",
 		"edges_found": 4038,
@@ -12,6 +26,20 @@
 		"total_execs": 29016450,
 		"kind": "crash",
 		"encoded_failure": "YT0wLT5iDC5jKCk="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "21f3731260338e492701535c889477d4a3db64b3",
+		"commit_timestamp": 1767239609,
+		"start_timestamp": 1767250976,
+		"fuzzer": "canonicalize",
+		"edges_found": 23442,
+		"total_edges": 156548,
+		"unique_crashes": 453,
+		"unique_hangs": 3,
+		"total_execs": 5361711,
+		"kind": "hang",
+		"encoded_failure": "dDpsCmU9e3doaWxlKFRydWUpe289MH19ZXhwZWN0IDA="
 	},
 	{
 		"branch": "main",
@@ -250,33 +278,5 @@
 		"total_execs": 4994956,
 		"kind": "crash",
 		"encoded_failure": "eD0wLjAoKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "0e0cb6490145afe8270256b210fb980506a3f25b",
-		"commit_timestamp": 1767152848,
-		"start_timestamp": 1767162913,
-		"fuzzer": "canonicalize",
-		"edges_found": 23888,
-		"total_edges": 181052,
-		"unique_crashes": 302,
-		"unique_hangs": 1,
-		"total_execs": 4994956,
-		"kind": "hang",
-		"encoded_failure": "eD1MaXN0LmxlbihMaXN0LlooW1swXSwyMDAwMDAwMDAwMF0pKS8w"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "0e0cb6490145afe8270256b210fb980506a3f25b",
-		"commit_timestamp": 1767152848,
-		"start_timestamp": 1767174439,
-		"fuzzer": "canonicalize",
-		"edges_found": 23908,
-		"total_edges": 181052,
-		"unique_crashes": 283,
-		"unique_hangs": 1,
-		"total_execs": 5494832,
-		"kind": "hang",
-		"encoded_failure": "UjAwMHQ6e3g6SX1hMDBhMDAwOlIwMDB0LT50CmEwMGEwMDA9fHIwMDB0fHtyMDAwdC0gMH14PWEwMGEwMDAoe30p"
 	}
 ]
