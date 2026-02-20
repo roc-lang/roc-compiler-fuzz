@@ -59,6 +59,34 @@
 		"branch": "main",
 		"commit_sha": "c5d87ef595fdc1c8b28dfdb6ebbe5b44ddea966f",
 		"commit_timestamp": 1771552795,
+		"start_timestamp": 1771608338,
+		"fuzzer": "canonicalize",
+		"edges_found": 20057,
+		"total_edges": 305713,
+		"unique_crashes": 321,
+		"unique_hangs": 26,
+		"total_execs": 6756399,
+		"kind": "hang",
+		"encoded_failure": "eD0wLjAuMzAwMDA="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "c5d87ef595fdc1c8b28dfdb6ebbe5b44ddea966f",
+		"commit_timestamp": 1771552795,
+		"start_timestamp": 1771608338,
+		"fuzzer": "canonicalize",
+		"edges_found": 20057,
+		"total_edges": 305713,
+		"unique_crashes": 321,
+		"unique_hangs": 26,
+		"total_execs": 6756399,
+		"kind": "crash",
+		"encoded_failure": "eD0yLjMwMDAwLjA="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "c5d87ef595fdc1c8b28dfdb6ebbe5b44ddea966f",
+		"commit_timestamp": 1771552795,
 		"start_timestamp": 1771595907,
 		"fuzzer": "canonicalize",
 		"edges_found": 20181,
@@ -250,33 +278,5 @@
 		"total_execs": 33209696,
 		"kind": "crash",
 		"encoded_failure": "CmE6KFMp"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "5dd3f94905a4db664062a7635ca91ea404581845",
-		"commit_timestamp": 1771420357,
-		"start_timestamp": 1771523283,
-		"fuzzer": "canonicalize",
-		"edges_found": 19485,
-		"total_edges": 305605,
-		"unique_crashes": 320,
-		"unique_hangs": 17,
-		"total_execs": 4849681,
-		"kind": "crash",
-		"encoded_failure": "YT00RTQoKQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "5dd3f94905a4db664062a7635ca91ea404581845",
-		"commit_timestamp": 1771420357,
-		"start_timestamp": 1771493429,
-		"fuzzer": "canonicalize",
-		"edges_found": 20151,
-		"total_edges": 305605,
-		"unique_crashes": 385,
-		"unique_hangs": 27,
-		"total_execs": 6169170,
-		"kind": "hang",
-		"encoded_failure": "eD1XLjMwMDAw"
 	}
 ]
