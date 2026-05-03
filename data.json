@@ -269,13 +269,13 @@
 		"branch": "main",
 		"commit_sha": "abaca966deca9f1e69d7382a55e1f8145eab45d1",
 		"commit_timestamp": 1777747315,
-		"start_timestamp": 1777828580,
+		"start_timestamp": 1777842633,
 		"fuzzer": "tokenize",
-		"edges_found": 1010,
-		"total_edges": 26024,
+		"edges_found": 1002,
+		"total_edges": 22893,
 		"unique_crashes": 0,
 		"unique_hangs": 0,
-		"total_execs": 144648118,
+		"total_execs": 144492345,
 		"kind": "success",
 		"encoded_failure": ""
 	}
