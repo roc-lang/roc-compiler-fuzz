@@ -1,8 +1,8 @@
 const std = @import("std");
 const FuzzResult = @import("FuzzResult.zig");
 
-pub fn main() !void {
-    var gpa_impl = std.heap.GeneralPurposeAllocator(.{}){};
+pub fn main(init: std.process.Init) !void {
+    var gpa_impl = std.heap.DebugAllocator(.{}){};
     defer _ = gpa_impl.deinit();
     const gpa = gpa_impl.allocator();
 
@@ -10,23 +10,27 @@ pub fn main() !void {
     defer arena_impl.deinit();
     const arena = arena_impl.allocator();
 
-    const file = try std.fs.cwd().openFile("data.json", .{});
-    defer file.close();
-    const content = try file.readToEndAlloc(arena, 1024 * 1024);
+    const io = init.io;
+
+    var read_buf: [4096]u8 = undefined;
+    const file = try std.Io.Dir.cwd().openFile(io, "data.json", .{});
+    defer file.close(io);
+    var file_reader = file.reader(io, &read_buf);
+    const content = try file_reader.interface.allocRemaining(arena, .limited(1024 * 1024));
     const data = try std.json.parseFromSliceLeaky([]FuzzResult, arena, content, .{});
 
-    std.fs.cwd().makeDir("www") catch |err| {
+    std.Io.Dir.cwd().createDir(io, "www", .default_dir) catch |err| {
         if (err != error.PathAlreadyExists) {
             return err;
         }
     };
-    var out_dir = try std.fs.cwd().openDir("www", .{});
-    defer out_dir.close();
-    const index_html = try out_dir.createFile("index.html", .{});
-    defer index_html.close();
+    var out_dir = try std.Io.Dir.cwd().openDir(io, "www", .{});
+    defer out_dir.close(io);
+    const index_html = try out_dir.createFile(io, "index.html", .{});
+    defer index_html.close(io);
 
     var buffer: [4096]u8 = undefined;
-    var html_writer = index_html.writer(&buffer);
+    var html_writer = index_html.writer(io, &buffer);
     defer html_writer.interface.flush() catch @panic("Flush failed");
     // TODO: look into using a templating tool and making a nicer site.
     // Maybe https://github.com/kristoff-it/superhtml/

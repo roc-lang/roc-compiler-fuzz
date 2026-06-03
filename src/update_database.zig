@@ -3,8 +3,8 @@ const FuzzResult = @import("FuzzResult.zig");
 
 const result_limit = 20;
 
-pub fn main() !void {
-    var gpa_impl = std.heap.GeneralPurposeAllocator(.{}){};
+pub fn main(init: std.process.Init) !void {
+    var gpa_impl = std.heap.DebugAllocator(.{}){};
     defer _ = gpa_impl.deinit();
     const gpa = gpa_impl.allocator();
 
@@ -12,7 +12,15 @@ pub fn main() !void {
     defer arena_impl.deinit();
     const arena = arena_impl.allocator();
 
-    const args = try std.process.argsAlloc(arena);
+    const io = init.io;
+
+    var args_list: std.ArrayList([]const u8) = .empty;
+    var args_iter = std.process.Args.Iterator.init(init.minimal.args);
+    while (args_iter.next()) |arg| {
+        try args_list.append(arena, arg);
+    }
+    const args = args_list.items;
+
     if (args.len != 4) {
         std.debug.print(
             \\ Expected usage:
@@ -26,25 +34,25 @@ pub fn main() !void {
     const fuzzer_name = args[2];
     const fuzz_output_path = args[3];
 
-    var roc_repo_dir = std.fs.cwd().openDir(roc_repo_path, .{}) catch {
+    var roc_repo_dir = std.Io.Dir.cwd().openDir(io, roc_repo_path, .{}) catch {
         std.debug.print("unable to find roc repo directory: {s}\n", .{roc_repo_path});
         std.process.exit(1);
     };
-    defer roc_repo_dir.close();
+    defer roc_repo_dir.close(io);
 
-    const branch = try run_cmd(arena, roc_repo_dir, &[_][]const u8{ "git", "branch", "--show-current" });
-    const commit_sha = try run_cmd(arena, roc_repo_dir, &[_][]const u8{ "git", "show", "--no-patch", "--format=%H" });
-    const commit_timestamp_str = try run_cmd(arena, roc_repo_dir, &[_][]const u8{ "git", "show", "--no-patch", "--format=%ct" });
+    const branch = try run_cmd(arena, io, roc_repo_dir, &[_][]const u8{ "git", "branch", "--show-current" });
+    const commit_sha = try run_cmd(arena, io, roc_repo_dir, &[_][]const u8{ "git", "show", "--no-patch", "--format=%H" });
+    const commit_timestamp_str = try run_cmd(arena, io, roc_repo_dir, &[_][]const u8{ "git", "show", "--no-patch", "--format=%ct" });
     const commit_timestamp = try std.fmt.parseInt(u64, commit_timestamp_str, 10);
 
     // load fuzzer stats
     var combined_stats = FuzzerStats{};
-    var fuzz_output_dir = try std.fs.cwd().openDir(fuzz_output_path, .{ .iterate = true });
-    defer fuzz_output_dir.close();
+    var fuzz_output_dir = try std.Io.Dir.cwd().openDir(io, fuzz_output_path, .{ .iterate = true });
+    defer fuzz_output_dir.close(io);
     {
         var it = fuzz_output_dir.iterate();
-        while (try it.next()) |entry| {
-            if (try load_fuzzer_stats(arena, fuzz_output_dir, entry)) |stats| {
+        while (try it.next(io)) |entry| {
+            if (try load_fuzzer_stats(arena, io, fuzz_output_dir, entry)) |stats| {
                 if (combined_stats.start_timestamp == 0) {
                     combined_stats.start_timestamp = stats.start_timestamp;
                 }
@@ -65,7 +73,7 @@ pub fn main() !void {
     // Try `main` and `default` as primary fuzzer names.
     var fuzzer_dir_name: ?[]const u8 = null;
     for (&[_][]const u8{ "main", "default" }) |dir_name| {
-        if (fuzz_output_dir.access(dir_name, .{})) |_| {
+        if (fuzz_output_dir.access(io, dir_name, .{})) |_| {
             fuzzer_dir_name = dir_name;
             break;
         } else |_| {}
@@ -85,19 +93,21 @@ pub fn main() !void {
     for (&[_]FuzzResult.Kind{ .crash, .hang }) |kind| {
         const dir_name = if (kind == .crash) "crashes" else "hangs";
         const dir_path = try std.fs.path.join(arena, &.{ fuzzer_dir_name.?, dir_name });
-        var dir = try fuzz_output_dir.openDir(dir_path, .{ .iterate = true });
-        defer dir.close();
+        var dir = try fuzz_output_dir.openDir(io, dir_path, .{ .iterate = true });
+        defer dir.close(io);
 
         var it = dir.iterate();
-        while (try it.next()) |entry| {
+        while (try it.next(io)) |entry| {
             if (entry.kind != .file) {
                 continue;
             }
-            var file = try dir.openFile(entry.name, .{});
-            defer file.close();
+            var file = try dir.openFile(io, entry.name, .{});
+            defer file.close(io);
 
             // read content ignoring crazy big files
-            const content = file.readToEndAlloc(gpa, 1024 * 1024) catch {
+            var read_buf: [4096]u8 = undefined;
+            var file_reader = file.reader(io, &read_buf);
+            const content = file_reader.interface.allocRemaining(gpa, .limited(1024 * 1024)) catch {
                 continue;
             };
             defer gpa.free(content);
@@ -160,20 +170,22 @@ pub fn main() !void {
     const new_entries_json = std.json.fmt(results.items, .{ .whitespace = .indent_tab });
     std.debug.print("New database entries:\n{f}\n", .{new_entries_json});
 
-    const file_result = std.fs.cwd().openFile("data.json", .{ .mode = .read_write });
+    const file_result = std.Io.Dir.cwd().openFile(io, "data.json", .{ .mode = .read_write });
     if (file_result == error.FileNotFound) {
         // Database does not exist yet, make a new one.
-        const file = try std.fs.cwd().createFile("data.json", .{});
-        defer file.close();
+        const file = try std.Io.Dir.cwd().createFile(io, "data.json", .{});
+        defer file.close(io);
         var buffer: [4096]u8 = undefined;
-        var file_writer = file.writer(&buffer);
+        var file_writer = file.writer(io, &buffer);
         try file_writer.interface.print("{f}", .{new_entries_json});
         try file_writer.interface.flush();
     } else {
         // Load and merge the database.
         var file = try file_result;
-        defer file.close();
-        const content = try file.readToEndAlloc(arena, 1024 * 1024);
+        defer file.close(io);
+        var read_buf: [4096]u8 = undefined;
+        var file_reader = file.reader(io, &read_buf);
+        const content = try file_reader.interface.allocRemaining(arena, .limited(1024 * 1024));
         const old_data = try std.json.parseFromSliceLeaky([]FuzzResult, arena, content, .{});
 
         try results.appendSlice(gpa, old_data);
@@ -182,36 +194,36 @@ pub fn main() !void {
         const out = if (results.items.len > result_limit) results.items[0..result_limit] else results.items;
         const out_json = std.json.fmt(out, .{ .whitespace = .indent_tab });
         // Truncate the file and write new output.
-        try file.seekTo(0);
-        try file.setEndPos(0);
+        try file.setLength(io, 0);
         var buffer: [4096]u8 = undefined;
-        var file_writer = file.writer(&buffer);
+        var file_writer = file.writer(io, &buffer);
         try file_writer.interface.print("{f}", .{out_json});
         try file_writer.interface.flush();
     }
 }
 
-fn run_cmd(arena: std.mem.Allocator, roc_repo_dir: std.fs.Dir, argv: []const []const u8) ![]const u8 {
-    const results = try std.process.Child.run(.{
-        .allocator = arena,
+fn run_cmd(arena: std.mem.Allocator, io: std.Io, roc_repo_dir: std.Io.Dir, argv: []const []const u8) ![]const u8 {
+    const results = try std.process.run(arena, io, .{
         .argv = argv,
-        .cwd_dir = roc_repo_dir,
+        .cwd = .{ .dir = roc_repo_dir },
     });
-    if (results.term != .Exited or results.term.Exited != 0 or results.stderr.len != 0) {
+    if (results.term != .exited or results.term.exited != 0 or results.stderr.len != 0) {
         std.debug.print("Failed to execute subcommand: {any}\nTerm was: {any}\nError was: {s}\n", .{ argv, results.term, results.stderr });
         std.process.exit(1);
     }
     return std.mem.trim(u8, results.stdout, &std.ascii.whitespace);
 }
 
-fn load_fuzzer_stats(arena: std.mem.Allocator, fuzz_output_dir: std.fs.Dir, fuzzer_subdir: std.fs.Dir.Entry) !?FuzzerStats {
+fn load_fuzzer_stats(arena: std.mem.Allocator, io: std.Io, fuzz_output_dir: std.Io.Dir, fuzzer_subdir: std.Io.Dir.Entry) !?FuzzerStats {
     if (fuzzer_subdir.kind != .directory) {
         return null;
     }
     const path = try std.fs.path.join(arena, &[_][]const u8{ fuzzer_subdir.name, "fuzzer_stats" });
-    const file = try fuzz_output_dir.openFile(path, .{});
-    defer file.close();
-    const content = file.readToEndAlloc(arena, 1024 * 1024) catch {
+    const file = try fuzz_output_dir.openFile(io, path, .{});
+    defer file.close(io);
+    var read_buf: [4096]u8 = undefined;
+    var file_reader = file.reader(io, &read_buf);
+    const content = file_reader.interface.allocRemaining(arena, .limited(1024 * 1024)) catch {
         return null;
     };
     var lines = std.mem.splitScalar(u8, content, '\n');
