@@ -84,29 +84,43 @@ jobs:
           sudo apt install -y afl++
           afl-fuzz --version
 
-      - name: build roc fuzzer (base)
-        env:
-          AFL_CC_COMPILER: LTO
+      - name: build roc fuzzer (base) - clean cache
         run: |
           cd roc
           rm -rf .zig-cache zig-out $ZIG_LOCAL_CACHE_DIR
 
-          zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}
+      - name: build roc fuzzer (base)
+        env:
+          AFL_CC_COMPILER: LTO
+        uses: ./.github/actions/flaky-retry
+        with:
+          command: "cd roc && zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}"
+          error_string_contains: "build.zig.zon"
+          retry_count: 3
 
-          mv zig-out/bin/${{ env.fuzzer-exe }} ../${{ env.fuzzer-exe }}.afl
+      - name: build roc fuzzer (base) - move artifact
+        run: |
+          mv roc/zig-out/bin/${{ env.fuzzer-exe }} ./${{ env.fuzzer-exe }}.afl
 
       # cmplog enables extracting comparision info to get better fuzz results.
+      - name: build roc fuzzer (cmplog) - clean cache
+        run: |
+          cd roc
+          rm -rf .zig-cache zig-out $ZIG_LOCAL_CACHE_DIR
+
       - name: build roc fuzzer (cmplog)
         env:
           AFL_LLVM_CMPLOG: 1
           AFL_CC_COMPILER: LTO
+        uses: ./.github/actions/flaky-retry
+        with:
+          command: "cd roc && zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}"
+          error_string_contains: "build.zig.zon"
+          retry_count: 3
+
+      - name: build roc fuzzer (cmplog) - move artifact
         run: |
-          cd roc
-          rm -rf .zig-cache zig-out $ZIG_LOCAL_CACHE_DIR
-
-          zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}
-
-          mv zig-out/bin/${{ env.fuzzer-exe }} ../${{ env.fuzzer-exe }}.cmplog
+          mv roc/zig-out/bin/${{ env.fuzzer-exe }} ./${{ env.fuzzer-exe }}.cmplog
 
       - name: load cached corpus
         id: restore-cache-corpus
@@ -123,12 +137,17 @@ jobs:
           mkdir -p corpus/
           cp roc/src/fuzz-corpus/${{ matrix.fuzzer.name }}/* corpus/
 
+      - name: generate initial corpus - mkdir
+        if: ${{ matrix.fuzzer.use-snapshot-corpus }}
+        run: mkdir -p corpus/
+
       - name: generate initial corpus
         if: ${{ matrix.fuzzer.use-snapshot-corpus }}
-        run: |
-          mkdir -p corpus/
-          cd roc
-          zig build snapshot -- --fuzz-corpus ../corpus --verbose
+        uses: ./.github/actions/flaky-retry
+        with:
+          command: "cd roc && zig build snapshot -- --fuzz-corpus ../corpus --verbose"
+          error_string_contains: "build.zig.zon"
+          retry_count: 3
 
       - name: print corpus
         run: |
@@ -375,6 +394,13 @@ jobs:
           ls fuzz-out/main/hangs/
 
       # calculate list of crashes/hangs to report
+      - name: build update-database data
+        uses: ./.github/actions/flaky-retry
+        with:
+          command: "cd roc-compiler-fuzz && zig build update-database -- ../roc ${{ matrix.fuzzer.name }} ../fuzz-out"
+          error_string_contains: "build.zig.zon"
+          retry_count: 3
+
       - name: record results
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -383,11 +409,14 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
+          # Save the generated data.json so it can be re-applied after each git reset.
+          cp data.json /tmp/updated-data.json
+
           # allow for 10 tries to update the database.
           for i in {1..10}; do
             git fetch origin main
             git reset --hard origin/main
-            zig build update-database -- ../roc ${{ matrix.fuzzer.name }} ../fuzz-out
+            cp /tmp/updated-data.json data.json
             if [ $(git status --porcelain | wc -l) -eq "0" ]; then
               echo "No changes."
               break
@@ -415,11 +444,15 @@ jobs:
         with:
           version: 0.16.0
 
+      - name: generate site - git pull
+        run: git pull
+
       - name: generate site
-        run: |
-          # Ensure we pull in the changes pushed above.
-          git pull
-          zig build generate-website
+        uses: ./.github/actions/flaky-retry
+        with:
+          command: "zig build generate-website"
+          error_string_contains: "build.zig.zon"
+          retry_count: 3
 
       - name: upload website artifacts
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # ratchet:actions/upload-pages-artifact@v5
