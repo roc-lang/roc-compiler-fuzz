@@ -92,7 +92,7 @@ jobs:
       - name: build roc fuzzer (base)
         env:
           AFL_CC_COMPILER: LTO
-        uses: ./.github/actions/flaky-retry
+        uses: ./roc-compiler-fuzz/.github/actions/flaky-retry
         with:
           command: "cd roc && zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}"
           error_string_contains: "build.zig.zon"
@@ -112,7 +112,7 @@ jobs:
         env:
           AFL_LLVM_CMPLOG: 1
           AFL_CC_COMPILER: LTO
-        uses: ./.github/actions/flaky-retry
+        uses: ./roc-compiler-fuzz/.github/actions/flaky-retry
         with:
           command: "cd roc && zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}"
           error_string_contains: "build.zig.zon"
@@ -143,7 +143,7 @@ jobs:
 
       - name: generate initial corpus
         if: ${{ matrix.fuzzer.use-snapshot-corpus }}
-        uses: ./.github/actions/flaky-retry
+        uses: ./roc-compiler-fuzz/.github/actions/flaky-retry
         with:
           command: "cd roc && zig build snapshot -- --fuzz-corpus ../corpus --verbose"
           error_string_contains: "build.zig.zon"
@@ -395,7 +395,7 @@ jobs:
 
       # calculate list of crashes/hangs to report
       - name: build update-database data
-        uses: ./.github/actions/flaky-retry
+        uses: ./roc-compiler-fuzz/.github/actions/flaky-retry
         with:
           command: "cd roc-compiler-fuzz && zig build update-database -- ../roc ${{ matrix.fuzzer.name }} ../fuzz-out"
           error_string_contains: "build.zig.zon"
