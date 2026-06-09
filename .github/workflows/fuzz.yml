@@ -146,7 +146,7 @@ jobs:
         if: ${{ matrix.fuzzer.use-snapshot-corpus }}
         uses: ./roc-compiler-fuzz/.github/actions/flaky-retry
         with:
-          command: "cd roc && zig build snapshot -- --fuzz-corpus ../corpus --verbose"
+          command: "cd roc && zig build run-snapshot-tool -- --fuzz-corpus ../corpus --verbose"
           error_string_contains: "build.zig.zon"
           retry_count: 3
 
