@@ -53,6 +53,7 @@ jobs:
       # Updating the key generates a new cache but gets around save failures.
       cache-key: ${{ matrix.fuzzer.name }}-corpus-v4
       fuzzer-exe: fuzz-${{ matrix.fuzzer.name }}
+      fuzzer-step: build-fuzz-${{ matrix.fuzzer.name }}
       # 16KiB inputs seem like a reasonable file size limit.
       # That should be enough to explore all roc syntax.
       AFL_INPUT_LEN_MAX: 16384
@@ -94,7 +95,7 @@ jobs:
           AFL_CC_COMPILER: LTO
         uses: ./roc-compiler-fuzz/.github/actions/flaky-retry
         with:
-          command: "cd roc && zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}"
+          command: "cd roc && zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-step }}"
           error_string_contains: "build.zig.zon"
           retry_count: 3
 
@@ -114,7 +115,7 @@ jobs:
           AFL_CC_COMPILER: LTO
         uses: ./roc-compiler-fuzz/.github/actions/flaky-retry
         with:
-          command: "cd roc && zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-exe }}"
+          command: "cd roc && zig build -Dfuzz -Doptimize=ReleaseSafe -Dtarget=native-native -Dsystem-afl ${{ env.fuzzer-step }}"
           error_string_contains: "build.zig.zon"
           retry_count: 3
 
