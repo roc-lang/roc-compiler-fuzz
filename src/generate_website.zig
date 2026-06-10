@@ -310,7 +310,7 @@ pub fn main(init: std.process.Init) !void {
         var cmd: ?[]const u8 = null;
         if (result.kind != .success) {
             cmd = try std.fmt.allocPrint(arena,
-                \\<div class="copyable"><code>zig build{s} repro-{s} -- -b {s} -v</code></div>
+                \\<div class="copyable"><code>zig build{s} run-repro-{s} -- -b {s} -v</code></div>
             , .{
                 if (result.kind == .hang) " -Doptimize=ReleaseSafe" else "",
                 result.fuzzer,
