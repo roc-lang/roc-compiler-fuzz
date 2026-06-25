@@ -3,15 +3,15 @@
 		"branch": "fix-afl-fuzz-link-order",
 		"commit_sha": "29c6033b73084ec5b4cc03c6b3044516a56ae766",
 		"commit_timestamp": 1782353305,
-		"start_timestamp": 1782354527,
-		"fuzzer": "parse",
-		"edges_found": 7570,
-		"total_edges": 87822,
-		"unique_crashes": 0,
+		"start_timestamp": 1782356753,
+		"fuzzer": "canonicalize",
+		"edges_found": 21095,
+		"total_edges": 493121,
+		"unique_crashes": 4,
 		"unique_hangs": 0,
-		"total_execs": 130064,
-		"kind": "success",
-		"encoded_failure": ""
+		"total_execs": 51363,
+		"kind": "crash",
+		"encoded_failure": "TGlzdC5zcGxpdF9vbihbMSwgMiwgMSwgMiwgM10sIDEp"
 	},
 	{
 		"branch": "main",
