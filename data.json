@@ -1,31 +1,45 @@
 [
 	{
 		"branch": "main",
-		"commit_sha": "71bd012ae0f48af9f3de69569d9550c47ec3e938",
-		"commit_timestamp": 1782416403,
-		"start_timestamp": 1782420033,
+		"commit_sha": "499b7100cf85aaafa92347fde6a59e94cca23ea9",
+		"commit_timestamp": 1782426266,
+		"start_timestamp": 1782430843,
+		"fuzzer": "tokenize",
+		"edges_found": 988,
+		"total_edges": 48654,
+		"unique_crashes": 0,
+		"unique_hangs": 0,
+		"total_execs": 136881862,
+		"kind": "success",
+		"encoded_failure": ""
+	},
+	{
+		"branch": "main",
+		"commit_sha": "49bbde82c125402225d4a23bfa5882c4475059b7",
+		"commit_timestamp": 1782396317,
+		"start_timestamp": 1782406266,
 		"fuzzer": "parse",
-		"edges_found": 7560,
-		"total_edges": 85600,
-		"unique_crashes": 45,
+		"edges_found": 7577,
+		"total_edges": 87822,
+		"unique_crashes": 41,
 		"unique_hangs": 10,
-		"total_execs": 1030941,
+		"total_execs": 1020861,
 		"kind": "hang",
 		"encoded_failure": "eD0zZTYwMDAwMA=="
 	},
 	{
 		"branch": "main",
-		"commit_sha": "71bd012ae0f48af9f3de69569d9550c47ec3e938",
-		"commit_timestamp": 1782416403,
-		"start_timestamp": 1782420033,
+		"commit_sha": "49bbde82c125402225d4a23bfa5882c4475059b7",
+		"commit_timestamp": 1782396317,
+		"start_timestamp": 1782406266,
 		"fuzzer": "parse",
-		"edges_found": 7560,
-		"total_edges": 85600,
-		"unique_crashes": 45,
+		"edges_found": 7577,
+		"total_edges": 87822,
+		"unique_crashes": 41,
 		"unique_hangs": 10,
-		"total_execs": 1030941,
+		"total_execs": 1020861,
 		"kind": "crash",
-		"encoded_failure": "ZT0zRTYwMDAwMDAwMDA="
+		"encoded_failure": "bz0iIiIKLjAtCiIi"
 	},
 	{
 		"branch": "main",
@@ -264,19 +278,5 @@
 		"total_execs": 1308093,
 		"kind": "hang",
 		"encoded_failure": "eD0zZTYwMDAwMA=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "34f0dbbace1e6d04ca1c40fe778d1356dca7bed0",
-		"commit_timestamp": 1782246541,
-		"start_timestamp": 1782259839,
-		"fuzzer": "parse",
-		"edges_found": 7567,
-		"total_edges": 87812,
-		"unique_crashes": 47,
-		"unique_hangs": 12,
-		"total_execs": 1308093,
-		"kind": "crash",
-		"encoded_failure": "Xz0zZTYwMDAwMDAwMDA="
 	}
 ]
