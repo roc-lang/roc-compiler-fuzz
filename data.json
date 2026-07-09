@@ -3,6 +3,20 @@
 		"branch": "main",
 		"commit_sha": "48a4a91a7a71793001e66c36d7c26a45f1ceec93",
 		"commit_timestamp": 1783526314,
+		"start_timestamp": 1783550184,
+		"fuzzer": "canonicalize",
+		"edges_found": 43391,
+		"total_edges": 628607,
+		"unique_crashes": 160,
+		"unique_hangs": 2,
+		"total_execs": 135527540,
+		"kind": "crash",
+		"encoded_failure": "BAAJAN8="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "48a4a91a7a71793001e66c36d7c26a45f1ceec93",
+		"commit_timestamp": 1783526314,
 		"start_timestamp": 1783537400,
 		"fuzzer": "canonicalize",
 		"edges_found": 43972,
@@ -17,20 +31,6 @@
 		"branch": "main",
 		"commit_sha": "48a4a91a7a71793001e66c36d7c26a45f1ceec93",
 		"commit_timestamp": 1783526314,
-		"start_timestamp": 1783547481,
-		"fuzzer": "parse",
-		"edges_found": 7909,
-		"total_edges": 89533,
-		"unique_crashes": 12,
-		"unique_hangs": 0,
-		"total_execs": 15951664,
-		"kind": "crash",
-		"encoded_failure": "YT0oMC0+YiAuYyk="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "48a4a91a7a71793001e66c36d7c26a45f1ceec93",
-		"commit_timestamp": 1783526314,
 		"start_timestamp": 1783537400,
 		"fuzzer": "canonicalize",
 		"edges_found": 43972,
@@ -40,6 +40,20 @@
 		"total_execs": 152736517,
 		"kind": "hang",
 		"encoded_failure": "e2dlLCB7MWksIENvbXBs"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "48a4a91a7a71793001e66c36d7c26a45f1ceec93",
+		"commit_timestamp": 1783526314,
+		"start_timestamp": 1783550184,
+		"fuzzer": "canonicalize",
+		"edges_found": 43391,
+		"total_edges": 628607,
+		"unique_crashes": 160,
+		"unique_hangs": 2,
+		"total_execs": 135527540,
+		"kind": "hang",
+		"encoded_failure": "cmUwMHJzZTpVPT5VNjQKcj18fHJlMDByc2UoMCkuMTAwMDBwPWlmIDA9PTAgMCBlbHNlKClvPXx8aWYgMCAoKW49eygpfQ=="
 	},
 	{
 		"branch": "main",
@@ -264,19 +278,5 @@
 		"total_execs": 607414,
 		"kind": "crash",
 		"encoded_failure": "cj0xZTIwMDAwMDAwMDAw"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "7a98750b3e3bf21d72f72691b3665a95e64ea6cf",
-		"commit_timestamp": 1783350492,
-		"start_timestamp": 1783354004,
-		"fuzzer": "tokenize",
-		"edges_found": 999,
-		"total_edges": 48695,
-		"unique_crashes": 0,
-		"unique_hangs": 0,
-		"total_execs": 130235392,
-		"kind": "success",
-		"encoded_failure": ""
 	}
 ]
