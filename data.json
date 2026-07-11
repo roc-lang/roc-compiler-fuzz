@@ -1,6 +1,20 @@
 [
 	{
 		"branch": "main",
+		"commit_sha": "b566030608a2b70f2cee4a6a76ca3139faaa592b",
+		"commit_timestamp": 1783770931,
+		"start_timestamp": 1783778882,
+		"fuzzer": "tokenize",
+		"edges_found": 999,
+		"total_edges": 48695,
+		"unique_crashes": 0,
+		"unique_hangs": 0,
+		"total_execs": 132477977,
+		"kind": "success",
+		"encoded_failure": ""
+	},
+	{
+		"branch": "main",
 		"commit_sha": "252a59ae74d430c2650f38007cf4e74dcfc86656",
 		"commit_timestamp": 1783731788,
 		"start_timestamp": 1783753502,
@@ -264,19 +278,5 @@
 		"total_execs": 102120063,
 		"kind": "crash",
 		"encoded_failure": "Rm9vEIA="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "48a4a91a7a71793001e66c36d7c26a45f1ceec93",
-		"commit_timestamp": 1783526314,
-		"start_timestamp": 1783550184,
-		"fuzzer": "canonicalize",
-		"edges_found": 43391,
-		"total_edges": 628607,
-		"unique_crashes": 160,
-		"unique_hangs": 2,
-		"total_execs": 135527540,
-		"kind": "crash",
-		"encoded_failure": "BAAJAN8="
 	}
 ]
