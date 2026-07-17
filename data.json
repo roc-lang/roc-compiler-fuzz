@@ -17,6 +17,20 @@
 		"branch": "main",
 		"commit_sha": "bed8e44eef0ceb0444d2fffff088d60adb64b1f1",
 		"commit_timestamp": 1784160425,
+		"start_timestamp": 1784263506,
+		"fuzzer": "canonicalize",
+		"edges_found": 44002,
+		"total_edges": 646986,
+		"unique_crashes": 27,
+		"unique_hangs": 0,
+		"total_execs": 13086533,
+		"kind": "crash",
+		"encoded_failure": "bWFpbiE9fDB8IiIuTy5z"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "bed8e44eef0ceb0444d2fffff088d60adb64b1f1",
+		"commit_timestamp": 1784160425,
 		"start_timestamp": 1784227202,
 		"fuzzer": "canonicalize",
 		"edges_found": 41829,
@@ -40,20 +54,6 @@
 		"total_execs": 11547971,
 		"kind": "crash",
 		"encoded_failure": "bWFpbiE9fDB8fHwiIi5BPjA="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "bed8e44eef0ceb0444d2fffff088d60adb64b1f1",
-		"commit_timestamp": 1784160425,
-		"start_timestamp": 1784260908,
-		"fuzzer": "parse",
-		"edges_found": 8338,
-		"total_edges": 91473,
-		"unique_crashes": 16,
-		"unique_hangs": 1,
-		"total_execs": 13728407,
-		"kind": "crash",
-		"encoded_failure": "aTp7ZToKe246VQ19PT5YfT0+cg=="
 	},
 	{
 		"branch": "main",
@@ -96,20 +96,6 @@
 		"total_execs": 12046175,
 		"kind": "crash",
 		"encoded_failure": "cDp7ZToKe246VQ19PT5VfT0+cg=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "bed8e44eef0ceb0444d2fffff088d60adb64b1f1",
-		"commit_timestamp": 1784160425,
-		"start_timestamp": 1784260908,
-		"fuzzer": "parse",
-		"edges_found": 8338,
-		"total_edges": 91473,
-		"unique_crashes": 16,
-		"unique_hangs": 1,
-		"total_execs": 13728407,
-		"kind": "hang",
-		"encoded_failure": "cj0hISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA="
 	},
 	{
 		"branch": "main",
@@ -278,5 +264,19 @@
 		"total_execs": 137080505,
 		"kind": "success",
 		"encoded_failure": ""
+	},
+	{
+		"branch": "main",
+		"commit_sha": "8a2a90a53294076cfa4b08075eb0035b572d334f",
+		"commit_timestamp": 1783975019,
+		"start_timestamp": 1783982812,
+		"fuzzer": "canonicalize",
+		"edges_found": 44491,
+		"total_edges": 639503,
+		"unique_crashes": 23,
+		"unique_hangs": 0,
+		"total_execs": 14047625,
+		"kind": "crash",
+		"encoded_failure": "bWFpbiE9fDB8e310PXx8e1V0MDAwMDBtYXQ6PXt9LntFOlV0MDAwMDBtYXQoKW49MH19"
 	}
 ]
