@@ -3,15 +3,29 @@
 		"branch": "main",
 		"commit_sha": "afef9119194708c1bacebcef063e6bc39fc4a72f",
 		"commit_timestamp": 1784603410,
-		"start_timestamp": 1784610125,
-		"fuzzer": "canonicalize",
-		"edges_found": 45781,
-		"total_edges": 660241,
-		"unique_crashes": 4,
-		"unique_hangs": 0,
-		"total_execs": 12444383,
+		"start_timestamp": 1784606944,
+		"fuzzer": "parse",
+		"edges_found": 8338,
+		"total_edges": 91487,
+		"unique_crashes": 10,
+		"unique_hangs": 2,
+		"total_execs": 9179712,
 		"kind": "crash",
-		"encoded_failure": "UDAwcjo9KFUscilwOnIKcD1QMDByLkEoIiIp"
+		"encoded_failure": "ZzplLT5lIHdoZXJlW2UuQixdaD18fHt7KFtdKX19"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "afef9119194708c1bacebcef063e6bc39fc4a72f",
+		"commit_timestamp": 1784603410,
+		"start_timestamp": 1784618083,
+		"fuzzer": "tokenize",
+		"edges_found": 1012,
+		"total_edges": 46719,
+		"unique_crashes": 0,
+		"unique_hangs": 0,
+		"total_execs": 133422990,
+		"kind": "success",
+		"encoded_failure": ""
 	},
 	{
 		"branch": "main",
@@ -264,19 +278,5 @@
 		"total_execs": 13434488,
 		"kind": "crash",
 		"encoded_failure": "ZzplLT5lIHdoZXJlW2UuQixdaD18fHt7KFtdKX19"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "6dc62d3611fadecb59122a111621da7d06c0aeab",
-		"commit_timestamp": 1784353657,
-		"start_timestamp": 1784358413,
-		"fuzzer": "parse",
-		"edges_found": 8378,
-		"total_edges": 91953,
-		"unique_crashes": 17,
-		"unique_hangs": 2,
-		"total_execs": 13630984,
-		"kind": "hang",
-		"encoded_failure": "ZD17fW09bAohPSEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhTDB0ISEhISEhISEhISEhITAhMCEhISEhISEhISEhISEhISEhISE="
 	}
 ]
