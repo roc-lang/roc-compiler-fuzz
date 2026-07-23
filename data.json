@@ -1,17 +1,31 @@
 [
 	{
 		"branch": "main",
+		"commit_sha": "829f4c96f35a25269beefad1fa4888d24ccf707c",
+		"commit_timestamp": 1784838538,
+		"start_timestamp": 1784843588,
+		"fuzzer": "tokenize",
+		"edges_found": 1012,
+		"total_edges": 46719,
+		"unique_crashes": 0,
+		"unique_hangs": 0,
+		"total_execs": 133958005,
+		"kind": "success",
+		"encoded_failure": ""
+	},
+	{
+		"branch": "main",
 		"commit_sha": "581246b93995c55a4ae9bda9333d7a399f489a65",
 		"commit_timestamp": 1784828703,
-		"start_timestamp": 1784833990,
-		"fuzzer": "canonicalize",
-		"edges_found": 47612,
-		"total_edges": 664836,
-		"unique_crashes": 182,
-		"unique_hangs": 0,
-		"total_execs": 1086464,
+		"start_timestamp": 1784829977,
+		"fuzzer": "parse",
+		"edges_found": 8346,
+		"total_edges": 90345,
+		"unique_crashes": 8,
+		"unique_hangs": 2,
+		"total_execs": 12842849,
 		"kind": "crash",
-		"encoded_failure": "ZTpbXU06PXtmOkl9"
+		"encoded_failure": "cDp7bgo6VSMKPT5zfT0+dA=="
 	},
 	{
 		"branch": "main",
@@ -264,19 +278,5 @@
 		"total_execs": 11457483,
 		"kind": "crash",
 		"encoded_failure": "CnI6KCksKCksKFQpLChhKS0+KClyPSgp"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "0e9d4f95845e36806dcd9b99cfa2acdc84e14ce0",
-		"commit_timestamp": 1784571000,
-		"start_timestamp": 1784573018,
-		"fuzzer": "parse",
-		"edges_found": 8319,
-		"total_edges": 89264,
-		"unique_crashes": 10,
-		"unique_hangs": 2,
-		"total_execs": 11457483,
-		"kind": "hang",
-		"encoded_failure": "bCA6IGFsCnMgPSB8YXwge2hlMF98Y3x8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fDB9"
 	}
 ]
