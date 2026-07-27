@@ -17,15 +17,15 @@
 		"branch": "main",
 		"commit_sha": "18f688d7aa719260b1e5bd35c910f8918fcfebf6",
 		"commit_timestamp": 1785106789,
-		"start_timestamp": 1785129433,
-		"fuzzer": "tokenize",
-		"edges_found": 1013,
-		"total_edges": 47644,
-		"unique_crashes": 0,
+		"start_timestamp": 1785130243,
+		"fuzzer": "parse",
+		"edges_found": 8367,
+		"total_edges": 89484,
+		"unique_crashes": 11,
 		"unique_hangs": 0,
-		"total_execs": 173196010,
-		"kind": "success",
-		"encoded_failure": ""
+		"total_execs": 5538277,
+		"kind": "crash",
+		"encoded_failure": "dD18KCgwfCgpKXwwLCgwLCl8MCl8MA=="
 	},
 	{
 		"branch": "main",
