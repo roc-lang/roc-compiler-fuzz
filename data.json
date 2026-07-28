@@ -1,6 +1,20 @@
 [
 	{
 		"branch": "main",
+		"commit_sha": "dbd67d1ef2b68d05549c1f3dc9c4bcf72d728efd",
+		"commit_timestamp": 1785250394,
+		"start_timestamp": 1785262250,
+		"fuzzer": "tokenize",
+		"edges_found": 1012,
+		"total_edges": 47368,
+		"unique_crashes": 0,
+		"unique_hangs": 0,
+		"total_execs": 240322661,
+		"kind": "success",
+		"encoded_failure": ""
+	},
+	{
+		"branch": "main",
 		"commit_sha": "f4b3c607f5b06f9d1c3d884d5fcadf539bbf2a7e",
 		"commit_timestamp": 1785151363,
 		"start_timestamp": 1785175158,
@@ -17,20 +31,6 @@
 		"branch": "main",
 		"commit_sha": "f4b3c607f5b06f9d1c3d884d5fcadf539bbf2a7e",
 		"commit_timestamp": 1785151363,
-		"start_timestamp": 1785251291,
-		"fuzzer": "canonicalize",
-		"edges_found": 49914,
-		"total_edges": 723827,
-		"unique_crashes": 125,
-		"unique_hangs": 0,
-		"total_execs": 1045121,
-		"kind": "crash",
-		"encoded_failure": "TTo9e2Q6ZX0ue0k6W119"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "f4b3c607f5b06f9d1c3d884d5fcadf539bbf2a7e",
-		"commit_timestamp": 1785151363,
 		"start_timestamp": 1785222754,
 		"fuzzer": "canonicalize",
 		"edges_found": 49923,
@@ -40,6 +40,20 @@
 		"total_execs": 1148032,
 		"kind": "crash",
 		"encoded_failure": "VDo9W10ue0E6OlQwfQ=="
+	},
+	{
+		"branch": "main",
+		"commit_sha": "f4b3c607f5b06f9d1c3d884d5fcadf539bbf2a7e",
+		"commit_timestamp": 1785151363,
+		"start_timestamp": 1785246776,
+		"fuzzer": "parse",
+		"edges_found": 8368,
+		"total_edges": 90409,
+		"unique_crashes": 13,
+		"unique_hangs": 0,
+		"total_execs": 14608089,
+		"kind": "crash",
+		"encoded_failure": "ZzplLT5lIHdoZXJlW2UuQixdaD18fHt7KFtdKX19"
 	},
 	{
 		"branch": "main",
@@ -264,19 +278,5 @@
 		"total_execs": 131770296,
 		"kind": "success",
 		"encoded_failure": ""
-	},
-	{
-		"branch": "main",
-		"commit_sha": "b51f12351c4f133cafe240404a129ed0bca14c62",
-		"commit_timestamp": 1784892659,
-		"start_timestamp": 1784894757,
-		"fuzzer": "parse",
-		"edges_found": 8377,
-		"total_edges": 91674,
-		"unique_crashes": 6,
-		"unique_hangs": 1,
-		"total_execs": 5076413,
-		"kind": "crash",
-		"encoded_failure": "ZzplLT5lIHdoZXJlW2UuQixdaD18fHt7KFtdKX19"
 	}
 ]
