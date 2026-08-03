@@ -3,15 +3,29 @@
 		"branch": "main",
 		"commit_sha": "94cbed386c51a8739ced3be76e7ab7b84dd22852",
 		"commit_timestamp": 1785746133,
-		"start_timestamp": 1785752893,
-		"fuzzer": "tokenize",
-		"edges_found": 1012,
-		"total_edges": 48991,
-		"unique_crashes": 0,
-		"unique_hangs": 0,
-		"total_execs": 132837173,
-		"kind": "success",
-		"encoded_failure": ""
+		"start_timestamp": 1785753381,
+		"fuzzer": "parse",
+		"edges_found": 8791,
+		"total_edges": 93722,
+		"unique_crashes": 32,
+		"unique_hangs": 2,
+		"total_execs": 13980545,
+		"kind": "crash",
+		"encoded_failure": "YT0ofHwoMAouMCkp"
+	},
+	{
+		"branch": "main",
+		"commit_sha": "94cbed386c51a8739ced3be76e7ab7b84dd22852",
+		"commit_timestamp": 1785746133,
+		"start_timestamp": 1785753381,
+		"fuzzer": "parse",
+		"edges_found": 8791,
+		"total_edges": 93722,
+		"unique_crashes": 32,
+		"unique_hangs": 2,
+		"total_execs": 13980545,
+		"kind": "hang",
+		"encoded_failure": "cj18fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8bWF0Y2ggMHswPT4wfXQ9MA=="
 	},
 	{
 		"branch": "main",
@@ -264,19 +278,5 @@
 		"total_execs": 7156496,
 		"kind": "crash",
 		"encoded_failure": "bW9kdWxlW28gYXMgbixGLnMgYXMgSV0="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "9a7e8fd9ef8067e7461444395af22dd516083f8b",
-		"commit_timestamp": 1785336123,
-		"start_timestamp": 1785345807,
-		"fuzzer": "canonicalize",
-		"edges_found": 49356,
-		"total_edges": 688065,
-		"unique_crashes": 105,
-		"unique_hangs": 0,
-		"total_execs": 1216746,
-		"kind": "crash",
-		"encoded_failure": "eD0wCng9MA=="
 	}
 ]
