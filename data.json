@@ -1,17 +1,31 @@
 [
 	{
 		"branch": "main",
+		"commit_sha": "638026b8d50a01e2402b46c38379f22656b36336",
+		"commit_timestamp": 1786729423,
+		"start_timestamp": 1786730563,
+		"fuzzer": "tokenize",
+		"edges_found": 1042,
+		"total_edges": 49131,
+		"unique_crashes": 0,
+		"unique_hangs": 0,
+		"total_execs": 133471113,
+		"kind": "success",
+		"encoded_failure": ""
+	},
+	{
+		"branch": "main",
 		"commit_sha": "8078b0d46531abf5f175a8a224900be56a652e0b",
 		"commit_timestamp": 1786716217,
-		"start_timestamp": 1786722342,
-		"fuzzer": "canonicalize",
-		"edges_found": 59510,
-		"total_edges": 1009123,
-		"unique_crashes": 110,
+		"start_timestamp": 1786717411,
+		"fuzzer": "parse",
+		"edges_found": 10179,
+		"total_edges": 94356,
+		"unique_crashes": 67,
 		"unique_hangs": 0,
-		"total_execs": 2276768,
+		"total_execs": 21134573,
 		"kind": "crash",
-		"encoded_failure": "ZmliID0gfG58IGlmIG4gPD0gMSBuIGVsc2UgZmliKG4gLSBlMSkgKyBmaWIobiAtIDIp"
+		"encoded_failure": "YT0oKDAsKSk="
 	},
 	{
 		"branch": "main",
@@ -264,19 +278,5 @@
 		"total_execs": 1735321,
 		"kind": "crash",
 		"encoded_failure": "YzpVCmMwPXt7fT17eDowIHk6MH19"
-	},
-	{
-		"branch": "main",
-		"commit_sha": "606470f18e2bab40e5a4016b4ce5dd27252293ff",
-		"commit_timestamp": 1786467159,
-		"start_timestamp": 1786519039,
-		"fuzzer": "parse",
-		"edges_found": 9106,
-		"total_edges": 93142,
-		"unique_crashes": 41,
-		"unique_hangs": 1,
-		"total_execs": 15206873,
-		"kind": "hang",
-		"encoded_failure": "YnpuID0geyEhISEhISh7MH0pISEhISEhISEwMDAhISECACBpZiAhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAhIXggKyAxCn0="
 	}
 ]
