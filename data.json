@@ -1,6 +1,34 @@
 [
 	{
 		"branch": "main",
+		"commit_sha": "1c799d7074b224f5fe176ea709847374cf4aec60",
+		"commit_timestamp": 1787404119,
+		"start_timestamp": 1787405350,
+		"fuzzer": "tokenize",
+		"edges_found": 1042,
+		"total_edges": 46859,
+		"unique_crashes": 0,
+		"unique_hangs": 0,
+		"total_execs": 135762429,
+		"kind": "success",
+		"encoded_failure": ""
+	},
+	{
+		"branch": "main",
+		"commit_sha": "db5602201f87592a0cd07b0b6477628798507c66",
+		"commit_timestamp": 1787329515,
+		"start_timestamp": 1787391911,
+		"fuzzer": "parse",
+		"edges_found": 10195,
+		"total_edges": 94371,
+		"unique_crashes": 49,
+		"unique_hangs": 0,
+		"total_execs": 17052577,
+		"kind": "crash",
+		"encoded_failure": "YT0wLT4oXFwKKS4w"
+	},
+	{
+		"branch": "main",
 		"commit_sha": "db5602201f87592a0cd07b0b6477628798507c66",
 		"commit_timestamp": 1787329515,
 		"start_timestamp": 1787379085,
@@ -40,20 +68,6 @@
 		"total_execs": 21405779,
 		"kind": "crash",
 		"encoded_failure": "YT0oKS0+KFxcCik="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "db5602201f87592a0cd07b0b6477628798507c66",
-		"commit_timestamp": 1787329515,
-		"start_timestamp": 1787396751,
-		"fuzzer": "canonicalize",
-		"edges_found": 60993,
-		"total_edges": 977824,
-		"unique_crashes": 19,
-		"unique_hangs": 0,
-		"total_execs": 1696170,
-		"kind": "crash",
-		"encoded_failure": "bWEwZTBtYTA6KGEtPmIpLT4oSTY0LT5JNjQpd2hlcmVbYS5kOkldbWEwZTBtYTA9fDB8e3dyYTAwZWQ9fGkwMDB0fHt2YTAwZT0oaTAwMHQpbzB0MDB0PSh2YTAwZSlvMHQwMHQuMCgpfXdyYTAwZWR9dD17dHJhMDAwb3JtPW1hMGUwbWEwKHwwfDApdHJhMDAwb3JtfQ=="
 	},
 	{
 		"branch": "main",
@@ -264,19 +278,5 @@
 		"total_execs": 143235931,
 		"kind": "success",
 		"encoded_failure": ""
-	},
-	{
-		"branch": "main",
-		"commit_sha": "edec8304a9cca045338c3abbf8f1982a38f0c751",
-		"commit_timestamp": 1787128130,
-		"start_timestamp": 1787142569,
-		"fuzzer": "canonicalize",
-		"edges_found": 59168,
-		"total_edges": 958525,
-		"unique_crashes": 7,
-		"unique_hangs": 0,
-		"total_execs": 3558208,
-		"kind": "crash",
-		"encoded_failure": "ZGVzY3JpYmUgOiB7IHggOiBVNjQsIHkgOiBVNjQsIHogOiBVNjQgfSAtPiBVNjQKZGVzY3JpYmUgPSB8cmVjfCBtYXRjaCByRGljdC5lYyB7CiAgICB7IHgsIHkgfSA9PiB4ICsgeQp9Cg=="
 	}
 ]
