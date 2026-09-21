@@ -1,6 +1,20 @@
 [
 	{
 		"branch": "main",
+		"commit_sha": "48b5ceb71a13aec7884946e75ae306875289529d",
+		"commit_timestamp": 1789969464,
+		"start_timestamp": 1789974572,
+		"fuzzer": "tokenize",
+		"edges_found": 1041,
+		"total_edges": 49146,
+		"unique_crashes": 0,
+		"unique_hangs": 0,
+		"total_execs": 122212484,
+		"kind": "success",
+		"encoded_failure": ""
+	},
+	{
+		"branch": "main",
 		"commit_sha": "77cc619890dba1c6a5c58abc0d76099809428e59",
 		"commit_timestamp": 1789943886,
 		"start_timestamp": 1789953307,
@@ -264,19 +278,5 @@
 		"total_execs": 10927130,
 		"kind": "hang",
 		"encoded_failure": "YXBwW117ZToiaHR0cHM6Ly8wL3VuaTIyMjIyMjIyeGEyMjIyMjIyMjIyMjIyMjIyMjJlLnRhci56c3QifQ=="
-	},
-	{
-		"branch": "main",
-		"commit_sha": "6f607d4d4ec3cc7ea5382b6256a2669a01aa4b87",
-		"commit_timestamp": 1789695541,
-		"start_timestamp": 1789714006,
-		"fuzzer": "canonicalize",
-		"edges_found": 49785,
-		"total_edges": 1237465,
-		"unique_crashes": 450,
-		"unique_hangs": 9,
-		"total_execs": 9957021,
-		"kind": "crash",
-		"encoded_failure": "Zj0uLi4="
 	}
 ]
