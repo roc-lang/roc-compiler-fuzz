@@ -3,15 +3,15 @@
 		"branch": "main",
 		"commit_sha": "af14b3840330f83263778776c85f04f298ba2389",
 		"commit_timestamp": 1791384760,
-		"start_timestamp": 1791389657,
-		"fuzzer": "tokenize",
-		"edges_found": 1082,
-		"total_edges": 49095,
-		"unique_crashes": 0,
+		"start_timestamp": 1791390309,
+		"fuzzer": "parse",
+		"edges_found": 12194,
+		"total_edges": 115862,
+		"unique_crashes": 458,
 		"unique_hangs": 0,
-		"total_execs": 122306594,
-		"kind": "success",
-		"encoded_failure": ""
+		"total_execs": 13232509,
+		"kind": "crash",
+		"encoded_failure": "FQ=="
 	},
 	{
 		"branch": "main",
